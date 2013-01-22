@@ -1,8 +1,8 @@
 ﻿#!/usr/bin/python
 
 county_names = [
-    #u"Alba",
-    #u"Arad",
+    u"Alba",
+    u"Arad",
     u"Argeș",
     u"Bacău",
     u"Bihor",
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     county_no = 0
     for county in county_names:
         county_no += 1
-        for year in [u"96"]:
+        for year in [u"96", u"00", u"04", u"08"]:
             for village in range(100):
                 out_file = year + county + str(village) + u".html"
                 wget_comm = u"wget -O " + out_file + u" \"http://www.roaep.ro/alegeri/judete/" + year + u"loc/" + year + u"locp_xls.php?judet=" + county + u"&jud=" + str(county_no) + u"&aleg=1&den_aleg=Primar&circ=" + str(village) + u"\""
