@@ -14,12 +14,16 @@ $MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0 );
 $MyObject->Query("SELECT * FROM `judet` WHERE `index`=".$index);
 $array = $MyObject->getCurrentLine();
 
+$MyObject->Query("SELECT * FROM `demografie` WHERE `siruta`=".$array['siruta']." ORDER BY `an` DESC LIMIT 1");
+$pop = $MyObject->getCurrentLine();
+
 $smarty->assign('name', $array['prescurtare']);
-$smarty->assign('population', 100000);
-$smarty->assign('census', 2011);
+$smarty->assign('siruta', $array['siruta']);
+$smarty->assign('population', $pop['populatie']);
+$smarty->assign('census', $pop['an']);
 $smarty->assign('surface', $array['suprafata']);
 if($array['suprafata'])
-	$smarty->assign('density', 100000 / $array['suprafata']);
+	$smarty->assign('density', $pop['populatie'] / $array['suprafata']);
 else
 	$smarty->assign('density', '');
 
