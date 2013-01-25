@@ -1,6 +1,15 @@
 {include file='tpl/header.tpl'}
-<table width=970 cellpadding=0 cellspacing=0>
-  <td valign=top width=340>
+<ul class="toc">
+	<li><a href="#info">Informații generale</a></li>
+	<li><a href="#adm">Administrație locală</a></li>
+	<li><a href="#uat">Localități</a></li>
+	<li><a href="#eco">Economie</a></li>
+	<li><a href="#dem">Demografie</a></li>
+	<li><a href="#mon">Monumente</li>
+</ul>
+<hr />
+<table width="100%" cellpadding="0" cellspacing="0">
+  <td valign=top width="300px">
     <div class="leftbar">
       {if $mappage}><div class="leftbarmap">><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
       <div class="leftbartitle">Date statistice</div>
@@ -37,6 +46,71 @@
          </ul>
     </div>
   </td>
-  <td>&nbsp;</td>
+  <td valign=top>
+    <div class="mainsection">
+		<a name="info" />
+		<div class="maintitle">Informații generale</div>
+		<p>{$name} este un județ al României aflat în regiunea {$region}.</p>
+    </div>
+    <div class="mainsection">
+		<a name="adm" />
+		<div class="maintitle">Administrație locală</div>
+		<p>Prefectul județului {$shortname} este {$prpres}, numit de guvern în anul {$pryear}.</p>
+		<p>Consiliul județean rezultat în urma alegerilor din {$pryear} are următoarea componență:</p>
+		<ul class="cjcouncil">
+			<li><b>Președinte:</b> {$cjpres}</li><!--TODO: partid-->
+			<li><b>Vicepreședinte:</b> {$cjvice}</li><!--TODO: partid-->
+			<li><b>Consilieri:</b> {$cjcouncil}</li>
+		</ul>
+    </div>
+    <div class="mainsection">
+		<a name="uat" />
+		<div class="maintitle">Localități</div>
+		<p>Unitățile administrativ-teritoriale ale județului {$name} sunt:</p>
+		<ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
+		{foreach $uat as $village}
+			<li><a href="village.php?siruta={$village._siruta}">{$village.denloc}</a></li>
+		{/foreach}
+		</ul>
+    </div>
+    <div class="mainsection">
+		<a name="eco" />
+		<div class="maintitle">Economie</div>
+		<p>TODO</p>
+    </div>
+    <div class="mainsection">
+		<a name="dem" />
+		<div class="maintitle">Demografie</div>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		  {literal}google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart);
+		  function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+			  ['An', 'Locuitori'],
+			  ['2002',  400000],
+			  ['{/literal}{$census}',  {$population}{literal}]
+			]);
+
+			var options = {
+			  title: 'Evoluție demografică',
+			  hAxis: {title: 'An'},
+			  vAxis: {baseline: 0}
+			};
+
+			var chart = new google.visualization.ColumnChart(document.getElementById('demografie'));
+			chart.draw(data, options);
+		  }{/literal}
+		</script>
+		<div id="demografie" style="width: 50%; height: 300px"></div>
+    </div>
+    <div class="mainsection">
+		<a name="mon" />
+		<div class="maintitle">Monumente</div>
+		<p><em>Lista completă a monumentelor istorice din {$name} este 
+		<a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din {$name|lcfirst}" title="Lista monumentelor istorice din {$name|lcfirst}">disponibilă la Wikipedia.</a></em></p>
+		<!--TODO-->
+    </div>
+  </td>
 </table>
 {include file='tpl/footer.tpl'}

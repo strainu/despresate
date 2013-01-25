@@ -1,4 +1,5 @@
 <?php
+setlocale(LC_ALL, 'ro_RO');
 require('./include/class.SimpleSQL.php');
 require('./include/config.php');
 require('smarty/libs/Smarty.class.php');
@@ -10,36 +11,70 @@ if (!isset($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 52)
 else
 	$index = $_GET['id'];
 	
-$MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0 );
-$MyObject->Query("SELECT * FROM `judet` WHERE `index`=".$index);
-$array = $MyObject->getCurrentLine();
+$MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 1 );
+$MyObject->Query("SELECT * FROM `judet` WHERE `index`=".$index." LIMIT 1");
+$county_data = $MyObject->getCurrentLine();
+if ($county_data == -1) {
+	echo "Problem fetching county data";
+	exit(1);
+}
 
-$MyObject->Query("SELECT * FROM `demografie` WHERE `siruta`=".$array['siruta']." ORDER BY `an` DESC LIMIT 1");
+$MyObject->Query("SELECT * FROM `siruta` WHERE `_siruta`=".$county_data['siruta']." LIMIT 1");
+$siruta_data = $MyObject->getCurrentLine();
+if ($siruta_data == -1) {
+	echo "Problem fetching siruta data";
+	exit(1);
+}
+
+$MyObject->Query("SELECT `_siruta`, `denloc` FROM `siruta` WHERE `sirsup`=".$county_data['siruta']);
+$uat_data = $MyObject->getTable();
+if ($uat_data == -1) {
+	echo "Problem fetching UAT data";
+	exit(1);
+}
+
+$MyObject->Query("SELECT * FROM `demografie` WHERE `siruta`=".$county_data['siruta']." ORDER BY `an` DESC LIMIT 1");
 $pop = $MyObject->getCurrentLine();
+if ($pop == -1) {
+	echo "Problem fetching population data";
+	exit(1);
+}
 
-$smarty->assign('name', $array['prescurtare']);
-$smarty->assign('siruta', $array['siruta']);
+$MyObject->Query("SELECT `nume` FROM `regiuni` WHERE `regiune`=".$siruta_data['regiune']." LIMIT 1");
+$region = $MyObject->getElement(0, 'nume');
+if ($region == -1) {
+	echo "Problem fetching region data";
+	exit(1);
+}
+
+$smarty->assign('name', ucwords(mb_strtolower($siruta_data['denloc'])));
+$smarty->assign('region', $region);
+$smarty->assign('shortname', $siruta_data['denloc']);//TODO
+$smarty->assign('siruta', $county_data['siruta']);
+$smarty->assign('uat', $uat_data);
 $smarty->assign('population', $pop['populatie']);
 $smarty->assign('census', $pop['an']);
-$smarty->assign('surface', $array['suprafata']);
-if($array['suprafata'])
-	$smarty->assign('density', $pop['populatie'] / $array['suprafata']);
+$smarty->assign('surface', $county_data['suprafata']);
+if($county_data['suprafata'])
+	$smarty->assign('density', $pop['populatie'] / $county_data['suprafata']);
 else
 	$smarty->assign('density', '');
 
-$smarty->assign('cjpres', 'TODO');
-$smarty->assign('cjaddr', $array['adrcj']);
-$smarty->assign('cjsite', $array['sitecj']);
-$smarty->assign('cjemail', $array['emailcj']);
-$smarty->assign('cjtel', $array['telefoncj']);
-$smarty->assign('cjfax', $array['faxcj']);
+$smarty->assign('cjpres', 'TODO');//TODO
+$smarty->assign('cjvice', 'TODO');//TODO
+$smarty->assign('cjcouncil', 'TODO');//TODO
+$smarty->assign('cjaddr', $county_data['adrcj']);
+$smarty->assign('cjsite', $county_data['sitecj']);
+$smarty->assign('cjemail', $county_data['emailcj']);
+$smarty->assign('cjtel', $county_data['telefoncj']);
+$smarty->assign('cjfax', $county_data['faxcj']);
 
-$smarty->assign('prpres', 'TODO');
-$smarty->assign('praddr', $array['adrpr']);
-$smarty->assign('prsite', $array['sitepr']);
-$smarty->assign('premail', $array['emailpr']);
-$smarty->assign('prtel', $array['telefonpr']);
-$smarty->assign('prfax', $array['faxpr']);
+$smarty->assign('prpres', 'TODO');//TODO
+$smarty->assign('praddr', $county_data['adrpr']);
+$smarty->assign('prsite', $county_data['sitepr']);
+$smarty->assign('premail', $county_data['emailpr']);
+$smarty->assign('prtel', $county_data['telefonpr']);
+$smarty->assign('prfax', $county_data['faxpr']);
 
 $smarty->display('tpl/judet.tpl');
 ?>

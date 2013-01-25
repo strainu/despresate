@@ -1,7 +1,8 @@
 <html>
 <head>
-<title>{$name} - Despre sate</title>
-<link rel="stylesheet" href="style.css" /> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{$name} - Despre sate</title>
+  <link rel="stylesheet" href="style.css" /> 
 </head>
 <body>
   <table width="970">
@@ -29,3 +30,4 @@
       <div class="title">{$name}</div>
     </td>
   </table>
+  <hr class="endheader" />
