@@ -23,5 +23,19 @@ if($array['suprafata'])
 else
 	$smarty->assign('density', '');
 
+$smarty->assign('cjpres', 'TODO');
+$smarty->assign('cjaddr', $array['adrcj']);
+$smarty->assign('cjsite', $array['sitecj']);
+$smarty->assign('cjemail', $array['emailcj']);
+$smarty->assign('cjtel', $array['telefoncj']);
+$smarty->assign('cjfax', $array['faxcj']);
+
+$smarty->assign('prpres', 'TODO');
+$smarty->assign('praddr', $array['adrpr']);
+$smarty->assign('prsite', $array['sitepr']);
+$smarty->assign('premail', $array['emailpr']);
+$smarty->assign('prtel', $array['telefonpr']);
+$smarty->assign('prfax', $array['faxpr']);
+
 $smarty->display('tpl/judet.tpl');
 ?>

@@ -1,62 +1,41 @@
-<div class="infobox" style="width:300px; float:right">
-<div class="plaintext" style="width:300px">
-<table class="infocaseta" cellspacing="0" style="font-size: 88%; padding:0; line-height: 1.5em;">
-<tr>
-<td colspan="2" class="antet harta">{$name}</td>
-</tr>
-<tr>
-<td colspan="2" style="text-align: center; padding: 0.7em 0.8em 0.7em 0.8em;;">
-<div class="floatnone"><a href="{$imgpage}" class="image" title="{$imgname}"><img alt="{$imgname}" src="{$imgthumb}" width="250" /></a></div>
-<small>{$imgname}</small></td>
-</tr>
-<tr class="mergedrow">
-<td colspan="2" align="center">
-<center>
-<div style="width:290px; float: none; clear: none">
-<div>
-{if $mappage}<div style="position: relative;"><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" width="250" /></a></div>
-<div style="font-size: 90%; padding-top:3px;"></div>
-</div>
-</div>
-<small>Localizarea județului pe harta României</small></center>{/if}
-</td>
-</tr>
-<!--tr class="mergedbottomrow">
-<th colspan="2" style="text-align: center; font-size: small; padding-bottom: 0.7em;">Coordonate: <span style="white-space: nowrap;"><span id="coordinates"><span class="latitude">{$lat}</span><span class="longitude">{$lon}</span></span></span></th>
-</tr-->
-<tr>
-<td colspan="2">
-<hr /></td>
-</tr>
-<tr class="mergedtoprow">
-<th>Țară</th>
-<th class="adr">România</th>
-</tr>
-<tr>
-<td colspan="2">
-<hr /></td>
-</tr>
-<tr class="mergedtoprow">
-<th>Suprafață</td>
-<td>{$surface} km<sup>2</sup></td>
-</tr>
-<tr class="mergedtoprow">
-<th>Populație ({$census})</td>
-<td>{$population} locuitori</td>
-</tr>
-<tr class="mergedtoprow">
-<th>Densitate</td>
-<td>{$density|commify:2:',':'.'} loc./km<sup>2</sup></td>
-</tr>
-<tr>
-<td colspan="2">
-<hr /></td>
-</tr>
-</div>
-</div>
-
-<div class="plaintext" style="width:800px">
-
-<p>
-<strong>{$name}</strong>
-</p>
+{include file='tpl/header.tpl'}
+<table width=970 cellpadding=0 cellspacing=0>
+  <td valign=top width=340>
+    <div class="leftbar">
+      {if $mappage}><div class="leftbarmap">><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
+      <div class="leftbartitle">Date statistice</div>
+        <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
+         <tr><th>Regiune</th><td>{$region}</td></tr>
+         <tr><th>Populație ({$census})</th><td>{$population} locuitori</td></tr>
+         <tr><th>Suprafață</th><td>{$surface} km<sup>2</sup></td></tr>
+         <tr><th>Densitate</th><td>{$density|commify:2:',':'.'} loc/km<sup>2</sup></td></tr>
+        </table>
+      <div class="leftbartitle">Consiliul județean</div>
+        <table cellspacing="0" cellpadding="0" width="100%" id="cj" class="leftbarelem">
+         <tr><th>Președinte</th><td>{$cjpres}</td></tr>
+         <tr><th>Adresă</th><td>{$cjaddr}</td></tr>
+         <tr><th>Site</th><td><a href="http://{$cjsite}" title="Site-ul Consiliului Județean {$name}">{$cjsite}</a></td></tr>
+         <tr><th>Email</th><td><a href="mailto:{$cjemail}" title="Emailul-ul Consiliului Județean {$name}">{$cjemail}</a></td></tr>
+         <tr><th>Telefon</th><td>(0040) {$cjtel}</td></tr>
+         <tr><th>Fax</th><td>(0040) {$cjfax}</td></tr>
+        </table>
+       <div class="leftbartitle">Prefectura</div>
+        <table cellspacing="0" cellpadding="0" width="100%" id="prefect" class="leftbarelem">
+         <tr><th>Prefect</th><td>{$prpres}</td></tr>
+         <tr><th>Adresă</th><td>{$praddr}</td></tr>
+         <tr><th>Site</th><td><a href="http://{$prsite}" title="Site-ul Consiliului Județean {$name}">{$prsite}</a></td></tr>
+         <tr><th>Email</th><td><a href="mailto:{$premail}" title="Emailul-ul Consiliului Județean {$name}">{$premail}</a></td></tr>
+         <tr><th>Telefon</th><td>(0040) {$prtel}</td></tr>
+         <tr><th>Fax</th><td>(0040) {$prfax}</td></tr>
+        </table>
+       <div class="leftbartitle">Alte informații</div>
+         <ul id="otherlinks">
+           <li><a href="https://ro.wikipedia.org/wiki/{$name}" title="Articolul Wikipedia despre {$name}">Articol Wikipedia</a></li>
+           <li><a href="https://www.google.ro/search?hl=ro&q={$name}&meta=lr%3Dlang_ro" title="Căutare google după {$name}">Caută pe Google</a></li>
+           <!--li><a href="{$name}" title="Articolul Wikipedia despre {$name}">Articol Wikipedia</a></li-->
+         </ul>
+    </div>
+  </td>
+  <td>&nbsp;</td>
+</table>
+{include file='tpl/footer.tpl'}
