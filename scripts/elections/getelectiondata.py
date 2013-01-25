@@ -56,7 +56,7 @@ def fetch_data(file_prefix, county, year, county_no, village):
     print convert_comm
     os.system(convert_comm.encode("utf8"))
 
-def parse_csv(file_prefix):
+def parse_csv(file_prefix, out_file, year):
     in_file = file_prefix + u".csv"
     print in_file
     cr = csv.reader(open(in_file,"rb"))
@@ -79,14 +79,26 @@ def parse_csv(file_prefix):
     winner = elem2[elem2.index(u'%') + 1]
     party = elem2[elem2.index(u'%') + 2]
 
+    county = elem[7].strip().upper()
+    if county.find("JUDETUL") == -1:
+	county = "JUDETUL " + county
+
+    out_file.write(u"\"" + county + u"\",\"" + elem[11] + u"\",\"" + winner + u"\",\"" + party + u"\",\"")
+    if year == u"96":
+	out_file.write("1996\"\n")
+    else:
+        out_file.write("20" + year + "\"\n")
+
     print winner + " (" + party + ")"
 
 if __name__ == "__main__":
     county_no = 0
+    of = open("primari.csv", "w+")
     for county in county_names:
         county_no += 1
         for year in [u"96", u"00", u"04", u"08"]:
-            for village in range(103):
+            for village in range(102):
                 file_prefix = year + county + str(village + 1)
-                fetch_data(file_prefix, county, year, county_no, village + 1)
-                parse_csv(file_prefix)
+                #fetch_data(file_prefix, county, year, county_no, village + 1)
+                parse_csv(file_prefix, of, year)
+    of.close()
