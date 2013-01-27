@@ -5,7 +5,8 @@
 	<li><a href="#uat">Localități</a></li>
 	<li><a href="#eco">Economie</a></li>
 	<li><a href="#dem">Demografie</a></li>
-	<li><a href="#mon">Monumente</li>
+	<li><a href="#mon">Monumente</a></li>
+	<li><a href="#pic">Galerie</a></li>
 </ul>
 <hr />
 <table width="100%" cellpadding="0" cellspacing="0">
@@ -49,12 +50,12 @@
   <td valign=top>
     <div class="mainsection">
 		<a name="info" />
-		<div class="maintitle">Informații generale</div>
+		<div class="maintitle">Informații generale<a href="#top" class="toplink small">[sus]</a></div>
 		<p>{$name} este un județ al României aflat în regiunea {$region}.</p>
     </div>
     <div class="mainsection">
 		<a name="adm" />
-		<div class="maintitle">Administrație locală</div>
+		<div class="maintitle">Administrație locală<a href="#top" class="toplink small">[sus]</a></div>
 		<p>Prefectul județului {$shortname} este {$prpres}, numit de guvern în anul {$pryear}.</p>
 		<p>Consiliul județean rezultat în urma alegerilor din {$pryear} are următoarea componență:</p>
 		<ul class="cjcouncil">
@@ -65,22 +66,22 @@
     </div>
     <div class="mainsection">
 		<a name="uat" />
-		<div class="maintitle">Localități</div>
+		<div class="maintitle">Localități<a href="#top" class="toplink small">[sus]</a></div>
 		<p>Unitățile administrativ-teritoriale ale județului {$name} sunt:</p>
 		<ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
 		{foreach $uat as $village}
-			<li><a href="village.php?siruta={$village._siruta}">{$village.denloc}</a></li>
+			<li><a href="village.php?siruta={$village._siruta}">{$village.denloc|lower|capitalize}</a></li>
 		{/foreach}
 		</ul>
     </div>
     <div class="mainsection">
 		<a name="eco" />
-		<div class="maintitle">Economie</div>
+		<div class="maintitle">Economie<a href="#top" class="toplink small">[sus]</a></div>
 		<p>TODO</p>
     </div>
     <div class="mainsection">
 		<a name="dem" />
-		<div class="maintitle">Demografie</div>
+		<div class="maintitle">Demografie<a href="#top" class="toplink small">[sus]</a></div>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
 		  {literal}google.load("visualization", "1", {packages:["corechart"]});
@@ -106,10 +107,15 @@
     </div>
     <div class="mainsection">
 		<a name="mon" />
-		<div class="maintitle">Monumente</div>
-		<p><em>Lista completă a monumentelor istorice din {$name} este 
+		<div class="maintitle">Monumente<a href="#top" class="toplink small">[sus]</a></div>
+		<p><em>Lista completă a monumentelor istorice din {$name|lcfirst} este 
 		<a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din {$name|lcfirst}" title="Lista monumentelor istorice din {$name|lcfirst}">disponibilă la Wikipedia.</a></em></p>
 		<!--TODO-->
+    </div>
+    <div class="mainsection">
+		<a name="pic" />
+		<div class="maintitle">Galerie<a href="#top" class="toplink small">[sus]</a></div>
+		{include file='tpl/pic.tpl'}
     </div>
   </td>
 </table>
