@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="style.css" /> 
 </head>
 <body>
+  <a name="top" />
   <table width="970">
     <td width="250">
       <a href="/" title="Informații statistice despre localitățile din România">

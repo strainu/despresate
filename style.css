@@ -74,12 +74,16 @@ ul.toc li {
   width: 100%; 
 }
 ul.toc li a {
-text-decoration: none;
-padding: .1em;
-color: #fff;
-background-color: #9CF;
+  text-decoration: none;
+  padding: .1em;
+  color: #fff;
+  background-color: #9CF;
 }
 ul.toc li a:hover {
-color: #fff;
-background-color: #369;
+  color: #fff;
+  background-color: #369;
+}
+.toplink{
+  text-align:right; 
+  float:right;
 }
