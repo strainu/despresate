@@ -33,8 +33,8 @@ if ($uat_data == -1) {
 	exit(1);
 }
 
-$MyObject->Query("SELECT * FROM `demografie` WHERE `siruta`=".$county_data['siruta']." ORDER BY `an` DESC LIMIT 1");
-$pop = $MyObject->getCurrentLine();
+$MyObject->Query("SELECT * FROM `demografie` WHERE `siruta`=".$county_data['siruta']." ORDER BY `an` DESC");
+$pop = $MyObject->getTable();
 if ($pop == -1) {
 	echo "Problem fetching population data";
 	exit(1);
@@ -52,11 +52,12 @@ $smarty->assign('region', $region);
 $smarty->assign('shortname', $siruta_data['denloc']);//TODO
 $smarty->assign('siruta', $county_data['siruta']);
 $smarty->assign('uat', $uat_data);
-$smarty->assign('population', $pop['populatie']);
-$smarty->assign('census', $pop['an']);
+$smarty->assign('population', $pop[0]['populatie']);
+$smarty->assign('census', $pop[0]['an']);
+$smarty->assign('demography', array_reverse($pop));
 $smarty->assign('surface', $county_data['suprafata']);
 if($county_data['suprafata'])
-	$smarty->assign('density', $pop['populatie'] / $county_data['suprafata']);
+	$smarty->assign('density', $pop[0]['populatie'] / $county_data['suprafata']);
 else
 	$smarty->assign('density', '');
 
