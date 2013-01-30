@@ -6,7 +6,7 @@ require('smarty/libs/Smarty.class.php');
 
 $smarty = new Smarty();
 
-if (!isset($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 52)
+if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 52)
 	$index = 40;
 else
 	$index = $_GET['id'];
@@ -47,9 +47,26 @@ if ($region == -1) {
 	exit(1);
 }
 
+$MyObject->Query("SELECT * FROM `oameni` WHERE `functie`=4 AND `siruta`=".$county_data['siruta']." ORDER BY `an` DESC LIMIT 1");
+$cjpres = $MyObject->getElement(0, 'nume');
+if ($cjpres == -1) {
+	echo "Problem fetching county president";
+	exit(1);
+}
+$cjpresparty = $MyObject->getElement(0, 'partid');
+if ($cjpresparty == -1) {
+	echo "Problem fetching county president party";
+	exit(1);
+}
+$cjpresyear = $MyObject->getElement(0, 'an');
+if ($cjpresyear == -1) {
+	echo "Problem fetching county president year";
+	exit(1);
+}
+
 $smarty->assign('name', ucwords(mb_strtolower($siruta_data['denloc'])));
 $smarty->assign('region', $region);
-$smarty->assign('shortname', $siruta_data['denloc']);//TODO
+$smarty->assign('shortname', ucwords(mb_strtolower(str_replace("JUDEȚUL ", "", $siruta_data['denloc']))));
 $smarty->assign('siruta', $county_data['siruta']);
 $smarty->assign('uat', $uat_data);
 $smarty->assign('population', $pop[0]['populatie']);
@@ -61,7 +78,9 @@ if($county_data['suprafata'])
 else
 	$smarty->assign('density', '');
 
-$smarty->assign('cjpres', 'TODO');//TODO
+$smarty->assign('cjpres', $cjpres);
+$smarty->assign('cjpresparty', $cjpresparty);
+$smarty->assign('cjpresyear', $cjpresyear);
 $smarty->assign('cjvice', 'TODO');//TODO
 $smarty->assign('cjcouncil', 'TODO');//TODO
 $smarty->assign('cjaddr', $county_data['adrcj']);

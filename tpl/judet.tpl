@@ -57,9 +57,9 @@
 		<a name="adm" />
 		<div class="maintitle">Administrație locală<a href="#top" class="toplink small">[sus]</a></div>
 		<p>Prefectul județului {$shortname} este {$prpres}, numit de guvern în anul {$pryear}.</p>
-		<p>Consiliul județean rezultat în urma alegerilor din {$pryear} are următoarea componență:</p>
+		<p>Consiliul județean rezultat în urma alegerilor din {$cjpresyear} are următoarea componență:</p>
 		<ul class="cjcouncil">
-			<li><b>Președinte:</b> {$cjpres}</li><!--TODO: partid-->
+			<li><b>Președinte:</b> {$cjpres} {if $cjpresparty}({$cjpresparty}){/if}</li><!--TODO: partid-->
 			<li><b>Vicepreședinte:</b> {$cjvice}</li><!--TODO: partid-->
 			<li><b>Consilieri:</b> {$cjcouncil}</li>
 		</ul>
@@ -67,7 +67,7 @@
     <div class="mainsection">
 		<a name="uat" />
 		<div class="maintitle">Localități<a href="#top" class="toplink small">[sus]</a></div>
-		<p>Unitățile administrativ-teritoriale ale județului {$name} sunt:</p>
+		<p>Unitățile administrativ-teritoriale ale județului {$shortname} sunt:</p>
 		<ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
 		{foreach $uat as $village}
 			<li><a href="village.php?siruta={$village._siruta}">{$village.denloc|lower|capitalize}</a></li>
