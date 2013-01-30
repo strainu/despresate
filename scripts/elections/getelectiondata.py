@@ -104,14 +104,15 @@ def find_siruta():
     _csv = sirutalib.SirutaDatabase()
     #TODO: this is based on the assumption that we don't have 2 communes with the same name in the same county
     for elem in _csv._data:
-	index = _csv._data[elem]["name"].translate(dia_trans).replace("MUNICIPIUL", "XXX").replace("ORAS", "XXX") + \
-		_csv.get_county_string(elem).translate(dia_trans).replace("MUNICIPIUL", "XXX").replace("ORAS", "XXX")
-	data[index] = elem
+	index = _csv._data[elem]["name"].translate(dia_trans).replace("MUNICIPIUL ", "").replace("ORAS ", "").replace("ORASUL ", "").replace("-", " ") + \
+		_csv.get_county_string(elem).translate(dia_trans).replace("MUNICIPIUL ", "").replace("ORAS ", "").replace("ORASUL ", "").replace("-", " ")
+	if not index in data and _csv._data[elem]['type'] <= 5:
+	    data[index] = elem
 	print index
     cr = csv.reader(open("primari_tmp.csv", "rb"))
     cw = csv.writer(open("primari.csv", "wb"))
     for line in cr:
-	index = line[1].replace("MUNICIPIUL", "XXX").replace("ORAS", "XXX") + line[0]
+	index = line[1].replace("MUNICIPIUL ", "").replace("ORAS ", "").replace("ORASUL ", "").replace("-", " ") + line[0]
 	if index in data:
             line.append(data[index])
 	cw.writerow(line)
