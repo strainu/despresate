@@ -81,7 +81,7 @@ def parse_csv(file_prefix, out_file, year):
 
     county = elem[7].strip().upper()
     if county.find(u"JUDETUL") == -1:
-	if county.find(u"JUDET") == -1:
+	    if county.find(u"JUDET") == -1:
             county = u"JUDETUL " + county
         else:
             county = country.replace("JUDET", "JUDETUL")
