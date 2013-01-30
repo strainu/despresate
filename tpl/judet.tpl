@@ -18,7 +18,7 @@
          <tr><th>Regiune</th><td>{$region}</td></tr>
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
          <tr><th>Populație ({$census})</th><td>{$population|commify:0:',':'.'} locuitori</td></tr>
-         <tr><th>Suprafață</th><td>{$surface} km<sup>2</sup></td></tr>
+         <tr><th>Suprafață</th><td>{$surface|commify:2:',':'.'} km<sup>2</sup></td></tr>
          <tr><th>Densitate</th><td>{$density|commify:2:',':'.'} loc/km<sup>2</sup></td></tr>
         </table>
       <div class="leftbartitle">Consiliul județean</div>
@@ -88,10 +88,11 @@
 		  google.setOnLoadCallback(drawChart);
 		  function drawChart() {
 			var data = google.visualization.arrayToDataTable([
-			  ['An', 'Locuitori'],
-			  ['2002',  400000],
-			  ['{/literal}{$census}',  {$population}{literal}]
-			]);
+			  ['An', 'Locuitori'],{/literal}
+			{foreach $demography as $oldcensus}
+				['{$oldcensus.an}', {$oldcensus.populatie}],
+			{/foreach}
+		{literal}]);
 
 			var options = {
 			  title: 'Evoluție demografică',
