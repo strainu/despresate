@@ -47,21 +47,31 @@ if ($region == -1) {
 	exit(1);
 }
 
-$MyObject->Query("SELECT * FROM `oameni` WHERE `functie`=4 AND `siruta`=".$county_data['siruta']." ORDER BY `an` DESC LIMIT 1");
-$cjpres = $MyObject->getElement(0, 'nume');
-if ($cjpres == -1) {
+$MyObject->Query("SELECT * FROM `oameni` WHERE `siruta`=".$county_data['siruta']." ORDER BY `an` DESC");
+$leaders = $MyObject->getTable();
+if ($leaders == -1) {
 	echo "Problem fetching county president";
 	exit(1);
 }
-$cjpresparty = $MyObject->getElement(0, 'partid');
-if ($cjpresparty == -1) {
-	echo "Problem fetching county president party";
-	exit(1);
-}
-$cjpresyear = $MyObject->getElement(0, 'an');
-if ($cjpresyear == -1) {
-	echo "Problem fetching county president year";
-	exit(1);
+$cjpresyear = 0;
+$cjviceyear = 0;
+$cjvice = Array();
+$cjviceparty = Array();
+foreach ($leaders as $leader) {
+	switch($leader["an"]) {
+		case 4:
+			if ($cjpresyear)
+				continue;//TODO: history
+			$cjpres = $leader['nume'];
+			$cjpresparty = $leaqder['partid'];
+			$cjpresyear = $leader['an'];
+		break;
+		case 5:
+			if ($cjviceyear != 0 && $cjviceyear != $leader['an'])
+				continue;//TODO: history
+			array_push($cjvice, $leader['nume']);
+			array_push($cjviceparty, $leader['partid']);
+		break;
 }
 
 $smarty->assign('name', ucwords(mb_strtolower($siruta_data['denloc'])));
@@ -81,8 +91,10 @@ else
 $smarty->assign('cjpres', $cjpres);
 $smarty->assign('cjpresparty', $cjpresparty);
 $smarty->assign('cjpresyear', $cjpresyear);
-$smarty->assign('cjvice', 'TODO');//TODO
-$smarty->assign('cjcouncil', 'TODO');//TODO
+$smarty->assign('cjvice', $cjvice);//TODO
+$smarty->assign('cjviceparty', $cjviceparty);
+//$smarty->assign('cjviceyear', $cjviceyear);
+$smarty->assign('cjcouncil', 'Nu dispunem încă de componenta consiliului judetean. Dacă aveti o listă cu consilieri vă rugăm să ne contactati.');//TODO
 $smarty->assign('cjaddr', $county_data['adrcj']);
 $smarty->assign('cjsite', $county_data['sitecj']);
 $smarty->assign('cjemail', $county_data['emailcj']);
