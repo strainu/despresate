@@ -87,3 +87,15 @@ ul.toc li a:hover {
   text-align:right; 
   float:right;
 }
+.thumbcontainer{
+  border: 1px solid rgb(204, 204, 204);
+  background-color: rgb(249, 249, 249);
+  margin: 2px;
+  width: 160px;
+  height: 160px;
+}
+.thumb{
+  text-align: center;
+  margin: 35px auto;
+}
+
