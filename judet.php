@@ -47,7 +47,14 @@ if ($region == -1) {
 	exit(1);
 }
 
-$MyObject->Query("SELECT * FROM `oameni` WHERE `siruta`=".$county_data['siruta']." ORDER BY `an` DESC");
+$MyObject->Query("SELECT * FROM `imagini` WHERE `county`=".$siruta_data['jud']." ORDER BY RAND() DESC LIMIT 12");
+$images = $MyObject->getTable();
+if ($images == -1) {
+	echo "Problem fetching image data";
+	exit(1);
+}
+
+$MyObject->Query("SELECT * FROM `oameni` WHERE `county`=".$county_data['siruta']." ORDER BY `an` DESC");
 $leaders = $MyObject->getTable();
 if ($leaders == -1) {
 	echo "Problem fetching county president";
@@ -56,26 +63,35 @@ if ($leaders == -1) {
 $cjpresyear = 0;
 $cjviceyear = 0;
 $cjvice = Array();
-$cjviceparty = Array();
 foreach ($leaders as $leader) {
-	switch($leader["an"]) {
+	switch($leader["functie"]) {
 		case 4:
 			if ($cjpresyear)
 				continue;//TODO: history
 			$cjpres = $leader['nume'];
-			$cjpresparty = $leaqder['partid'];
+			$cjpresparty = $leader['partid'];
 			$cjpresyear = $leader['an'];
 		break;
 		case 5:
 			if ($cjviceyear != 0 && $cjviceyear != $leader['an'])
 				continue;//TODO: history
-			array_push($cjvice, $leader['nume']);
-			array_push($cjviceparty, $leader['partid']);
+			array_push($cjvice, Array( "name" => $leader['nume'],  "party" => $leader['partid']));
+			$cjvideyear = $leader['an'];
 		break;
+	}
 }
+
+$MyObject->Query("SELECT * FROM `monumente`,`imagini` WHERE (monumente.imagine = imagini.index OR monumente.imagine=NULL) AND monumente.cod LIKE '".$county_data['prescurtare']."%' ORDER BY RAND() LIMIT 10");
+$monuments = $MyObject->getTable();
+if ($monuments == -1) {
+        echo "Problem fetching county president";
+        exit(1);
+}
+
 
 $smarty->assign('name', ucwords(mb_strtolower($siruta_data['denloc'])));
 $smarty->assign('region', $region);
+$smarty->assign('abbr', $county_data['prescurtare']);
 $smarty->assign('shortname', ucwords(mb_strtolower(str_replace("JUDEȚUL ", "", $siruta_data['denloc']))));
 $smarty->assign('siruta', $county_data['siruta']);
 $smarty->assign('uat', $uat_data);
@@ -91,10 +107,11 @@ else
 $smarty->assign('cjpres', $cjpres);
 $smarty->assign('cjpresparty', $cjpresparty);
 $smarty->assign('cjpresyear', $cjpresyear);
-$smarty->assign('cjvice', $cjvice);//TODO
-$smarty->assign('cjviceparty', $cjviceparty);
+if (count($cjvice) > 0)
+	$smarty->assign('cjvice', $cjvice);
+//$smarty->assign('cjviceparty', $cjviceparty);
 //$smarty->assign('cjviceyear', $cjviceyear);
-$smarty->assign('cjcouncil', 'Nu dispunem încă de componenta consiliului judetean. Dacă aveti o listă cu consilieri vă rugăm să ne contactati.');//TODO
+$smarty->assign('cjcouncil', 'Nu dispunem încă de componența consiliului judetean. Dacă aveți o listă cu consilieri vă rugăm să ne contactați.');//TODO
 $smarty->assign('cjaddr', $county_data['adrcj']);
 $smarty->assign('cjsite', $county_data['sitecj']);
 $smarty->assign('cjemail', $county_data['emailcj']);
@@ -107,6 +124,9 @@ $smarty->assign('prsite', $county_data['sitepr']);
 $smarty->assign('premail', $county_data['emailpr']);
 $smarty->assign('prtel', $county_data['telefonpr']);
 $smarty->assign('prfax', $county_data['faxpr']);
+
+$smarty->assign('images', $images);
+$smarty->assign('monuments', $monuments);
 
 $smarty->display('tpl/judet.tpl');
 ?>

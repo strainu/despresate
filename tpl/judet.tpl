@@ -17,6 +17,7 @@
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
          <tr><th>Regiune</th><td>{$region}</td></tr>
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
+	 <tr><th>Prescurtare</th><td>{$abbr}</td></tr>
          <tr><th>Populație ({$census})</th><td>{$population|commify:0:',':'.'} locuitori</td></tr>
          <tr><th>Suprafață</th><td>{$surface|commify:2:',':'.'} km<sup>2</sup></td></tr>
          <tr><th>Densitate</th><td>{$density|commify:2:',':'.'} loc/km<sup>2</sup></td></tr>
@@ -60,7 +61,11 @@
 		<p>Consiliul județean rezultat în urma alegerilor din {$cjpresyear} are următoarea componență:</p>
 		<ul class="cjcouncil">
 			<li><b>Președinte:</b> {$cjpres} {if $cjpresparty}({$cjpresparty}){/if}</li><!--TODO: partid-->
-			<li><b>Vicepreședinte:</b> {$cjvice}</li><!--TODO: partid-->
+			<li><b>Vicepreședinți:</b>
+				{if $cjvice}<ul> {foreach $cjvice as $vice}<li>{$vice.name} {if $vice.party}({$vice.party}){/if}</li>{/foreach}</ul>
+				{else} Nu dispunem deocamdată de numele vicepreședinților CJ {$shortname}. Dacă dețineți aceste date, vă rugăm să ne contactați.
+				{/if}
+			</li>
 			<li><b>Consilieri:</b> {$cjcouncil}</li>
 		</ul>
     </div>
@@ -70,7 +75,7 @@
 		<p>Unitățile administrativ-teritoriale ale județului {$shortname} sunt:</p>
 		<ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
 		{foreach $uat as $village}
-			<li><a href="village.php?siruta={$village._siruta}">{$village.denloc|lower|capitalize}</a></li>
+				<li><a href="village.php?siruta={$village._siruta}">{$village.denloc|lower|capitalize}</a></li>
 		{/foreach}
 		</ul>
     </div>
@@ -109,9 +114,20 @@
     <div class="mainsection">
 		<a name="mon" />
 		<div class="maintitle">Monumente<a href="#top" class="toplink small">[sus]</a></div>
+		<p>Mai jos aveți 10 monumente aleatorii din {$name|lcfirst}. Imaginile monumentelor provin de la concursul foto <a href="http://wikilovesmonuments.ro">WikiLovesMonuments România</a></p>
 		<p><em>Lista completă a monumentelor istorice din {$name|lcfirst} este 
 		<a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din {$name|lcfirst}" title="Lista monumentelor istorice din {$name|lcfirst}">disponibilă la Wikipedia.</a></em></p>
-		<!--TODO-->
+		<table style="width: 100%; font-size: 0.8em;">
+		<tr><th>Cod</th><th>Denumire</th><th>Arhitect</th><th>Poză</th>
+		{foreach $monuments as $monument}
+		<tr>
+			<td>{$monument.cod}</td>
+			<td>{$monument.denumire}</td>
+			<td>{if $monument.arhitect}{$monument.arhitect}{else}N/A{/if}</td>
+			<td><img src="{$monument.thumburl}" width="{if ($monument.thumbh < $monument.thumbw)}60px{else}40px{/if}" height="{if ($monument.thumbh > $monument.thumbw)}60px{else}40px{/if}"/></a></td>
+		</tr>
+		{/foreach}
+		</table>
     </div>
     <div class="mainsection">
 		<a name="pic" />
