@@ -57,7 +57,11 @@
     <div class="mainsection">
 		<a name="adm" />
 		<div class="maintitle">Administrație locală<a href="#top" class="toplink small">[sus]</a></div>
+		{if $prpres}
 		<p>Prefectul județului {$shortname} este {$prpres}, numit de guvern în anul {$pryear}.</p>
+		{else}
+		<p>Nu dispunem deocamdatăde informatii despre prefectul judetului {$shortname}. Dacă aveti aceste date, vă rugăm să ne contactati.</p>
+		{/if}
 		<p>Consiliul județean rezultat în urma alegerilor din {$cjpresyear} are următoarea componență:</p>
 		<ul class="cjcouncil">
 			<li><b>Președinte:</b> {$cjpres} {if $cjpresparty}({$cjpresparty}){/if}</li><!--TODO: partid-->
@@ -124,7 +128,7 @@
 			<td>{$monument.cod}</td>
 			<td>{$monument.denumire}</td>
 			<td>{if $monument.arhitect}{$monument.arhitect}{else}N/A{/if}</td>
-			<td><img src="{$monument.thumburl}" width="{if ($monument.thumbh < $monument.thumbw)}60px{else}40px{/if}" height="{if ($monument.thumbh > $monument.thumbw)}60px{else}40px{/if}"/></a></td>
+			<td style="text-align: center;"><img src="{$monument.thumburl}" width="{if ($monument.thumbh < $monument.thumbw)}60px{else}40px{/if}" height="{if ($monument.thumbh > $monument.thumbw)}60px{else}40px{/if}"/></a></td>
 		</tr>
 		{/foreach}
 		</table>

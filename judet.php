@@ -54,7 +54,7 @@ if ($images == -1) {
 	exit(1);
 }
 
-$MyObject->Query("SELECT * FROM `oameni` WHERE `county`=".$county_data['siruta']." ORDER BY `an` DESC");
+$MyObject->Query("SELECT * FROM `oameni` WHERE `siruta`=".$county_data['siruta']." ORDER BY `an` DESC");
 $leaders = $MyObject->getTable();
 if ($leaders == -1) {
 	echo "Problem fetching county president";
@@ -63,6 +63,7 @@ if ($leaders == -1) {
 $cjpresyear = 0;
 $cjviceyear = 0;
 $cjvice = Array();
+$prpresyear = 0;
 foreach ($leaders as $leader) {
 	switch($leader["functie"]) {
 		case 4:
@@ -77,6 +78,12 @@ foreach ($leaders as $leader) {
 				continue;//TODO: history
 			array_push($cjvice, Array( "name" => $leader['nume'],  "party" => $leader['partid']));
 			$cjvideyear = $leader['an'];
+		break;
+		case 7:
+			if ($prpresyear)
+				continue;
+			$prpres = $leader['nume'];
+			$prpresyear = $leader['an'];
 		break;
 	}
 }
@@ -118,7 +125,8 @@ $smarty->assign('cjemail', $county_data['emailcj']);
 $smarty->assign('cjtel', $county_data['telefoncj']);
 $smarty->assign('cjfax', $county_data['faxcj']);
 
-$smarty->assign('prpres', 'TODO');//TODO
+$smarty->assign('prpres', $prpres);
+$smarty->assign('pryear', $prpresyear);
 $smarty->assign('praddr', $county_data['adrpr']);
 $smarty->assign('prsite', $county_data['sitepr']);
 $smarty->assign('premail', $county_data['emailpr']);
