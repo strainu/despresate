@@ -82,12 +82,21 @@ foreach ($leaders as $leader) {
 }
 
 $MyObject->Query("SELECT * FROM `monumente`,`imagini` WHERE (monumente.imagine = imagini.index OR monumente.imagine=NULL) AND monumente.cod LIKE '".$county_data['prescurtare']."%' ORDER BY RAND() LIMIT 10");
+//TODO: also show monuments without images
 $monuments = $MyObject->getTable();
 if ($monuments == -1) {
-        echo "Problem fetching county president";
+        echo "Problem fetching monument data";
         exit(1);
 }
 
+$MyObject->Query("SELECT `judet`.`index`, `siruta`.`denloc` FROM `judet`,`siruta` WHERE judet.siruta = siruta._siruta ORDER BY `siruta`.`denloc`");
+$county_list = $MyObject->getTable();
+if ($county_list == -1) {
+	echo "Problem fetching county list";
+	exit(1);
+}
+for($i = 0; $i < $MyObject->getNrLines(); $i++)
+	$county_list[$i]['denloc'] = ucwords(mb_strtolower($county_list[$i]['denloc']));
 
 $smarty->assign('name', ucwords(mb_strtolower($siruta_data['denloc'])));
 $smarty->assign('region', $region);
@@ -127,6 +136,8 @@ $smarty->assign('prfax', $county_data['faxpr']);
 
 $smarty->assign('images', $images);
 $smarty->assign('monuments', $monuments);
+
+$smarty->assign('county_list', $county_list);
 
 $smarty->display('tpl/judet.tpl');
 ?>
