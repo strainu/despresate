@@ -1,5 +1,5 @@
 {include file='tpl/header.tpl'}
-<ul class="toc">
+<ul class="toc" id="toc">
 	<li><a href="#info">Informații generale</a></li>
 	<li><a href="#adm">Administrație locală</a></li>
 	<li><a href="#uat">Localități</a></li>
@@ -7,6 +7,13 @@
 	<li><a href="#dem">Demografie</a></li>
 	<li><a href="#mon">Monumente</a></li>
 	<li><a href="#pic">Galerie</a></li>
+	<li><a href="" rel="countymenu">Alte județe</a>
+		<div id="hiddenmenu" class="hiddentoc">
+			{foreach $county_list as $othercounty}
+				<a href="?id={$othercounty.index}">{$othercounty.denloc}</a>
+			{/foreach}
+		</div>
+	</li>
 </ul>
 <hr />
 <table width="100%" cellpadding="0" cellspacing="0">
@@ -136,4 +143,8 @@
     </div>
   </td>
 </table>
+<script type="text/javascript">
+//SYNTAX: tabdropdown.init("menu_id", [integer OR "auto"])
+tabdropdown.init("toc", 0)
+</script>
 {include file='tpl/footer.tpl'}
