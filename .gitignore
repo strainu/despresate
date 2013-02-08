@@ -1,4 +1,3 @@
 include/config.php
-index.html
 scripts/elections/*.csv
 data/*.sql
