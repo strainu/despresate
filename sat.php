@@ -6,13 +6,13 @@ require('smarty/libs/Smarty.class.php');
 
 $smarty = new Smarty();
 
-if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 52)
+if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 1000000)
 	$index = 40;
 else
 	$index = $_GET['id'];
 	
 $MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 1 );
-$MyObject->Query("SELECT * FROM `judet` WHERE `index`=".$index." LIMIT 1");
+$MyObject->Query("SELECT * FROM `localitate` WHERE `index`=".$index." LIMIT 1");
 $county_data = $MyObject->getCurrentLine();
 if ($county_data == -1) {
 	echo "Problem fetching county data";
