@@ -1,2 +1,2 @@
-<a href="http://www.facebook.com/share.php?u={$name}+http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" title="Distribuie pe Facebook"><img src="http://www.strainu.ro/site/wp-content/plugins/sociable-30/images/default/16/facebook.png" /></a>
-<a href="http://twitter.com/home?status={$name}+http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" title="Tweet"><img src="http://www.strainu.ro/site/wp-content/plugins/sociable-30/images/default/16/twitter.png" /></a>
+<a href="https://www.facebook.com/DespreSate" title="DespreSate pe Facebook"><img src="http://www.strainu.ro/site/wp-content/plugins/sociable-30/images/default/16/facebook.png" /></a>
+<a href="https://twitter.com/despresate" title="DespreSate pe Tweeter"><img src="http://www.strainu.ro/site/wp-content/plugins/sociable-30/images/default/16/twitter.png" /></a>

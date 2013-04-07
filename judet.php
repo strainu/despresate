@@ -11,7 +11,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0 || $_GET
 else
 	$index = $_GET['id'];
 	
-$MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 1 );
+$MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0 );
 $MyObject->Query("SELECT * FROM `judet` WHERE `index`=".$index." LIMIT 1");
 $county_data = $MyObject->getCurrentLine();
 if ($county_data == -1) {
@@ -76,7 +76,7 @@ foreach ($leaders as $leader) {
 			if ($cjviceyear != 0 && $cjviceyear != $leader['an'])
 				continue;//TODO: history
 			array_push($cjvice, Array( "name" => $leader['nume'],  "party" => $leader['partid']));
-			$cjvideyear = $leader['an'];
+			$cjviceyear = $leader['an'];
 		break;
 	}
 }
