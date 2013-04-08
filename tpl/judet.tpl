@@ -31,7 +31,7 @@
         </table>
       <div class="leftbartitle">Consiliul județean</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="cj" class="leftbarelem">
-         <tr><th>Președinte</th><td>{$cjpres}</td></tr>
+         <tr><th>Președinte</th><td>{if $cjpresid}<a href="http://agenda.grep.ro/person/{$cjpresid}" title="Date de contact pentru {$cjpres}">{$cjpres}</a>{else}{$cjpres}{/if}</td></tr>
          <tr><th>Adresă</th><td>{$cjaddr}</td></tr>
          <tr><th>Site</th><td><a href="http://{$cjsite}" title="Site-ul Consiliului Județean {$name}">{$cjsite}</a></td></tr>
          <tr><th>Email</th><td><a href="mailto:{$cjemail}" title="Emailul-ul Consiliului Județean {$name}">{$cjemail}</a></td></tr>
@@ -40,7 +40,7 @@
         </table>
        <div class="leftbartitle">Prefectura</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="prefect" class="leftbarelem">
-         <tr><th>Prefect</th><td>{$prpres}</td></tr>
+         <tr><th>Prefect</th><td>{if $prpresid}<a href="http://agenda.grep.ro/person/{$prpresid}" title="Date de contact pentru {$prpres}">{$prpres}</a>{else}{$prpres}{/if}</td></tr>
          <tr><th>Adresă</th><td>{$praddr}</td></tr>
          <tr><th>Site</th><td><a href="http://{$prsite}" title="Site-ul Consiliului Județean {$name}">{$prsite}</a></td></tr>
          <tr><th>Email</th><td><a href="mailto:{$premail}" title="Emailul-ul Consiliului Județean {$name}">{$premail}</a></td></tr>
@@ -72,9 +72,9 @@
 		{/if}
 		<p>Consiliul județean rezultat în urma alegerilor din {$cjpresyear} are următoarea componență:</p>
 		<ul class="cjcouncil">
-			<li><b>Președinte:</b> {$cjpres} {if $cjpresparty}({$cjpresparty}){/if}</li><!--TODO: partid-->
+			<li><b>Președinte:</b> {if $cjpresid}<a href="http://agenda.grep.ro/person/{$cjpresid}" title="Date de contact pentru {$cjpres}">{$cjpres}</a>{else}{$cjpres}{/if} {if $cjpresparty}({$cjpresparty}){/if}</li><!--TODO: partid-->
 			<li><b>Vicepreședinți:</b>
-				{if $cjvice}<ul> {foreach $cjvice as $vice}<li>{$vice.name} {if $vice.party}({$vice.party}){/if}</li>{/foreach}</ul>
+				{if $cjvice}<ul> {foreach $cjvice as $vice}<li>{if $vice.id}<a href="http://agenda.grep.ro/person/{$vice.id}" title="Date de contact pentru {$vice.name}">{$vice.name}</a>{else}{$vice.name}{/if} {if $vice.party}({$vice.party}){/if}</li>{/foreach}</ul>
 				{else} Nu dispunem deocamdată de numele vicepreședinților CJ {$shortname}. Dacă dețineți aceste date, vă rugăm să ne contactați.
 				{/if}
 			</li>

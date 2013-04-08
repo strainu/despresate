@@ -62,8 +62,10 @@ if ($leaders == -1) {
 }
 $cjpresyear = 0;
 $cjviceyear = 0;
+$cjpresid = 0;
 $cjvice = Array();
 $prpresyear = 0;
+$prpresid = 0;
 foreach ($leaders as $leader) {
 	switch($leader["functie"]) {
 		case 4:
@@ -72,11 +74,12 @@ foreach ($leaders as $leader) {
 			$cjpres = $leader['nume'];
 			$cjpresparty = $leader['partid'];
 			$cjpresyear = $leader['an'];
+			$cjpresid = $leader['agenda_id'];
 		break;
 		case 5:
 			if ($cjviceyear != 0 && $cjviceyear != $leader['an'])
 				continue;//TODO: history
-			array_push($cjvice, Array( "name" => $leader['nume'],  "party" => $leader['partid']));
+			array_push($cjvice, Array( "name" => $leader['nume'],  "party" => $leader['partid'], "id" => $leader['agenda_id']));
 			$cjviceyear = $leader['an'];
 		break;
 		case 7:
@@ -84,6 +87,7 @@ foreach ($leaders as $leader) {
 				continue;
 			$prpres = $leader['nume'];
 			$prpresyear = $leader['an'];
+			$prpresid = $leader['agenda_id'];
 		break;
 	}
 }
@@ -123,6 +127,7 @@ else
 $smarty->assign('cjpres', $cjpres);
 $smarty->assign('cjpresparty', $cjpresparty);
 $smarty->assign('cjpresyear', $cjpresyear);
+$smarty->assign('cjpresid', $cjpresid);
 if (count($cjvice) > 0)
 	$smarty->assign('cjvice', $cjvice);
 //$smarty->assign('cjviceparty', $cjviceparty);
@@ -135,6 +140,7 @@ $smarty->assign('cjtel', $county_data['telefoncj']);
 $smarty->assign('cjfax', $county_data['faxcj']);
 
 $smarty->assign('prpres', $prpres);
+$smarty->assign('prpresid', $prpresid);
 $smarty->assign('pryear', $prpresyear);
 $smarty->assign('praddr', $county_data['adrpr']);
 $smarty->assign('prsite', $county_data['sitepr']);
