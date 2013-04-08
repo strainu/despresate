@@ -109,10 +109,15 @@ if ($county_list == -1) {
 for($i = 0; $i < $MyObject->getNrLines(); $i++)
 	$county_list[$i]['denloc'] = ucwords(mb_strtolower($county_list[$i]['denloc']));
 
-$smarty->assign('name', ucwords(mb_strtolower($siruta_data['denloc'])));
+$county_str = mb_strtolower($siruta_data['denloc']);
+$county_str = ucwords(str_replace("-", "- ", $county_str));
+$county_str = str_replace("- ", "-", $county_str);
+
+$smarty->assign('name', $county_str);
 $smarty->assign('region', $region);
 $smarty->assign('abbr', $county_data['prescurtare']);
-$smarty->assign('shortname', ucwords(mb_strtolower(str_replace("JUDEȚUL ", "", $siruta_data['denloc']))));
+$county_str = str_ireplace("JUDEȚUL ", "", $county_str);
+$smarty->assign('shortname', $county_str);
 $smarty->assign('siruta', $county_data['siruta']);
 $smarty->assign('uat', $uat_data);
 $smarty->assign('population', $pop[0]['populatie']);
