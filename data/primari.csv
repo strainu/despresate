@@ -1661,10 +1661,10 @@ Cociuba Vasile,Partidul National Liberal,2004,32090
 Bolojan Ilie Gavril,Partidul National Liberal,2008,26564
 Domocos Adrian Nicolae,Partidul National Liberal,2008,26804
 Talpos Dorel Marcel,Partidul Democrat Liberal,2008,26877
-Torok Laszl?,Uniunea Democrata Maghiara Din Romania,2008,26975
+Torok Laszlo,Uniunea Democrata Maghiara Din Romania,2008,26975
 Tipter Zeno Danut,Partidul National Liberal,2008,26699
 Sirghie Costel-Nelu,Partidul Democrat Liberal,2008,26920
-B?Res Csaba,Uniunea Democrata Maghiara Din Romania,2008,30915
+Beres Csaba,Uniunea Democrata Maghiara Din Romania,2008,30915
 Lucaciu Ioan,Partidul Democrat Liberal,2008,26840
 Kovacs Zoltan,Uniunea Democrata Maghiara Din Romania,2008,32027
 Porge Florin Ioan,Partidul Democrat Liberal,2008,27007
@@ -1678,11 +1678,11 @@ Bondar Gheorghe,Partidul Democrat Liberal,2008,27383
 Nagy Gizela,Uniunea Democrata Maghiara Din Romania,2008,27436
 Groza Sorin Vasile,Partidul National Liberal,2008,27506
 Sarca Sorin Petru,Partidul Democrat Liberal,2008,27560
-Batori G?Za,Uniunea Democrata Maghiara Din Romania,2008,27631
+Batori Giza,Uniunea Democrata Maghiara Din Romania,2008,27631
 Mateas Adrian,Partidul National Liberal,2008,27686
 Petrut Ioan,Partidul National Liberal,2008,27757
 Olea Vasile Radu,Partidul National Liberal,2008,27846
-Gaspar Gyula-J?Zsef,Uniunea Democrata Maghiara Din Romania,2008,27908
+Gaspar Gyula-Jozsef,Uniunea Democrata Maghiara Din Romania,2008,27908
 Saracut Augustin,Partidul National Liberal,2008,27935
 Degau Sorin-Mihai,Partidul Democrat Liberal,2008,27971
 Lazau Ioan-Vasile,Partidul Democrat Liberal,2008,28077
@@ -1702,7 +1702,7 @@ Onica Nicolae,Partidul Democrat Liberal,2008,28889
 Mocioran Teodor,Partidul Democrat Liberal,2008,28941
 Kovacs Zoltan,Uniunea Democrata Maghiara Din Romania,2008,29001
 Filip Victor,Partidul National Liberal,2008,29038
-Bacs? Laszl?-Endre,Uniunea Democrata Maghiara Din Romania,2008,29092
+Bacsi Laszlo-Endre,Uniunea Democrata Maghiara Din Romania,2008,29092
 Neag Nicolae,Partidul Democrat Liberal,2008,29154
 Bogdan Gheorghe,Partidul Social Democrat,2008,29243
 Farcuta Sabina,Partidul Democrat Liberal,2008,29341
@@ -1734,7 +1734,7 @@ Bonca Florin,Partidul National Liberal,2008,30844
 Kelemen Zoltan,Uniunea Democrata Maghiara Din Romania,2008,32187
 Popa Aurel,Partidul Democrat Liberal,2008,30871
 Porsztner Sarolta-Melinda,Uniunea Democrata Maghiara Din Romania,2008,30988
-Nagy Mikl?S,Uniunea Democrata Maghiara Din Romania,2008,31011
+Nagy Miklos,Uniunea Democrata Maghiara Din Romania,2008,31011
 Cartis Mircea,Partidul Social Democrat,2008,31057
 Popus Lucian,Partidul Democrat Liberal,2008,26582
 Maghear Alexandru,Partidul Social Democrat,2008,32179
@@ -1747,7 +1747,7 @@ Albert Augustin,Partidul Democrat Liberal,2008,31379
 Iovan Eugen,Partidul Social Democrat,2008,31422
 Gabor Doru,Partidul National Liberal,2008,31510
 Bordas Carol,Uniunea Democrata Maghiara Din Romania,2008,31565
-Sz?Cs Ferenc,Uniunea Democrata Maghiara Din Romania,2008,32153
+Szocs Ferenc,Uniunea Democrata Maghiara Din Romania,2008,32153
 Ille Aurel-Dan,Partidul Democrat Liberal,2008,31609
 Vincze Nandor Stefan,Uniunea Democrata Maghiara Din Romania,2008,31654
 Codrean Adrian Romus,Partidul National Liberal,2008,31716
@@ -3849,7 +3849,7 @@ Goron Pavel,Partidul National Liberal,2008,55160
 Zeng Ioan,Uniunea Democrata Maghiara Din Romania,2008,55277
 Oltean Dumitru,Partidul Social Democrat,2008,58552
 Horvath Marton,Uniunea Democrata Maghiara Din Romania,2008,58623
-Kanyar? Paul,Candidat independent,2008,58721
+Kanyari Paul,Candidat independent,2008,58721
 Manea Dorin Constantin,Partidul Democrat Liberal,2008,60169
 Lungu Aron,Partidul Social Democrat,2008,58856
 Huldusan Ioan,Partidul Democrat Liberal,2008,58794
@@ -3861,7 +3861,7 @@ Rus Laurian Alexandru,Partidul National Liberal,2008,59130
 Potra Aurel,Partidul Social Democrat,2008,59283
 Padurean Florin Traian,Partidul Democrat Liberal,2008,55311
 Tamas Gebe Andrei,Uniunea Democrata Maghiara Din Romania,2008,59327
-P?Ka Andrei Gheorghe,Uniunea Democrata Maghiara Din Romania,2008,59434
+Peka Andrei Gheorghe,Uniunea Democrata Maghiara Din Romania,2008,59434
 Fartan Ioan,Partidul National Liberal,2008,59498
 Colceriu Ovidiu,Partidul National Liberal,2008,59586
 Sallai Ioan,Candidat independent,2008,59416
@@ -4264,23 +4264,23 @@ Adam Attila Peter,Uniunea Democrata Maghiara Din Romania,2004,65048
 Antal Arpad Andras,Uniunea Democrata Maghiara Din Romania,2008,63394
 Racz Karoly,Partidul Civic Maghiar - Magyar Polgari Part,2008,63740
 Nagy Istvan,Candidat independent,2008,63447
-L?Rincz Zsigmond,Uniunea Democrata Maghiara Din Romania,2008,63526
+Lorincz Zsigmond,Uniunea Democrata Maghiara Din Romania,2008,63526
 Bancila Leca,Partidul Social Democrat,2008,63580
-Bihari Edom?R,Candidat independent,2008,63777
-Math? Arpad,Uniunea Democrata Maghiara Din Romania,2008,65113
+Bihari Edomer,Candidat independent,2008,63777
+Mathi Arpad,Uniunea Democrata Maghiara Din Romania,2008,65113
 Marin Gheorghe,Partidul Social Democrat,2008,63633
 Bardocz Csaba,Uniunea Democrata Maghiara Din Romania,2008,63802
-Sik? Imre,Candidat independent,2008,63866
+Siko Imre,Candidat independent,2008,63866
 Bacs Marton-Csaba,Candidat independent,2008,65121
 Fodor Istvan,Uniunea Democrata Maghiara Din Romania,2008,63893
-Bartha Laszl?,Uniunea Democrata Maghiara Din Romania,2008,63937
+Bartha Laszlo,Uniunea Democrata Maghiara Din Romania,2008,63937
 Kerestely Csaba,Uniunea Democrata Maghiara Din Romania,2008,64005
-Balazsi D?Nes,Uniunea Democrata Maghiara Din Romania,2008,64041
-Dim?Ny Zoltan,Uniunea Democrata Maghiara Din Romania,2008,64096
+Balazsi Denes,Uniunea Democrata Maghiara Din Romania,2008,64041
+Dimeny Zoltan,Uniunea Democrata Maghiara Din Romania,2008,64096
 Tusa Levente,Uniunea Democrata Maghiara Din Romania,2008,64130
 Boloni David,Uniunea Democrata Maghiara Din Romania,2008,64194
 Santa Gyula,Uniunea Democrata Maghiara Din Romania,2008,64238
-Kocsis B?La,Uniunea Democrata Maghiara Din Romania,2008,63553
+Kocsis Bela,Uniunea Democrata Maghiara Din Romania,2008,63553
 Marton Ladislau,Uniunea Democrata Maghiara Din Romania,2008,65147
 Maxim Vasile,Partidul Social Democrat,2008,64265
 Varga Attila,Uniunea Democrata Maghiara Din Romania,2008,65154
@@ -4288,7 +4288,7 @@ Szakacs Tiberiu,Uniunea Democrata Maghiara Din Romania,2008,64318
 Berde Jozsef,Partidul Ecologist Roman,2008,64345
 Cucu Alexandru,Partidul Social Democrat,2008,64390
 Fodor Imre,Candidat independent,2008,64425
-Lukacs R?Bert,Uniunea Democrata Maghiara Din Romania,2008,64461
+Lukacs Robert,Uniunea Democrata Maghiara Din Romania,2008,64461
 Kasleder Jozsef,Uniunea Democrata Maghiara Din Romania,2008,64504
 Molnar Istvan,Uniunea Democrata Maghiara Din Romania,2008,65105
 Nyaguly Vilmos,Uniunea Democrata Maghiara Din Romania,2008,65139
@@ -4305,7 +4305,7 @@ Avram Gheorghe,Partidul Social Democrat,2008,65099
 Marinescu Dumitru,Partidul Social Democrat,2008,64942
 Ilkei Francisc,Uniunea Democrata Maghiara Din Romania,2008,64997
 Kis Josif,Uniunea Democrata Maghiara Din Romania,2008,65011
-Adam Attila-P?Ter,Uniunea Democrata Maghiara Din Romania,2008,65048
+Adam Attila-Peter,Uniunea Democrata Maghiara Din Romania,2008,65048
 N/A,,1996,65342
 Negulescu Liviu,Partidul Democratiei Sociale Din Romania,1996,65609
 N/A,,1996,65681
@@ -5961,73 +5961,73 @@ Toro Iosif,Candidat independent,2004,86222
 Tamas Erno,Uniunea Democrata Maghiara Din Romania,2004,86311
 Colceriu Dandu Mihai,Partidul Social Democrat,2004,86339
 Sandor Ladislau-Zoltan,Uniunea Democrata Maghiara Din Romania,2004,86366
-Raduly R?Bert Kalman,Uniunea Democrata Maghiara Din Romania,2008,83320
+Raduly Robert Kalman,Uniunea Democrata Maghiara Din Romania,2008,83320
 Mezei Janos,Partidul Civic Maghiar - Magyar Polgari Part,2008,83561
 Bunta Levente-Zoltan,Uniunea Democrata Maghiara Din Romania,2008,83133
 Platon Stelu,Partidul National Liberal,2008,83632
 Albert Tibor,Partidul Civic Maghiar - Magyar Polgari Part,2008,83428
 Meres Mihai,Candidat independent,2008,83464
-Mik J?Zsef,Uniunea Democrata Maghiara Din Romania,2008,83491
+Mik Jozsef,Uniunea Democrata Maghiara Din Romania,2008,83491
 Rafai Emil,Uniunea Democrata Maghiara Din Romania,2008,83525
 Burus Maria Ella,Uniunea Democrata Maghiara Din Romania,2008,83749
-Sz?Cs Laszl?,Uniunea Democrata Maghiara Din Romania,2008,83785
+Szocs Laszlo,Uniunea Democrata Maghiara Din Romania,2008,83785
 Barabas Zsigmond,Partidul Civic Maghiar - Magyar Polgari Part,2008,83847
 Trif Ilie,Partidul Social Democrat,2008,83936
 Bokor Botond,Candidat independent,2008,83151
-Benedek Laszl?,Partidul Civic Maghiar - Magyar Polgari Part,2008,83963
-Ball? Iosif,Uniunea Democrata Maghiara Din Romania,2008,86461
-Gyorgy J?Zsef,Uniunea Democrata Maghiara Din Romania,2008,83981
-Marton Laszl?-Szilard,Uniunea Democrata Maghiara Din Romania,2008,84086
+Benedek Laszlo,Partidul Civic Maghiar - Magyar Polgari Part,2008,83963
+Balli Iosif,Uniunea Democrata Maghiara Din Romania,2008,86461
+Gyorgy Jozsef,Uniunea Democrata Maghiara Din Romania,2008,83981
+Marton Laszlo-Szilard,Uniunea Democrata Maghiara Din Romania,2008,84086
 Gabor Tibor,Uniunea Democrata Maghiara Din Romania,2008,84102
 Druga Nicusor,Partidul Democrat Liberal,2008,84148
 Katona Mihaly,Uniunea Democrata Maghiara Din Romania,2008,84175
-Bod? David,Uniunea Democrata Maghiara Din Romania,2008,86446
-Suket Jen?,Uniunea Democrata Maghiara Din Romania,2008,84237
-Balint Elem?R-Imre,Uniunea Democrata Maghiara Din Romania,2008,84264
-Puskas Elem?R,Uniunea Democrata Maghiara Din Romania,2008,84344
+Boda David,Uniunea Democrata Maghiara Din Romania,2008,86446
+Suket Jeni,Uniunea Democrata Maghiara Din Romania,2008,84237
+Balint Elemer-Imre,Uniunea Democrata Maghiara Din Romania,2008,84264
+Puskas Elemer,Uniunea Democrata Maghiara Din Romania,2008,84344
 Zoltani J. Csaba,Partidul Civic Maghiar - Magyar Polgari Part,2008,84380
 Sandor Jozsef,Uniunea Democrata Maghiara Din Romania,2008,83197
 Ferencz Tibor,Uniunea Democrata Maghiara Din Romania,2008,84415
 Roanda Traian,Partidul Social Democrat,2008,84460
 Gyorgy Istvan,Uniunea Democrata Maghiara Din Romania,2008,84558
 Gabor Ladislau,Uniunea Democrata Maghiara Din Romania,2008,84594
-Pal P?Ter,Uniunea Democrata Maghiara Din Romania,2008,86479
+Pal Peter,Uniunea Democrata Maghiara Din Romania,2008,86479
 Lazar F. Zoltan,Candidat independent,2008,84629
-Mih?K P?Ter,Uniunea Democrata Maghiara Din Romania,2008,84656
-Timar Zsombor-Laszl?,Uniunea Democrata Maghiara Din Romania,2008,84754
+Mihok Peter,Uniunea Democrata Maghiara Din Romania,2008,84656
+Timar Zsombor-Laszlo,Uniunea Democrata Maghiara Din Romania,2008,84754
 Albert Matyas,Partidul Civic Maghiar - Magyar Polgari Part,2008,84825
-Bir? Laszl?,Uniunea Democrata Maghiara Din Romania,2008,86438
-Kerekes P?Ter Tivadar,Uniunea Democrata Maghiara Din Romania,2008,84923
-Rig? Mihaly,Uniunea Democrata Maghiara Din Romania,2008,85056
+Biro Laszlo,Uniunea Democrata Maghiara Din Romania,2008,86438
+Kerekes Peter Tivadar,Uniunea Democrata Maghiara Din Romania,2008,84923
+Rige Mihaly,Uniunea Democrata Maghiara Din Romania,2008,85056
 Kosa Petru,Uniunea Democrata Maghiara Din Romania,2008,85074
 Mihalyi Ferenc,Partidul Civic Maghiar - Magyar Polgari Part,2008,85127
-Cseke Mikl?S,Uniunea Democrata Maghiara Din Romania,2008,85243
+Cseke Miklos,Uniunea Democrata Maghiara Din Romania,2008,85243
 Ferencz Csaba,Candidat independent,2008,83375
 Andras Zoltan,Uniunea Democrata Maghiara Din Romania,2008,85289
-Gyerk? Levente,Uniunea Democrata Maghiara Din Romania,2008,86487
+Gyerki Levente,Uniunea Democrata Maghiara Din Romania,2008,86487
 Bokor Alexandru,Candidat independent,2008,85341
 Csaszar Attila,Uniunea Democrata Maghiara Din Romania,2008,86495
-Laczk?-Albert Elem?R,Uniunea Democrata Maghiara Din Romania,2008,85412
+Laczki-Albert Elemer,Uniunea Democrata Maghiara Din Romania,2008,85412
 David Lajos,Uniunea Democrata Maghiara Din Romania,2008,86501
 Nagy Lajos,Uniunea Democrata Maghiara Din Romania,2008,85467
 Mindru Misu,Candidat independent,2008,85528
-Furi M?Zes,Uniunea Democrata Maghiara Din Romania,2008,85582
+Furi Mezes,Uniunea Democrata Maghiara Din Romania,2008,85582
 Szentes Csaba,Uniunea Democrata Maghiara Din Romania,2008,85626
-Sz?Kely Ern?,Uniunea Democrata Maghiara Din Romania,2008,85680
+Szekely Erne,Uniunea Democrata Maghiara Din Romania,2008,85680
 Ferencz Alajos,Candidat independent,2008,85760
 Gergely Andras,Uniunea Democrata Maghiara Din Romania,2008,85788
-Fabian Laszl?,Uniunea Democrata Maghiara Din Romania,2008,85840
-Kencse El?D,Uniunea Democrata Maghiara Din Romania,2008,86519
+Fabian Laszlo,Uniunea Democrata Maghiara Din Romania,2008,85840
+Kencse Eled,Uniunea Democrata Maghiara Din Romania,2008,86519
 Cotfas Dan,Partidul National Liberal,2008,85877
-Egyed J?Zsef,Partidul Civic Maghiar - Magyar Polgari Part,2008,85920
-P?Ter Zoltan,Uniunea Democrata Maghiara Din Romania,2008,85984
+Egyed Jozsef,Partidul Civic Maghiar - Magyar Polgari Part,2008,85920
+Peter Zoltan,Uniunea Democrata Maghiara Din Romania,2008,85984
 Mark Tiberiu,Uniunea Democrata Maghiara Din Romania,2008,86453
 Ungureanu Toader,Partidul Social Democrat,2008,86133
 Rafain Endre,Uniunea Democrata Maghiara Din Romania,2008,86188
 Gyorgy Sandor,Uniunea Democrata Maghiara Din Romania,2008,86222
-Tamas Ern?,Uniunea Democrata Maghiara Din Romania,2008,86311
+Tamas Erni,Uniunea Democrata Maghiara Din Romania,2008,86311
 Tinca Mihail Dumitru,Partidul Social Democrat,2008,86339
-Korpos B?La-Stefan,Candidat independent,2008,86366
+Korpos Bela-Stefan,Candidat independent,2008,86366
 Muntean Mircea,Conventia Democratica Din Romania,1996,86687
 Benea Aurel,Partidul Democratiei Sociale Din Romania,1996,87291
 Maris Remus,Partidul Democratiei Sociale Din Romania,1996,86810
@@ -7919,10 +7919,10 @@ Danesan Ioan Dorin,Partidul Social Democrat,2008,114514
 Matei Alexandru Adrian,Partidul Democrat Liberal,2008,114925
 Nicoara Ioan,Partidul National Liberal,2008,117827
 Urcan Ionas Florin,Partidul Democrat Liberal,2008,114710
-Daszkel Laszl?,Uniunea Democrata Maghiara Din Romania,2008,118281
+Daszkel Laszlo,Uniunea Democrata Maghiara Din Romania,2008,118281
 Mocean Ioan,Partidul National Liberal,2008,119242
 Tar Andras,Uniunea Democrata Maghiara Din Romania,2008,119331
-P?Ter Ferenc,Uniunea Democrata Maghiara Din Romania,2008,114854
+Peter Ferenc,Uniunea Democrata Maghiara Din Romania,2008,114854
 Covrig Ioan,Partidul Social Democrat,2008,119894
 Osvath Csaba,Uniunea Democrata Maghiara Din Romania,2008,114970
 Sipos Iosif,Uniunea Democrata Maghiara Din Romania,2008,115076
@@ -7939,12 +7939,12 @@ Sagyebo Istvan,Uniunea Democrata Maghiara Din Romania,2008,115637
 Moldovan Maria,Partidul Social Democrat,2008,115708
 Mailath Karoly,Uniunea Democrata Maghiara Din Romania,2008,120511
 Ludusan Viorel,Candidat independent,2008,115771
-Barta Laszl?,Uniunea Democrata Maghiara Din Romania,2008,115824
+Barta Laszlo,Uniunea Democrata Maghiara Din Romania,2008,115824
 Chira Gheorghe,Partidul National Liberal,2008,115851
 Ordog Ferencz,Uniunea Democrata Maghiara Din Romania,2008,115897
 Szabo Jozsef Levente,Uniunea Democrata Maghiara Din Romania,2008,115959
 Cucerzan Marius,Partidul Democrat Liberal,2008,116046
-D?Sa Sandor,Uniunea Democrata Maghiara Din Romania,2008,120478
+Dusa Sandor,Uniunea Democrata Maghiara Din Romania,2008,120478
 Hurdugaci Emanoil,Partidul Romania Mare,2008,116126
 Aldea Dumitru,Partidul Social Democrat,2008,116171
 Nagy Martin,Uniunea Democrata Maghiara Din Romania,2008,120487
@@ -7994,7 +7994,7 @@ Chis Balan Ilie,Partidul Social Democrat,2008,119153
 Soaita Ovidiu,Partidul Democrat Liberal,2008,119206
 Madaras Arpad,Uniunea Democrata Maghiara Din Romania,2008,120496
 Sangeorzan Remus,Partidul Social Democrat,2008,114382
-S?Falvi Sandor Szabolcs,Uniunea Democrata Maghiara Din Romania,2008,114417
+Safalvi Sandor Szabolcs,Uniunea Democrata Maghiara Din Romania,2008,114417
 Magheran Alexandru,Partidul National Liberal,2008,119386
 Simon Istvan,Uniunea Democrata Maghiara Din Romania,2008,119466
 Canceu Matei,Partidul Social Democrat,2008,119527
@@ -9327,7 +9327,7 @@ Sebesi Ioan,Candidat independent,2008,138039
 Bura Nicolae,Partidul Social Democrat,2008,136599
 Veron Andrei Stefan,Uniunea Democrata Maghiara Din Romania,2008,136642
 Gereb Nicolae,Uniunea Democrata Maghiara Din Romania,2008,136713
-Szab? Elek,Candidat independent,2008,179873
+Szabo Elek,Candidat independent,2008,179873
 Papp Tibor,Uniunea Democrata Maghiara Din Romania,2008,136768
 Apan Mihai,Partidul Social Democrat,2008,136802
 Grigoras Ion,Partidul Social Democrat,2008,136919
@@ -9340,7 +9340,7 @@ Roca Iosif,Partidul Democrat Liberal,2008,137185
 Copil Gheorghe,Partidul Social Democrat,2008,137229
 Pop Hotcas Ioan,Partidul Social Democrat,2008,137274
 Balogh Alexandru,Uniunea Democrata Maghiara Din Romania,2008,179677
-Mosd?Czi Vilhelm,Partidul Civic Maghiar - Magyar Polgari Part,2008,136553
+Mosdoczi Vilhelm,Partidul Civic Maghiar - Magyar Polgari Part,2008,136553
 Todoran Ioan,Partidul National Liberal,2008,137292
 Jurchis Gheorghe,Partidul Social Democrat,2008,137363
 Ciocan Petru,Candidat independent,2008,137407
@@ -9576,7 +9576,7 @@ Sarca Aurel,Partidul Social Democrat,2008,140280
 Barou Ioan,Partidul National Liberal,2008,140324
 Marina Ida-Magdolna,Uniunea Democrata Maghiara Din Romania,2008,180037
 Holhos Ioan,Partidul National Liberal,2008,140379
-Szab? Levente-Gyorgy,Uniunea Democrata Maghiara Din Romania,2008,140440
+Szabo Levente-Gyorgy,Uniunea Democrata Maghiara Din Romania,2008,140440
 Faluvegi Francisc Stefan,Uniunea Democrata Maghiara Din Romania,2008,140477
 Catana Ioan,Partidul Social Democrat,2008,140501
 Cristea Nicolae,Partidul National Liberal,2008,140547
@@ -9586,7 +9586,7 @@ Terec Ioan-Eugen,Partidul Democrat Liberal,2008,140672
 Cheseli Ioan,Partidul Social Democrat,2008,140770
 Maior Andrei,Uniunea Democrata Maghiara Din Romania,2008,140823
 Pop Mircea,Partidul Social Democrat,2008,140869
-Csap? Carol,Uniunea Democrata Maghiara Din Romania,2008,140958
+Csapi Carol,Uniunea Democrata Maghiara Din Romania,2008,140958
 Lazar Rodica,Partidul National Liberal,2008,141027
 Mangau Ioan,Partidul Social Democrat,2008,141081
 Codorean Eugen,Partidul National Liberal,2008,141134
