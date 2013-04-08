@@ -7,7 +7,7 @@
 	<li><a href="#dem">Demografie</a></li>
 	<li><a href="#mon">Monumente</a></li>
 	<li><a href="#pic">Galerie</a></li>
-	<li><a href="" rel="countymenu">Alte județe</a>
+	<li><a href="/" rel="countymenu">Alte județe</a>
 		<div id="hiddenmenu" class="hiddentoc">
 			{foreach $county_list as $othercounty}
 				<a href="?id={$othercounty.index}">{$othercounty.denloc}</a>
