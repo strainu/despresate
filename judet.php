@@ -64,8 +64,12 @@ $cjpresyear = 0;
 $cjviceyear = 0;
 $cjpresid = 0;
 $cjvice = Array();
+$cjmembers = Array();
+$cjmyear = 0;
 $prpresyear = 0;
 $prpresid = 0;
+$prviceyear = 0;
+$prviceid = 0;
 foreach ($leaders as $leader) {
 	switch($leader["functie"]) {
 		case 4:
@@ -82,12 +86,25 @@ foreach ($leaders as $leader) {
 			array_push($cjvice, Array( "name" => $leader['nume'],  "party" => $leader['partid'], "id" => $leader['agenda_id']));
 			$cjviceyear = $leader['an'];
 		break;
+		case 6:
+			if ($cjmyear != 0 && $cjmyear != $leader['an'])
+				continue;//TODO: history
+			array_push($cjmembers, Array( "name" => $leader['nume'],  "party" => $leader['partid'], "id" => $leader['agenda_id']));
+			$cjmyear = $leader['an'];
+		break;
 		case 7:
 			if ($prpresyear)
 				continue;
 			$prpres = $leader['nume'];
 			$prpresyear = $leader['an'];
 			$prpresid = $leader['agenda_id'];
+		break;
+		case 8:
+			if ($prviceyear)
+				continue;
+			$prvice = $leader['nume'];
+			$prviceyear = $leader['an'];
+			$prviceid = $leader['agenda_id'];
 		break;
 	}
 }
@@ -116,7 +133,7 @@ $county_str = str_replace("- ", "-", $county_str);
 $smarty->assign('name', $county_str);
 $smarty->assign('region', $region);
 $smarty->assign('abbr', $county_data['prescurtare']);
-$county_str = str_ireplace("JUDEȚUL ", "", $county_str);
+$county_str = str_ireplace("Județul ", "", $county_str);
 $smarty->assign('shortname', $county_str);
 $smarty->assign('siruta', $county_data['siruta']);
 $smarty->assign('uat', $uat_data);
@@ -135,9 +152,7 @@ $smarty->assign('cjpresyear', $cjpresyear);
 $smarty->assign('cjpresid', $cjpresid);
 if (count($cjvice) > 0)
 	$smarty->assign('cjvice', $cjvice);
-//$smarty->assign('cjviceparty', $cjviceparty);
-//$smarty->assign('cjviceyear', $cjviceyear);
-$smarty->assign('cjcouncil', 'Nu dispunem încă de componența consiliului judetean. Dacă aveți o listă cu consilieri vă rugăm să ne contactați.');//TODO
+$smarty->assign('cjcouncil', $cjmembers);
 $smarty->assign('cjaddr', $county_data['adrcj']);
 $smarty->assign('cjsite', $county_data['sitecj']);
 $smarty->assign('cjemail', $county_data['emailcj']);
@@ -147,6 +162,9 @@ $smarty->assign('cjfax', $county_data['faxcj']);
 $smarty->assign('prpres', $prpres);
 $smarty->assign('prpresid', $prpresid);
 $smarty->assign('pryear', $prpresyear);
+$smarty->assign('prvice', $prvice);
+$smarty->assign('prviceid', $prviceid);
+$smarty->assign('prviceyear', $prviceyear);
 $smarty->assign('praddr', $county_data['adrpr']);
 $smarty->assign('prsite', $county_data['sitepr']);
 $smarty->assign('premail', $county_data['emailpr']);
