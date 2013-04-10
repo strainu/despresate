@@ -1,0 +1,1 @@
+cat mapping.csv | sort | sed -e 's/:/.csv,/g' | awk 'BEGIN { FS = "," } ; { while(c < $2) { getline line < $1; c++; }; c=0; close($1); split(line,arra","); printf("%s %d %s%s%s\n", "UPDATE `oameni` SET `agenda_id`=", $3, "WHERE `nume`= \"", array[($1=="pcj.csv")?2:1], "\";"); }'

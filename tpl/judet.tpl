@@ -84,11 +84,14 @@
     <div class="mainsection">
 		<a name="adm" />
 		<div class="maintitle">Administrație locală<a href="#top" class="toplink small">[sus]</a></div>
-		{if $prpres}
-		<p>Prefectul județului {$shortname} este {$prpres}, numit de guvern în anul {$pryear}.</p>
+		<p>
+		{if $prpres || $prvice}
+			{if $prpres}Prefectul județului {$shortname} este <i>{$prpres}</i>, numit de guvern în anul {$pryear}. {/if}
+			{if $prvice}{if $pryear == $prviceyear}Tot din{else}Din{/if} {$prviceyear}, viceprefectul județului este <i>{$prvice}</i>. {/if}
 		{else}
-		<p>Nu dispunem deocamdatăde informatii despre prefectul judetului {$shortname}. Dacă aveti aceste date, vă rugăm să ne contactati.</p>
+		Nu dispunem deocamdată de informatii despre prefectul și subprefectul judetului {$shortname}. Dacă aveti aceste date, vă rugăm să ne contactati.
 		{/if}
+		</p>
 		<p>Consiliul județean rezultat în urma alegerilor din {$cjpresyear} are următoarea componență:</p>
 		<ul class="cjcouncil">
 			<li><b>Președinte:</b> {if $cjpresid}<a href="http://agenda.grep.ro/person/{$cjpresid}" title="Date de contact pentru {$cjpres}">{$cjpres}</a>{else}{$cjpres}{/if} {if $cjpresparty}({$cjpresparty}){/if}</li><!--TODO: partid-->
@@ -97,7 +100,9 @@
 				{else} Nu dispunem deocamdată de numele vicepreședinților CJ {$shortname}. Dacă dețineți aceste date, vă rugăm să ne contactați.
 				{/if}
 			</li>
-			<li><b>Consilieri:</b> {$cjcouncil}</li>
+			<li><b>Consilieri:</b> {if $cjcouncil}<ul>{foreach $cjcouncil as $member}<li>{if $member.id}<a href="http://agenda.grep.ro/person/{$member.id}" title="Date de contact pentru {$member.name}">{$member.name}</a>{else}{$member.name}{/if} {if $member.party}({$member.party}){/if}</li>{/foreach}</ul>
+						{else} Nu dispunem deocamdată de componența consiliului județean {$shortname}. Dacă dețineți aceste date, vă rugăm să ne contactați.
+						{/if}</li>
 		</ul>
     </div>
     <div class="mainsection">
