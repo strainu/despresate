@@ -20,6 +20,17 @@
   <td valign=top width="300px">
     <div class="leftbar">
       {if $mappage}><div class="leftbarmap">><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
+      <div class="leftbartitle">Cuprins</div>
+        <table cellspacing="0" cellpadding="0" width="100%" id="cuprins" class="leftbarelem">
+         <tr><td><a href="#info" style="color:black;">Informații generale</a></td></tr>
+         <tr><td><a href="#adm" style="color:black;">Administrație locală</a></td></tr>
+         <tr><td><a href="#uat" style="color:black;">Localități</a></td></tr>
+         <tr><td><a href="#eco" style="color:black;">Economie</a></td></tr>
+         <tr><td><a href="#dem" style="color:black;">Demografie</a></td></tr>
+         <tr><td><a href="#mon" style="color:black;">Monumente</a></td></tr>
+         <tr><td><a href="#pic" style="color:black;">Galerie</a></td></tr>
+         <tr><td><a href="/" rel="countymenu" style="color:black;">Alte județe</a></td></tr>
+        </table>
       <div class="leftbartitle">Date statistice</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
          <tr><th>Regiune</th><td>{$region}</td></tr>
