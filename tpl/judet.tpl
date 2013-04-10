@@ -68,7 +68,21 @@
     </div>
   </td>
   <td valign=top>
-    <div class="mainsection">
+    <!--div class="mainsection">
+        <a name="toc" />
+        <div class="maintitle">Cuprins</div>
+            <ul class="pagetoc2">
+                <li class="toclevel-1"><a href="#info">Informații generale</a></li>
+                <li class="toclevel-1"><a href="#adm">Administrație locală</a></li>
+                <li class="toclevel-1"><a href="#uat">Localități</a></li>
+                <li class="toclevel-1"><a href="#eco">Economie</a></li>
+                <li class="toclevel-1"><a href="#dem">Demografie</a></li>
+                <li class="toclevel-1"><a href="#mon">Monumente</a></li>
+                <li class="toclevel-1"><a href="#pic">Galerie</a></li>
+                <li class="toclevel-1"><a href="/" rel="countymenu">Alte județe</a></li>
+            </ul>
+    </div-->
+	<div class="mainsection">
 		<a name="info" />
 		<div class="maintitle">Informații generale<a href="#top" class="toplink small">[sus]</a></div>
                 <table class="pagetoc">

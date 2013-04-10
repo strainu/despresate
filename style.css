@@ -113,14 +113,29 @@ ul.hiddentoc li {
     background-color: #F9F9F9;
     border: 1px solid #AAAAAA;
     color: black;
-    font-size: 75%;
+    font-size: 80%;
     font-family: 'helvetica neue',helvetica,arial,sans-serif;
     margin: 5px;
+    line-height: 1.5em;
+    clear: both;
+    float: right;
+}
+
+.pagetoc2{
+    color: black;
+    font-size: 80%;
+    font-family: 'helvetica neue',helvetica,arial,sans-serif;
+    list-style-type: none;
+    background-color: #F9F9F9;
+}
+.pagetoc2 a{
+    color: black;
 }
 
 .pagetoc ul{
-    margin-left: -5px;
+    margin-left: -10px;
     padding-right: 2px;
+    list-style-type: decimal;
 }
 
 .pagetoc a{
