@@ -109,3 +109,26 @@ ul.hiddentoc li {
   margin: 35px auto;
 }
 
+.pagetoc{
+    background-color: #F9F9F9;
+    border: 1px solid #AAAAAA;
+    color: black;
+    font-size: 75%;
+    font-family: 'helvetica neue',helvetica,arial,sans-serif;
+    margin: 5px;
+}
+
+.pagetoc ul{
+    margin-left: -5px;
+    padding-right: 2px;
+}
+
+.pagetoc a{
+    color: black;
+}
+
+.pagetoctitle{
+    text-align: center;
+    font-size: larger;
+    font-style: italic;
+}
