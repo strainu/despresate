@@ -10,7 +10,7 @@
 	<li><a href="/" rel="countymenu">Alte județe</a>
 		<div id="hiddenmenu" class="hiddentoc">
 			{foreach $county_list as $othercounty}
-				<a href="?id={$othercounty.index}">{$othercounty.denloc}</a>
+				<a href="?id={$othercounty.jud}">{$othercounty.denloc}</a>
 			{/foreach}
 		</div>
 	</li>
@@ -33,9 +33,10 @@
         </table>
       <div class="leftbartitle">Date statistice</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
-         <tr><th>Regiune</th><td>{$region}</td></tr>
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
-	 <tr><th>Prescurtare</th><td>{$abbr}</td></tr>
+         <tr><th>Regiune administrativă</th><td>{$region}</td></tr>
+         <tr><th>Prescurtare</th><td>{$abbr}</td></tr>
+         <tr><th>Regiune istorică</th><td>{$hist_region}</td></tr>
          <tr><th>Populație ({$census})</th><td>{$population|commify:0:',':'.'} locuitori</td></tr>
          <tr><th>Suprafață</th><td>{$surface|commify:2:',':'.'} km<sup>2</sup></td></tr>
          <tr><th>Densitate</th><td>{$density|commify:2:',':'.'} loc/km<sup>2</sup></td></tr>
@@ -104,7 +105,9 @@
                         </td></tr>
                     </tbody>
                 </table>
-		<p>{$name} este un județ al României aflat în regiunea {$region}.</p>
+		<p><b>{$name}</b> este un județ al României aflat în regiunea administrativă {$region}. În coloana din stânga 
+        aveți la dispoziție câteva informații de bază despre județ, iar mai jos sunt prezente detalii despre
+        economia, demografia și cultura județului.</p>
     </div>
     <div class="mainsection">
 		<a name="adm" />
@@ -185,7 +188,7 @@
 			<td>{$monument.cod}</td>
 			<td>{$monument.denumire}</td>
 			<td>{if $monument.arhitect}{$monument.arhitect}{else}N/A{/if}</td>
-			<td style="text-align: center;"><img src="{$monument.thumburl}" width="{if ($monument.thumbh < $monument.thumbw)}60px{else}40px{/if}" height="{if ($monument.thumbh > $monument.thumbw)}60px{else}40px{/if}"/></a></td>
+			<td style="text-align: center;">{if $monument.imagine}<img src="{$monument.thumburl}" width="{if ($monument.thumbh < $monument.thumbw)}60px{else}40px{/if}" height="{if ($monument.thumbh > $monument.thumbw)}60px{else}40px{/if}"/>{/if}</td>
 		</tr>
 		{/foreach}
 		</table>
