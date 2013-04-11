@@ -16,21 +16,10 @@
 	</li>
 </ul>
 <hr />
-<table width="100%" cellpadding="0" cellspacing="0">
-  <td valign=top width="300px">
+<table cellpadding="0" cellspacing="0">
+  <td valign="top" style="min-width:100px">
     <div class="leftbar">
-      {if $mappage}><div class="leftbarmap">><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
-      <div class="leftbartitle">Cuprins</div>
-        <table cellspacing="0" cellpadding="0" width="100%" id="cuprins" class="leftbarelem">
-         <tr><td><a href="#info" style="color:black;">Informații generale</a></td></tr>
-         <tr><td><a href="#adm" style="color:black;">Administrație locală</a></td></tr>
-         <tr><td><a href="#uat" style="color:black;">Localități</a></td></tr>
-         <tr><td><a href="#eco" style="color:black;">Economie</a></td></tr>
-         <tr><td><a href="#dem" style="color:black;">Demografie</a></td></tr>
-         <tr><td><a href="#mon" style="color:black;">Monumente</a></td></tr>
-         <tr><td><a href="#pic" style="color:black;">Galerie</a></td></tr>
-         <tr><td><a href="/" rel="countymenu" style="color:black;">Alte județe</a></td></tr>
-        </table>
+      {if $mappage}<div class="leftbarmap"><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
       <div class="leftbartitle">Date statistice</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
@@ -69,27 +58,13 @@
     </div>
   </td>
   <td valign=top>
-    <!--div class="mainsection">
-        <a name="toc" />
-        <div class="maintitle">Cuprins</div>
-            <ul class="pagetoc2">
-                <li class="toclevel-1"><a href="#info">Informații generale</a></li>
-                <li class="toclevel-1"><a href="#adm">Administrație locală</a></li>
-                <li class="toclevel-1"><a href="#uat">Localități</a></li>
-                <li class="toclevel-1"><a href="#eco">Economie</a></li>
-                <li class="toclevel-1"><a href="#dem">Demografie</a></li>
-                <li class="toclevel-1"><a href="#mon">Monumente</a></li>
-                <li class="toclevel-1"><a href="#pic">Galerie</a></li>
-                <li class="toclevel-1"><a href="/" rel="countymenu">Alte județe</a></li>
-            </ul>
-    </div-->
 	<div class="mainsection">
 		<a name="info" />
 		<div class="maintitle">Informații generale<a href="#top" class="toplink small">[sus]</a></div>
                 <table class="pagetoc">
                     <tbody>
                         <tr><td>
-                            <div class="pagetoctitle">Cuprins</div>
+                            <div class="pagetoctitle"><b>Cuprins</b></div>
                         </td></tr>
                         <tr><td>
                             <ul>
@@ -100,7 +75,6 @@
                                 <li class="toclevel-1"><a href="#dem">Demografie</a></li>
                                 <li class="toclevel-1"><a href="#mon">Monumente</a></li>
                                 <li class="toclevel-1"><a href="#pic">Galerie</a></li>
-                                <li class="toclevel-1"><a href="/" rel="countymenu">Alte județe</a></li>
                             </ul>
                         </td></tr>
                     </tbody>
@@ -196,7 +170,10 @@
     <div class="mainsection">
 		<a name="pic" />
 		<div class="maintitle">Galerie<a href="#top" class="toplink small">[sus]</a></div>
+                <div style="text-align:center; padding-left:10px">
 		{include file='tpl/pic.tpl'}
+                </div>
+                <div  style="clear:both;"></div>
     </div>
   </td>
 </table>

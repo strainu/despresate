@@ -7,15 +7,15 @@
 </head>
 <body>
   <a name="top" />
-  <table width="970">
-    <td width="150">
+  <table>
+    <td width="15%">
       <a href="/" title="Informații statistice despre localitățile din România">
         <img itemprop="image" src="images/logo.png" border=0 width="120px" height="120px" 
         alt="Informații statistice despre localitățile din România">
       </a>
     </td>
 
-    <td width="300">
+    <td width="30%">
       {* The search form *}
       <form action="" method="get">
         <input type="hidden" name="cid" value="search" />
