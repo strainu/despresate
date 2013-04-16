@@ -1,19 +1,17 @@
 {include file='tpl/header.tpl'}
 <ul class="toc" id="toc">
-	<li><a href="#info">Informații generale</a></li>
-	<li><a href="#adm">Administrație locală</a></li>
-	<li><a href="#uat">Localități</a></li>
-	<li><a href="#eco">Economie</a></li>
-	<li><a href="#dem">Demografie</a></li>
-	<li><a href="#mon">Monumente</a></li>
-	<li><a href="#pic">Galerie</a></li>
-	<li><a href="/" rel="countymenu">Alte județe</a>
+	<li><a href="/">Acasă</a></li>
+	<li><a href="data.php?id={$siruta}&f=csv">Date brute</a></li>
+	<li><a href="" rel="hiddenmenu">Alte județe ▼</a>
 		<div id="hiddenmenu" class="hiddentoc">
-			{foreach $county_list as $othercounty}
+			{foreach $county_list as $othercounty name=othercounties}
 				<a href="?id={$othercounty.jud}">{$othercounty.denloc}</a>
+				{if $smarty.foreach.othercounties.index % 2 == 1}<div  style="clear:both;"></div>{/if}
 			{/foreach}
 		</div>
 	</li>
+	<li><a href="despre.php">Despre</a></li>
+	<li><a href="cauta.php">Acasă</a></li>
 </ul>
 <hr />
 <table cellpadding="0" cellspacing="0">
@@ -178,7 +176,6 @@
   </td>
 </table>
 <script type="text/javascript">
-//SYNTAX: tabdropdown.init("menu_id", [integer OR "auto"])
-tabdropdown.init("toc", 0)
+tabdropdown.init("toc", 3)
 </script>
 {include file='tpl/footer.tpl'}

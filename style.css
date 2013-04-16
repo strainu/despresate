@@ -86,10 +86,20 @@ ul.toc li a:hover {
 }
 .hiddentoc {
   position:absolute;
-  top: 0;
+  border-width: 0 1px;
+  font:normal 12px Verdana;
+  line-height:18px;
   z-index:100;
-  width: 200px;
   visibility: hidden;
+}
+.hiddentoc a{
+  width: auto;
+  display: table-cell;
+  text-indent: 5px;
+  padding: 2px 0;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
 }
 ul.hiddentoc li {
   display: block;
