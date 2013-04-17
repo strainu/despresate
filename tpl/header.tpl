@@ -4,6 +4,7 @@
   <title>{$name} - Despre sate</title>
   <link rel="stylesheet" href="style.css" />
   <script src="./dropdownmenu.js" type="text/javascript"></script>
+  <script src="./jquery-1.8.3.min.js" type="text/javascript"></script>
 </head>
 <body>
   <a name="top" />
