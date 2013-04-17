@@ -51,7 +51,8 @@
           },
 
           render: function() {
-            this.map = L.map(this.el).setView([46.00, 24.00], 7);
+            this.map = L.map(this.el);
+            //this.map.setView([46.00, 24.00], 7);
             this.layer = L.tileLayer(this.tile_url, {
                 attribution: this.attribution,
                 maxZoom: 18
