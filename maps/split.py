@@ -1,15 +1,13 @@
+import sys
 import simplejson as json
 from path import path
 
-
-HERE = path(__file__).abspath().parent
+# ogr2ogr -t_srs 'EPSG:900913' -f sqlite ro_uat_primari_2012.spatialite ro_uat_primari_2012/ro_uat_primari_2012.shp
 
 
 def main():
-    with (HERE / 'uat_all.geojson').open('rb') as f:
-        uat = json.load(f)
-
-    out = HERE / 'uat'
+    uat = json.load(sys.stdin)
+    out = path(sys.argv[1])
     out.mkdir_p()
     index = []
     for feature in uat['features']:
