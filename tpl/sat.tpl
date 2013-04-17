@@ -43,7 +43,7 @@
                            [data.bbox[3], data.bbox[2]]]);
           };
           $(document).done(function() {
-            var url = 'maps/geojson/' + siruta + '.geojson';
+            var url = 'maps/uat-comune/' + siruta + '.geojson';
             $.getJSON(url, function(data) {
               load_leaflet_map($('.map')[0], data);
             });

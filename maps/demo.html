@@ -82,7 +82,7 @@
 
           on_change: function() {
             var siruta = this.$el.find('select').val();
-            var url = "uat/" + siruta + ".geojson";
+            var url = "uat-comune/" + siruta + ".geojson";
             this.load_map(url);
           },
 
@@ -95,7 +95,7 @@
           }
         });
 
-        $.get('uat/index.json').done(function(raw_data) {
+        $.get('uat-comune/index.json').done(function(raw_data) {
           var data = JSON.parse(raw_data);
           window.demo_controls = new Controls({
             el: $('#controls'),
