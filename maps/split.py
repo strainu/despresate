@@ -13,17 +13,32 @@ def quantize(value):
 def main():
     uat = json.load(sys.stdin)
     out = path(sys.argv[1])
+    propschema = sys.argv[2]
     out.mkdir_p()
     index = []
     for feature in uat['features']:
-        properties = feature['properties']
-        siruta = int(properties['siruta'])
-        properties = {
-            'siruta': siruta,
-            'name': properties['uat_name'],
-            'jud_code': properties['jud_code'],
-            'jud_name': properties['jud_name'].lstrip(u"JUDE\u021aUL "),
-        }
+        if propschema == 'comune':
+            # http://politicalcolours.ro/data/download/ro_uat_primari_2012.zip
+            siruta = int(feature['properties']['siruta'])
+            properties = {
+                'siruta': siruta,
+                'name': feature['properties']['uat_name'],
+                'jud_code': feature['properties']['jud_code'],
+                'jud_name': (feature['properties']['jud_name']
+                                .lstrip(u"JUDE\u021aUL ")),
+            }
+
+        elif propschema == 'judete':
+            # http://earth.unibuc.ro/geoserver - judete_ro layer
+            siruta = int(feature['properties']['siruta'])
+            properties = {
+                'siruta': siruta,
+                'name': feature['properties']['name'],
+            }
+
+        else:
+            raise RuntimeError('unknown propschema %r' % propschema)
+
         coordinates = [[[quantize(value) for value in pair]
                         for pair in ring]
                        for ring in feature['geometry']['coordinates']]
@@ -31,6 +46,7 @@ def main():
             'x': [pair[0] for pair in coordinates[0]],
             'y': [pair[1] for pair in coordinates[0]],
         }
+        assert feature['geometry']['type'] == 'Polygon'
         doc = {
             'type': "FeatureCollection",
             'bbox': [min(numbers['x']), min(numbers['y']),
