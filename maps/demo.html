@@ -59,6 +59,8 @@
             this.layer.addTo(this.map);
             this.feature = L.geoJson(this.data);
             this.feature.addTo(this.map);
+            this.map.fitBounds([[this.data.bbox[1], this.data.bbox[0]],
+                                [this.data.bbox[3], this.data.bbox[2]]]);
           }
 
         });
