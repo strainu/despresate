@@ -32,10 +32,10 @@ def main():
                  'properties': properties},
             ],
         }
-        (out / ('%d.geojson' % siruta)).write_bytes(json.dumps(doc, indent=2))
+        (out / ('%d.geojson' % siruta)).write_bytes(json.dumps(doc))
         index.append(properties)
 
-    (out / 'index.json').write_bytes(json.dumps(index, indent=2))
+    (out / 'index.json').write_bytes(json.dumps(index))
 
 
 if __name__ == '__main__':
