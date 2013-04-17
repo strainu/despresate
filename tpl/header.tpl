@@ -3,8 +3,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>{$name} - Despre sate</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css">
+  <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css"><![endif]-->
   <script src="./dropdownmenu.js" type="text/javascript"></script>
   <script src="./jquery-1.8.3.min.js" type="text/javascript"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 </head>
 <body>
   <a name="top" />
