@@ -2,7 +2,12 @@ import sys
 import simplejson as json
 from path import path
 
-# ogr2ogr -t_srs 'EPSG:900913' -f sqlite ro_uat_primari_2012.spatialite ro_uat_primari_2012/ro_uat_primari_2012.shp
+# ogr2ogr -t_srs 'EPSG:4326' -f geojson uat-all-wgs84.geojson ro_uat_primari_2012/ro_uat_primari_2012.shp
+# python split.py uat < uat-all-wgs84.geojson
+
+
+def quantize(value):
+    return float('%.4f' % value)
 
 
 def main():
@@ -21,7 +26,8 @@ def main():
         }
         geometry = {
             'type': feature['geometry']['type'],
-            'coordinates': [[[int(value) for value in pair] for pair in ring]
+            'coordinates': [[[quantize(value) for value in pair]
+                             for pair in ring]
                             for ring in feature['geometry']['coordinates']],
         }
         doc = {
