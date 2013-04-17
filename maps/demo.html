@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css"><![endif]-->
+    <style>
+      .map {
+        height: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="controls"></div>
+
+    <script src="/lib/jquery-1.8.3/jquery-1.8.3.js"></script>
+    <script src="/lib/underscore-1.4.3/underscore.js"></script>
+    <script src="/lib/backbone-0.9.9/backbone.js"></script>
+    <script src="/lib/handlebars-1.0.rc1/handlebars-1.0.rc.1.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+
+    <script type="text/handlebars" id="controls.html">
+      <select>
+        <option>--</option>
+      {{# data }}
+        <option value="{{ siruta }}">{{ name }}</option>
+      {{/ data }}
+      </select>
+    </script>
+
+    <script>
+      (function() {
+
+        var Map = Backbone.View.extend({
+
+          tile_url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          attribution: 'Map data &copy; <a href="http://openstreetma'
+                     + 'p.org">OpenStreetMap</a> contributors, <a hr'
+                     + 'ef="http://creativecommons.org/licenses/by-s'
+                     + 'a/2.0/">CC-BY-SA</a>',
+
+          className: 'map',
+
+          initialize: function(options) {
+            $.getJSON(options.geojson_url, _.bind(function(data) {
+              this.data = data;
+              this.render();
+            }, this));
+          },
+
+          render: function() {
+            this.map = L.map(this.el).setView([46.00, 24.00], 7);
+            this.layer = L.tileLayer(this.tile_url, {
+                attribution: this.attribution,
+                maxZoom: 18
+            });
+            this.layer.addTo(this.map);
+            this.feature = L.geoJson(this.data);
+            this.feature.addTo(this.map);
+          }
+
+        });
+
+        var Controls = Backbone.View.extend({
+          template: Handlebars.compile($('[id="controls.html"]').html()),
+
+          events: {
+            'change select': 'on_change'
+          },
+
+          initialize: function(options) {
+            this.$el.html(this.template(options));
+          },
+
+          on_change: function() {
+            var siruta = this.$el.find('select').val();
+            var url = "uat/" + siruta + ".geojson";
+            this.load_map(url);
+          },
+
+          load_map: function(url) {
+            if(this.map_view) {
+              this.map_view.remove();
+            }
+            this.map_view = new Map({geojson_url: url});
+            $('body').append(this.map_view.el);
+          }
+        });
+
+        $.get('uat/index.json').done(function(raw_data) {
+          var data = JSON.parse(raw_data);
+          new Controls({el: $('#controls'), data: data.slice(0, 10)});
+        });
+
+      })();
+    </script>
+  </body>
+</html>
