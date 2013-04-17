@@ -33,13 +33,26 @@
     <script>
       (function() {
 
-        var Map = Backbone.View.extend({
+        var load_leaflet_map = function(container, data) {
+          var tile_url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+          var attribution = 'Map data &copy; <a href="http://openstreetma'
+                          + 'p.org">OpenStreetMap</a> contributors, <a hr'
+                          + 'ef="http://creativecommons.org/licenses/by-s'
+                          + 'a/2.0/">CC-BY-SA</a>';
 
-          tile_url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          attribution: 'Map data &copy; <a href="http://openstreetma'
-                     + 'p.org">OpenStreetMap</a> contributors, <a hr'
-                     + 'ef="http://creativecommons.org/licenses/by-s'
-                     + 'a/2.0/">CC-BY-SA</a>',
+          var map = L.map(container);
+          var layer = L.tileLayer(tile_url, {
+              attribution: attribution,
+              maxZoom: 18
+          });
+          layer.addTo(map);
+          var feature = L.geoJson(data);
+          feature.addTo(map);
+          map.fitBounds([[data.bbox[1], data.bbox[0]],
+                         [data.bbox[3], data.bbox[2]]]);
+        };
+
+        var Map = Backbone.View.extend({
 
           className: 'map',
 
@@ -51,17 +64,7 @@
           },
 
           render: function() {
-            this.map = L.map(this.el);
-            //this.map.setView([46.00, 24.00], 7);
-            this.layer = L.tileLayer(this.tile_url, {
-                attribution: this.attribution,
-                maxZoom: 18
-            });
-            this.layer.addTo(this.map);
-            this.feature = L.geoJson(this.data);
-            this.feature.addTo(this.map);
-            this.map.fitBounds([[this.data.bbox[1], this.data.bbox[0]],
-                                [this.data.bbox[3], this.data.bbox[2]]]);
+            load_leaflet_map(this.el, this.data);
           }
 
         });
