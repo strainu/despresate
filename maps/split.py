@@ -19,11 +19,16 @@ def main():
             'jud_code': properties['jud_code'],
             'jud_name': properties['jud_name'].lstrip(u"JUDE\u021aUL "),
         }
+        geometry = {
+            'type': feature['geometry']['type'],
+            'coordinates': [[[int(value) for value in pair] for pair in ring]
+                            for ring in feature['geometry']['coordinates']],
+        }
         doc = {
             'type': "FeatureCollection",
             'features': [
                 {'type': "Feature",
-                 'geometry': feature['geometry'],
+                 'geometry': geometry,
                  'properties': properties},
             ],
         }
