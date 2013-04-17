@@ -18,6 +18,16 @@
   <td valign="top" style="min-width:100px">
     <div class="leftbar">
       {if $mappage}<div class="leftbarmap"><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
+      <div class="leftbarelem map"></div>
+      <script>{literal}
+        $(document).done(function() {
+            var siruta = {/literal}{$siruta}{literal};
+            var url = 'maps/uat-judete/' + siruta + '.geojson';
+            $.getJSON(url, function(data) {
+              load_leaflet_map($('.map')[0], data);
+            });
+        });
+      {/literal}</script>
       <div class="leftbartitle">Date statistice</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
