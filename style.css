@@ -147,3 +147,8 @@ ul.hiddentoc li {
     text-align: center;
     font-size: larger;
 }
+.map {
+    height: 200px;
+    border: 1px solid rgb(204, 204, 204);
+    background-color: rgb(249, 249, 249);
+}
