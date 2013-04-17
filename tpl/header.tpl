@@ -8,6 +8,7 @@
   <script src="./dropdownmenu.js" type="text/javascript"></script>
   <script src="./jquery-1.8.3.min.js" type="text/javascript"></script>
   <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+  <script src="./map.js"></script>
 </head>
 <body>
   <a name="top" />
