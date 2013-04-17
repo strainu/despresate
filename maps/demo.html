@@ -91,7 +91,10 @@
 
         $.get('uat/index.json').done(function(raw_data) {
           var data = JSON.parse(raw_data);
-          new Controls({el: $('#controls'), data: data.slice(0, 10)});
+          window.demo_controls = new Controls({
+            el: $('#controls'),
+            data: data.slice(0, 10)
+          });
         });
 
       })();
