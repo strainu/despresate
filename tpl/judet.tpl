@@ -20,7 +20,7 @@
       {if $mappage}<div class="leftbarmap"><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
       <div class="leftbarelem map"></div>
       <script>{literal}
-        $(document).done(function() {
+        $(document).ready(function() {
             var siruta = {/literal}{$siruta}{literal};
             var url = 'maps/uat-judete/' + siruta + '.geojson';
             $.getJSON(url, function(data) {
