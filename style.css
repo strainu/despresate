@@ -1,5 +1,3 @@
-body {
-}
 .gray {
   color: #999999;
 }
@@ -120,7 +118,6 @@ ul.hiddentoc li {
   text-align: center;
   margin: 35px auto;
 }
-
 .pagetoc{
     background-color: #F9F9F9;
     border: 1px solid #AAAAAA;
@@ -132,22 +129,18 @@ ul.hiddentoc li {
     clear: both;
     float: right;
 }
-
 .pagetoc ul{
     margin: 0px;
     padding-right: 2px;
     list-style-type: decimal;
 }
-
 .pagetoc a{
     color: black;
 }
-
 .pagetoctitle{
     text-align: center;
     font-size: larger;
 }
-
 .map{
     height: 200px;
     border: 1px solid rgb(204, 204, 204);
