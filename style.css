@@ -91,7 +91,7 @@ ul.toc li a:hover {
   visibility: hidden;
 }
 .hiddentoc a{
-  width: auto;
+  width: 200px;
   display: table-cell;
   text-indent: 5px;
   padding: 2px 0;
@@ -119,30 +119,30 @@ ul.hiddentoc li {
   margin: 35px auto;
 }
 .pagetoc{
-    background-color: #F9F9F9;
-    border: 1px solid #AAAAAA;
-    color: black;
-    font-size: 80%;
-    font-family: 'helvetica neue',helvetica,arial,sans-serif;
-    margin: 5px;
-    line-height: 1.5em;
-    clear: both;
-    float: right;
+  background-color: #F9F9F9;
+  border: 1px solid #AAAAAA;
+  color: black;
+  font-size: 80%;
+  font-family: 'helvetica neue',helvetica,arial,sans-serif;
+  margin: 5px;
+  line-height: 1.5em;
+  clear: both;
+  float: right;
 }
 .pagetoc ul{
-    margin: 0px;
-    padding-right: 2px;
-    list-style-type: decimal;
+  margin: 0px;
+  padding-right: 2px;
+  list-style-type: decimal;
 }
 .pagetoc a{
-    color: black;
+  color: black;
 }
 .pagetoctitle{
-    text-align: center;
-    font-size: larger;
+  text-align: center;
+  font-size: larger;
 }
 .map{
-    height: 200px;
-    border: 1px solid rgb(204, 204, 204);
-    background-color: rgb(249, 249, 249);
+  height: 200px;
+  border: 1px solid rgb(204, 204, 204);
+  background-color: rgb(249, 249, 249);
 }
