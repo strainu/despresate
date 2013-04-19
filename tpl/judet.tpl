@@ -11,7 +11,7 @@
 		</div>
 	</li>
 	<li><a href="despre.php">Despre</a></li>
-	<li><a href="cauta.php">Acasă</a></li>
+	<li><a href="cauta.php">Căutare</a></li>
 </ul>
 <hr />
 <table cellpadding="0" cellspacing="0">
