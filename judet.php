@@ -4,6 +4,13 @@ require('./include/class.SimpleSQL.php');
 require('./include/config.php');
 require('smarty/libs/Smarty.class.php');
 
+function capitalize_counties($county_str) {
+	$county_str = mb_strtolower($county_str);
+	$county_str = ucwords(str_replace("-", "- ", $county_str));
+	$county_str = str_replace("- ", "-", $county_str);
+	return $county_str;
+}
+
 if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 52)
 	$index = 40;
 else
@@ -104,7 +111,6 @@ foreach ($leaders as $leader) {
 }
 
 $MyObject->Query("SELECT * FROM `monumente` LEFT JOIN `imagini` ON monumente.imagine = imagini.index WHERE monumente.cod LIKE '".$county_data['prescurtare']."%' ORDER BY RAND() LIMIT 10");
-//TODO: also show monuments without images
 $monuments = $MyObject->getTable();
 if ($monuments == -1) {
         echo "Problem fetching monument data";
@@ -118,11 +124,9 @@ if ($county_list == -1) {
 	exit(1);
 }
 for($i = 0; $i < $MyObject->getNrLines(); $i++)
-	$county_list[$i]['denloc'] = ucwords(mb_strtolower($county_list[$i]['denloc']));
+	$county_list[$i]['denloc'] = capitalize_counties($county_list[$i]['denloc']);
 
-$county_str = mb_strtolower($county_data['denloc']);
-$county_str = ucwords(str_replace("-", "- ", $county_str));
-$county_str = str_replace("- ", "-", $county_str);
+$county_str = capitalize_counties($county_data['denloc']);
 
 $smarty->assign('name', $county_str);
 $smarty->assign('region', $region);
