@@ -22,7 +22,7 @@
 
     <td width="30%">
       {* The search form *}
-      <form action="" method="get">
+      <form action="cauta.php" method="get">
         <input type="hidden" name="cid" value="search" />
         <input type="text" size="26" name="q" id="search_form" value="{$escaped_query}" id="q" />
         <input type="submit" value="Caută" id="cauta" />
