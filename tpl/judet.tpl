@@ -163,8 +163,8 @@
 		<p>Mai jos aveți 10 monumente aleatorii din {$name|lcfirst}. Imaginile monumentelor provin de la concursul foto <a href="http://wikilovesmonuments.ro">WikiLovesMonuments România</a></p>
 		<p><em>Lista completă a monumentelor istorice din {$name|lcfirst} este 
 		<a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din {$name|lcfirst}" title="Lista monumentelor istorice din {$name|lcfirst}">disponibilă la Wikipedia.</a></em></p>
-		<table style="width: 100%; font-size: 0.8em;">
-		<tr><th>Cod</th><th>Denumire</th><th>Arhitect</th><th>Poză</th>
+		<table class="monumentstable">
+		<tr><th class="monumentsheader">Cod</th><th class="monumentsheader">Denumire</th><th class="monumentsheader">Arhitect</th><th class="monumentsheader">Poză</th>
 		{foreach $monuments as $monument}
 		<tr>
 			<td>{$monument.cod}</td>

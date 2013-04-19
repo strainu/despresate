@@ -145,3 +145,14 @@ ul.hiddentoc li {
   border: 1px solid rgb(204, 204, 204);
   background-color: rgb(249, 249, 249);
 }
+.monumentstable{
+  width: 100%;
+  font-size: 0.8em;
+  background: none repeat scroll 0% 0% rgb(249, 249, 249);
+}
+.monumentstable td{
+  border: 1px solid rgb(255, 255, 255);
+}
+.monumentsheader{
+  background: none repeat scroll 0% 0% rgb(204, 204, 204);
+}
