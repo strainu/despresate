@@ -121,7 +121,7 @@
 		<p>Unitățile administrativ-teritoriale ale județului {$shortname} sunt:</p>
 		<ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
 		{foreach $uat as $village}
-				<li><a href="village.php?siruta={$village._siruta}">{$village.denloc|lower|capitalize}</a></li>
+				<li><a href="sat.php?siruta={$village._siruta}">{$village.denloc|lower|capitalize}</a></li>
 		{/foreach}
 		</ul>
     </div>
