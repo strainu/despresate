@@ -2,14 +2,8 @@
 setlocale(LC_ALL, 'ro_RO');
 require('./include/class.SimpleSQL.php');
 require('./include/config.php');
+require('./include/common.php');
 require('smarty/libs/Smarty.class.php');
-
-function capitalize_counties($county_str) {
-	$county_str = mb_strtolower($county_str);
-	$county_str = ucwords(str_replace("-", "- ", $county_str));
-	$county_str = str_replace("- ", "-", $county_str);
-	return $county_str;
-}
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 52)
 	$index = 40;
