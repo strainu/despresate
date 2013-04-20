@@ -57,18 +57,18 @@ def get_siruta(city):
 	if len(entities) < 3:
 		name = entities[1][0:entities[1].find("]")].upper()
 		if name.find("|") > -1:
-			name = name[0:name.find("|")].strip()
+			name = name[0:name.find("|")]
 	        if name.find(",") > -1:
 			county = name[name.find(",")+1:].strip().upper()
-			name = name[0:name.find(",")].strip()
+			name = name[0:name.find(",")]
 		else:		
 			county = None
-		name = name.replace("Comuna ", "").strip()
+		name = name.replace("Comuna ", "")
 		supname = None
 	else:
 		name = entities[1][0:entities[1].find("|")]
 		county = name[name.find(",")+1:].strip().upper()
-		name = name[:name.find(",")].strip().upper()
+		name = name[:name.find(",")].upper()
 
                 supname = entities[2][0:entities[2].find("]")]
 	        if supname.find("|") > -1:
@@ -76,14 +76,22 @@ def get_siruta(city):
 	        if supname.find(",") > -1:
                 	supname = supname[0:supname.find(",")]
 		supname = supname.replace("Comuna ", "").strip().upper()
+	#special cases
+	if county == u"ROMÂNIA":
+		county = None
+	name = name.replace(u"(oraș)", u"")
+	name = name.strip()
 	#print name
 	#print supname
 	#print county
-	if name in cache:
-		#print "***Cache hit***"
-		return cache[name]
+	cache_key = unicode(name) + unicode(supname) + unicode(county)
+	if cache_key in cache:
+		#print "***Cache hit*** " + str(cache[cache_key])
+		return cache[cache_key]
 	potential = 0
 	for elem in _csv._data:
+		if _csv.get_type(elem) == 40:
+			continue
 		if clean_title(_csv.get_name(elem, False)) == clean_title(name):
 			if county and county.upper() <> _csv.get_county_string(elem, False):
 				continue
@@ -94,12 +102,12 @@ def get_siruta(city):
 					potential = -1
 				continue
 			#print _csv._data[elem]["siruta"]
-			cache[name] = elem
+			cache[cache_key] = elem
 			return elem
 		else:
 			continue
 	if potential > 0:
-		print entities
+		#print entities
 		#print "Potential comuna %s" %  _csv.get_sup_name(potential, False)
 		return potential
 	return 1
@@ -145,8 +153,12 @@ class MonumentThread ( threading.Thread ):
 			ret = str(index)
 			index += 1
 			index_lock.release()
-			sql += ret + u", " + str(siruta) + u", " + str(_csv.get_county(siruta)) + u", '" + \
-				imgurl + separator + thumb +  u"', " + str(tw) + u", " + str(th) + u", '" + descurl + u"');\n"
+			sql += ret + u", " + str(siruta) + u", " 
+			if _csv.get_county(siruta) <> None:
+				sql += str(_csv.get_county(siruta))
+			else:
+				sql += u"NULL" 
+			sql += u", '" + imgurl + separator + thumb +  u"', " + str(tw) + u", " + str(th) + u", '" + descurl + u"');\n"
 			self._file_lock.acquire()
 			self._file.write(sql.encode("utf8"))
 			self._file_lock.release()
@@ -156,25 +168,25 @@ class MonumentThread ( threading.Thread ):
 		ran = escape_string(self.monument[u"CodRan"])
 		siruta = get_siruta(self.monument[u"Localitate"])
 		query = sql 
-		#query += unicode(str(siruta), "utf8") 
-		#query += u", '"
-		#query += escape_string(self.monument[u"Cod"])
-		#query += separator
-		#query += escape_string(self.monument[u"FostCod"]) + separator + escape_string(self.monument[u"Cod92"]) + separator
-		#query += escape_string(strainu.stripLink(monument[u"Denumire"])) + separator
-		#query += escape_string(self.monument[u"Adresă"]) + separator + escape_string(self.monument[u"Arhitect"]) + separator
-		#query += escape_string(self.monument[u"Datare"])
-		#query += separator + ran + u"', "
+		query += unicode(str(siruta), "utf8") 
+		query += u", '"
+		query += escape_string(self.monument[u"Cod"])
+		query += separator
+		query += escape_string(self.monument[u"FostCod"]) + separator + escape_string(self.monument[u"Cod92"]) + separator
+		query += escape_string(strainu.stripLink(monument[u"Denumire"])) + separator
+		query += escape_string(self.monument[u"Adresă"]) + separator + escape_string(self.monument[u"Arhitect"]) + separator
+		query += escape_string(self.monument[u"Datare"])
+		query += separator + ran + u"', "
 
-		#if self.monument[u"Lat"]:
-		#	query += u"GeomFromText('POINT(" + self.monument[u"Lat"] + u" " + self.monument[u"Lon"] + u")'), "
-		#else:
-		#	query += u"NULL, "
+		if self.monument[u"Lat"]:
+			query += u"GeomFromText('POINT(" + self.monument[u"Lat"] + u" " + self.monument[u"Lon"] + u")'), "
+		else:
+			query += u"NULL, "
 		query += self.get_image(self.monument[u"Imagine"], siruta) + u");\n"
 		#print query
-		#self._file_lock.acquire()
-		#self._file.write(query.encode("utf8"))
-		#self._file_lock.release()
+		self._file_lock.acquire()
+		self._file.write(query.encode("utf8"))
+		self._file_lock.release()
 
 if __name__ == "__main__":
 	f = open("lmi_db.json", "r+")
