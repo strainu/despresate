@@ -8,6 +8,20 @@
 <hr />
 
 <div class="mainsection">
+	<table class="pagetoc">
+               <tbody>
+                    <tr><td>
+                        <div class="pagetoctitle"><b>Cuprins</b></div>
+                    </td></tr>
+                    <tr><td>
+                        <ul>
+                            <li class="toclevel-1"><a href="#despre">Despre proiect</a></li>
+                            <li class="toclevel-1"><a href="#copyright">Drepturi de autor</a></li>
+                            <li class="toclevel-1"><a href="#multumiri">Mulțumiri</a></li>
+                        </ul>
+                    </td></tr>
+                </tbody>
+            </table>
 	<a name="despre" />
 	<div class="maintitle">Despre proiect<a href="#top" class="toplink small">[sus]</a></div>
 
