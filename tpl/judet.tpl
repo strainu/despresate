@@ -185,7 +185,4 @@
     </div>
   </td>
 </table>
-<script type="text/javascript">
-tabdropdown.init("toc", 3)
-</script>
 {include file='tpl/footer.tpl'}

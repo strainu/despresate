@@ -1,4 +1,7 @@
     <script type="text/javascript">
+    tabdropdown.init("toc", 3)
+    </script>
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-637027-14']);
