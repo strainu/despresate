@@ -2,10 +2,10 @@
 
 window.load_leaflet_map = function(container, data) {
     var tile_url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var attribution = 'Map data &copy; <a href="http://openstreetma'
-                    + 'p.org">OpenStreetMap</a> contributors, <a hr'
+    var attribution = '&copy; editorii <a href="http://openstreetma'
+                    + 'p.org">OSM</a>, <a hr'
                     + 'ef="http://creativecommons.org/licenses/by-s'
-                    + 'a/2.0/">CC-BY-SA</a>';
+                    + 'a/2.0/">CCBYSA</a>';
 
     var map = L.map(container);
     var layer = L.tileLayer(tile_url, {
