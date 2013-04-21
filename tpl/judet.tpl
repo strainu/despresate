@@ -1,8 +1,7 @@
 {include file='tpl/header.tpl'}
 <ul class="toc" id="toc">
 	<li><a href="/">Acasă</a></li>
-	<li><a href="data.php?id={$siruta}&f=csv">Date brute</a></li>
-	<li><a href="" rel="hiddenmenu">Alte județe ▼</a>
+	<li><a href="" rel="hiddenmenu">Toate județele ▼</a>
 		<div id="hiddenmenu" class="hiddentoc">
 			{foreach $county_list as $othercounty name=othercounties}
 				<a href="?id={$othercounty.jud}">{$othercounty.denloc}</a>
@@ -10,6 +9,7 @@
 			{/foreach}
 		</div>
 	</li>
+	<li><a href="data.php?id={$siruta}&f=csv">Date brute</a></li>
 	<li><a href="despre.php">Despre</a></li>
 	<li><a href="cauta.php">Căutare</a></li>
 </ul>

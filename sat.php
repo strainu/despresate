@@ -2,6 +2,7 @@
 setlocale(LC_ALL, 'ro_RO');
 require('./include/class.SimpleSQL.php');
 require('./include/config.php');
+require('./include/common.php');
 require('smarty/libs/Smarty.class.php');
 
 $smarty = new Smarty();
@@ -12,15 +13,23 @@ else
 	$siruta = $_GET['siruta'];
 	
 
-$MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0 );
-$MyObject->Query("SELECT * FROM `localitate`,`siruta` WHERE `localitate`.`siruta`=".$siruta." AND `siruta`.`_siruta`=".$siruta." LIMIT 1");
+$MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0, 0 );
+$MyObject->Query("SELECT * FROM `siruta` FULL JOIN `localitate` ON `localitate`.`siruta` = `_siruta` WHERE `_siruta` =".$siruta." LIMIT 1");
 $village_data = $MyObject->getCurrentLine();
 if ($village_data == -1) {
 	echo "We don't have any data for this place yet.";
 	exit(1);
 }
 
-//TODO get siruta_sup and county data
+$MyObject->Query("SELECT `denloc` FROM `siruta` WHERE `siruta`.`_siruta`=".$village_data["sirsup"]." LIMIT 1");
+$county = $MyObject->getElement(0, 'denloc');
+$county = capitalize_counties($county);
+$county = str_ireplace("Județul ", "", $county);
+if ($county == -1) {
+	echo "Problem fetching county";
+	exit(1);
+}
+
 
 $MyObject->Query("SELECT * FROM `imagini` WHERE `siruta`=".$siruta." ORDER BY RAND() DESC LIMIT 12");
 $images = $MyObject->getTable();
@@ -59,9 +68,7 @@ foreach ($leaders as $leader) {
 
 //TODO: local council
 
-$county = "AB";//TODO
-$MyObject->Query("SELECT * FROM `monumente` WHERE monumente.siruta LIKE '".$siruta."' ORDER BY RAND() LIMIT 10");
-//TODO: also show monuments without images
+$MyObject->Query("SELECT * FROM `monumente` LEFT JOIN `imagini` ON monumente.imagine = imagini.index WHERE monumente.`siruta`=".$siruta." ORDER BY RAND() LIMIT 10");
 $monuments = $MyObject->getTable();
 if ($monuments == -1) {
         echo "Problem fetching monument data";
