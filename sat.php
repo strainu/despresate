@@ -77,7 +77,7 @@ if ($monuments == -1) {
 
 $smarty->assign('name', ucwords(mb_strtolower($village_data['denloc'])));
 $smarty->assign('county', $county);//TODO
-$smarty->assign('shortname', ucwords(mb_strtolower(str_replace("MUNICIPIUL ", "", str_replace("ORAȘ ", "", $village_data['denloc'])))));
+$smarty->assign('shortname', mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("ORAȘ ", "", $village_data['denloc'])), MB_CASE_TITLE));
 $smarty->assign('siruta', $siruta);
 $smarty->assign('surface', $village_data['suprafata']);
 
