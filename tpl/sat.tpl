@@ -1,10 +1,10 @@
 {include file='tpl/header.tpl'}
 <ul class="toc" id="toc">
     <li><a href="/">Acasă</a></li>
-    <li><a href="" rel="hiddenmenu">Alte localități ▼</a>
+    <li><a href="judet.php?id={$countyid}" rel="hiddenmenu">Alte localități ▼</a>
         <div id="hiddenmenu" class="hiddentoc">
-            {foreach $county_list as $othercounty name=othercommunes}
-                <a href="?id={$othercounty.jud}">{$othercounty.denloc}</a>
+            {foreach $commune_list as $othercommune name=othercommunes}
+                <a href="sat.php?siruta={$othercommune._siruta}">{$othercommune.denloc|lower|capitalize}</a>
                 {if $smarty.foreach.othercommunes.index % 3 == 2}<div  style="clear:both;"></div>{/if}
             {/foreach}
         </div>
@@ -17,7 +17,7 @@
 <table width="100%" cellpadding="0" cellspacing="0">
   <td valign=top width="300px">
     <div class="leftbar">
-      {if $mappage}><div class="leftbarmap">><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
+      {if $mappage}<div class="leftbarmap"><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
       <div class="leftbarelem map"></div>
       <script>{literal}
         $(document).ready(function() {
@@ -38,7 +38,7 @@
         </table>
        <div class="leftbartitle">Primăria</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="prefect" class="leftbarelem">
-         <tr><th>Primar</th><td>{$mayor}</td></tr>
+         <tr><th>Primar</th><td>{if $mayorid}<a href="http://agenda.grep.ro/person/{$mayorid}" title="Date de contact pentru {$mayor}">{$mayor}</a>{else}{$mayor}{/if}</td></tr>
          <tr><th>Adresă</th><td>{$chaddr}</td></tr>
          <tr><th>Site</th><td><a href="http://{$chsite}" title="Site-ul primăriei {$shortname}">{$chsite}</a></td></tr>
          <tr><th>Email</th><td><a href="mailto:{$chemail}" title="Emailul-ul primăriei {$shortname}">{$chemail}</a></td></tr>
@@ -62,7 +62,7 @@
     <div class="mainsection">
         <a name="adm" />
         <div class="maintitle">Administrație locală<a href="#top" class="toplink small">[sus]</a></div>
-        <p>Primarul localității {$shortname} este {$mayor} ({$mayorparty}). A fost ales în anul {$mayoryear}.</p>
+        <p>Primarul localității {$shortname} este {if $mayorid}<a href="http://agenda.grep.ro/person/{$mayorid}" title="Date de contact pentru {$mayor}">{$mayor}</a>{else}<i>{$mayor}</i>{/if} ({$mayorparty}). A fost ales în anul {$mayoryear}.</p>
         <p>Consiliul local rezultat în urma alegerilor din {$clyear} are următoarea componență:</p>
         <ul class="cjcouncil">
             <li><b>Viceprimar:</b>{if $clvice}{$vice.name} {if $vice.party}({$vice.party}){/if}
@@ -80,7 +80,7 @@
         <p>Satele ce intră în componența localității {$shortname} sunt:</p>
         <ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
         {foreach $uat as $village}
-                <li>{$village.denloc|lower|capitalize}</li>
+                <li><b>{$village.denloc|lower|capitalize}</b> {if $village.codp}(cod poștal {$village.codp}){/if}</li>
         {/foreach}
         </ul>
     </div>

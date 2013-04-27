@@ -21,8 +21,9 @@ if ($village_data == -1) {
 	exit(1);
 }
 
-$MyObject->Query("SELECT `denloc` FROM `siruta` WHERE `siruta`.`_siruta`=".$village_data["sirsup"]." LIMIT 1");
+$MyObject->Query("SELECT `denloc`,`jud` FROM `siruta` WHERE `siruta`.`_siruta`=".$village_data["sirsup"]." LIMIT 1");
 $county = $MyObject->getElement(0, 'denloc');
+$countyid = $MyObject->getElement(0, 'jud');
 $county = capitalize_counties($county);
 $county = str_ireplace("Județul ", "", $county);
 if ($county == -1) {
@@ -30,11 +31,31 @@ if ($county == -1) {
 	exit(1);
 }
 
+$MyObject->Query("SELECT `_siruta`, `denloc`, `codp` FROM `siruta` WHERE `sirsup`=".$village_data['siruta']);
+$uat_data = $MyObject->getTable();
+if ($uat_data == -1) {
+	echo "Problem fetching UAT data";
+	exit(1);
+}
+
+$MyObject->Query("SELECT `_siruta`, `denloc` FROM `siruta` WHERE `sirsup`=".$village_data['sirsup']);
+$commune_list = $MyObject->getTable();
+if ($commune_list == -1) {
+	echo "Problem fetching UAT data";
+	exit(1);
+}
 
 $MyObject->Query("SELECT * FROM `imagini` WHERE `siruta`=".$siruta." ORDER BY RAND() DESC LIMIT 12");
 $images = $MyObject->getTable();
 if ($images == -1) {
 	echo "Problem fetching image data";
+	exit(1);
+}
+
+$MyObject->Query("SELECT * FROM `demografie` WHERE `siruta`=".$village_data['siruta']." ORDER BY `an` DESC");
+$pop = $MyObject->getTable();
+if ($pop == -1) {
+	echo "Problem fetching population data";
 	exit(1);
 }
 
@@ -56,12 +77,14 @@ foreach ($leaders as $leader) {
 			$mayor = $leader['nume'];
 			$mayorparty = $leader['partid'];
 			$mayoryear = $leader['an'];
+			$mayorid = $leader['agenda_id'];
 		break;
 		case 2:
 			if ($viceyear != 0 && $viceyear != $leader['an'])
 				continue;//TODO: history
 			array_push($vice, Array( "name" => $leader['nume'],  "party" => $leader['partid']));
 			$viceyear = $leader['an'];
+			$viceid = $leader['agenda_id'];
 		break;
 	}
 }
@@ -76,7 +99,8 @@ if ($monuments == -1) {
 }
 
 $smarty->assign('name', ucwords(mb_strtolower($village_data['denloc'])));
-$smarty->assign('county', $county);//TODO
+$smarty->assign('county', $county);
+$smarty->assign('countyid', $countyid);
 $smarty->assign('shortname', mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("ORAȘ ", "", $village_data['denloc'])), MB_CASE_TITLE));
 $smarty->assign('siruta', $siruta);
 $smarty->assign('surface', $village_data['suprafata']);
@@ -84,15 +108,29 @@ $smarty->assign('surface', $village_data['suprafata']);
 $smarty->assign('mayor', $mayor);
 $smarty->assign('mayorparty', $mayorparty);
 $smarty->assign('mayoryear', $mayoryear);
+$smarty->assign('mayorid', $mayorid);
 if (count($vice) > 0)
 	$smarty->assign('clvice', $vice);
 //$smarty->assign('viceparty', $viceparty);
-$smarty->assign('clyear', $viceyear);
+//TODO: the commented line is correct, but until we get the information we can assume it's the same election year as the mayor
+//$smarty->assign('clyear', $viceyear);
+$smarty->assign('clyear', $mayoryear);
 
 $smarty->assign('chaddr', $village_data['adresa']);
 $smarty->assign('chsite', $village_data['site']);
 $smarty->assign('chemail', $village_data['email']);
 $smarty->assign('chtel', $village_data['telefon']);
+
+$smarty->assign('population', $pop[0]['populatie']);
+$smarty->assign('census', $pop[0]['an']);
+$smarty->assign('demography', array_reverse($pop));
+if($village_data['suprafata'])
+	$smarty->assign('density', $pop[0]['populatie'] / $village_data['suprafata']);
+else
+	$smarty->assign('density', '');
+
+$smarty->assign('uat', $uat_data);
+$smarty->assign('commune_list', $commune_list);
 
 $smarty->assign('images', $images);
 $smarty->assign('monuments', $monuments);
