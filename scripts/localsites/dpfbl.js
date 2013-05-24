@@ -7,6 +7,7 @@
 // ==/UserScript==
 
 var result = "";
+var county = false;
     
 function loadXMLDoc(url)
 {
@@ -30,15 +31,38 @@ function loadXMLDoc(url)
             sql = "";
             for (i=1;i<siruta.length;i++){
                 code = parseInt(siruta[i].childNodes[1].textContent);
-                pg = page[i].childNodes[1].textContent;
-                if(!code || code > 1000)
+                if (page[i].childNodes.length < 2)
                     continue;
-                sql += "UPDATE `judet` SET `sitecj`='" + pg + "' WHERE `siruta`=" + code + ";\n";
+                pg = page[i].childNodes[1].textContent.trim();
+                if (pg == "")
+                    continue;
+                pg2 = "";
+                while (pg2 != pg)
+                {
+                    pg2 = pg;
+                    pg = pg.replace("http://", "");
+                    pg = pg.replace("\r", "");
+                    pg = pg.replace("\n", "");
+                    pg = pg.replace("\t", "");
+                    pg = pg.replace(" ", "");
+                }
+                if(county)
+                {
+                    if (!code || code > 1000)
+                        continue;
+                    sql += "UPDATE `judet` SET `sitecj`='" + pg + "' WHERE `siruta`=" + code + ";\n";
+                }
+                else
+                {
+                    sql += "UPDATE `localitate` SET `site`='" + pg + "' WHERE `siruta`=" + code + ";\n";
+                }
             }
             last_result = result;
             result += sql;
-            if (result == last_result)
+            if (result == last_result && county)
                 alert(result);
+            if (county == false)
+                alert(sql);
         }
     }
     xmlhttp.open("GET",url,false);
