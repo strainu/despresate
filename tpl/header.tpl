@@ -9,6 +9,15 @@
   <script src="./jquery-1.8.3.min.js" type="text/javascript"></script>
   <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
   <script src="./map.js"></script>
+<script>
+  (function() {
+    var cx = '009028326909464764794:WMX241262072';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
 </head>
 <body>
   <a name="top" />
@@ -27,6 +36,7 @@
         <input type="text" size="26" name="q" id="search_form" value="{$escaped_query}" id="q" />
         <input type="submit" value="Caută" id="cauta" />
       </form>
+<!--gcse:searchbox-only></gcse:searchbox-only-->
       <div class="small gray">
         ex: "județul Prahova", "Vadu Lat", "Bucsani, Dâmbovița", etc.
       </div>

@@ -18,5 +18,6 @@ for($i = 0; $i < $MyObject->getNrLines(); $i++)
 
 $smarty->assign('name', "Căutare");
 $smarty->assign('county_list', $county_list);
+$smarty->assign('escaped_query', $_GET['q']);
 $smarty->display('tpl/cauta.tpl');
 ?>

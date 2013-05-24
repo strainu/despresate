@@ -18,7 +18,7 @@
 <div class="mainsection">
 	<a name="rezultate" />
 	<div class="maintitle">Rezultatele căutării<a href="#top" class="toplink small">[sus]</a></div>
-	<p>Căutarea nu este încă implementată. Reveniți mai târziu.</p>
+<gcse:searchresults-only></gcse:searchresults-only>
 
 </div>
 
