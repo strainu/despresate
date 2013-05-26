@@ -18,7 +18,32 @@
 <div class="mainsection">
 	<a name="query" />
 	<div class="maintitle">Export de date<a href="#top" class="toplink small">[sus]</a></div>
-	<p>Funcționalitatea de exportare a unor date nu este încă disponibilă.</p>
+	<!--p>Funcționalitatea de exportare a unor date nu este încă disponibilă.</p-->
+	<form action="" method="get">
+		<p>Doresc să descarc 
+			<select name="type">
+				<option value="stats">datele statistice</option>
+				<option value="leaders">conducătorii</option>
+				<option value="all" selected>toate datele</option>
+			</select> despre
+			<select name="county">
+				<option value="all" selected>toate județele</option>
+			{foreach $county_list as $othercounty name=othercounties}
+				<option value="{$othercounty.jud}">{$othercounty.denloc}</option>
+			{/foreach}
+			</select>, UATul
+			<select name="commune">
+				<option value="none" selected>niciunul (date județ)</option>
+				<option value="all">toate</option>
+			</select> în format 
+			<select name="f">
+				<option value="csv" selected>CSV</option>
+				<option value="html">HTML</option>
+				<option value="json">JSON</option>
+			</select>
+			<input type="submit" value="Obține datele!" />
+		</p>
+	</form>
 
 	<a name="exportat" />
 	<div class="maintitle">Fișiere pre-exportate<a href="#top" class="toplink small">[sus]</a></div>

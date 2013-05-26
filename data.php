@@ -16,7 +16,36 @@ if ($county_list == -1) {
 for($i = 0; $i < $MyObject->getNrLines(); $i++)
 	$county_list[$i]['denloc'] = capitalize_counties($county_list[$i]['denloc']);
 
-$smarty->assign('name', "Date");
-$smarty->assign('county_list', $county_list);
-$smarty->display('tpl/data.tpl');
+$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+$format = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);
+$county = filter_input(INPUT_GET, 'county', FILTER_SANITIZE_STRING); 
+$commune = filter_input(INPUT_GET, 'commune', FILTER_SANITIZE_STRING); 
+switch ($format)
+{
+	case 'html':
+		if ($county == "all")
+			Header('Location: /');
+		if ($commune == "none" || $commune == "all")
+			Header('Location: judet.php?id='.$county);
+		else
+			Header('Location: sat.php?siruta='.$commune);
+	break;
+	case 'csv':
+	case 'json':
+		if($county == "all" || $commune == "all")
+		{
+			//TODO
+		}
+		else
+			if ($commune == "none")
+				Header('Location: judet.php?id='.$county.'&f='.$format.'&t='.$type);
+			else
+				Header('Location: sat.php?siruta='.$commune.'&f='.$format.'&t='.$type);
+	break;
+	default:
+		$smarty->assign('name', "Date statistice");
+		$smarty->assign('county_list', $county_list);
+		$smarty->display('tpl/data.tpl');
+	break;
+}
 ?>
