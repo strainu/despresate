@@ -23,7 +23,7 @@
   <table>
     <td width="15%">
       <a href="/" title="Informații statistice despre localitățile din România">
-        <img itemprop="image" src="images/logo.png" border=0 width="120px" height="120px" 
+        <img itemprop="image" src="images/logo_120.png" border=0 width="120px" height="120px" 
         alt="Informații statistice despre localitățile din România">
       </a>
     </td>
