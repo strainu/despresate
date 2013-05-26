@@ -2,3 +2,4 @@ include/config.php
 scripts/elections/*.csv
 scripts/agenda/*.csv
 data/*.sql
+data/sitemap*
