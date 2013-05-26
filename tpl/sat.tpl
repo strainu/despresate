@@ -9,7 +9,13 @@
             {/foreach}
         </div>
     </li>
-    <li><a href="data.php?id={$siruta}&f=csv">Date brute</a></li>
+    <li><a href="data.php" rel="hiddendata">Date brute ▼</a>
+        <div id="hiddendata" class="hiddentoc">
+            <a href="data.php?f=csv&type=all&commune={$siruta}" style="width:100px">CSV</a>
+            <div  style="clear:both;"></div>
+            <a href="data.php?f=json&type=all&commune={$siruta}" style="width:100px">JSON</a>
+        </div>
+    </li>
     <li><a href="despre.php">Despre</a></li>
     <li><a href="cauta.php">Căutare</a></li>
 </ul>
@@ -118,21 +124,21 @@
     </div>
     <div class="mainsection">
         <a name="mon" />
-		<div class="maintitle">Monumente<a href="#top" class="toplink small">[sus]</a></div>
-		<p>Mai jos aveți 10 monumente aleatorii din {$shortname}. Imaginile monumentelor provin de la concursul foto <a href="http://wikilovesmonuments.ro">WikiLovesMonuments România</a></p>
-		<p><em>Lista completă a monumentelor istorice din {$shortname} este 
-		<a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din județul {$county}" title="Lista monumentelor istorice din județul {$county}">disponibilă la Wikipedia.</a></em></p>
-		<table class="monumentstable">
-		<tr><th class="monumentsheader">Cod</th><th class="monumentsheader">Denumire</th><th class="monumentsheader">Arhitect</th><th class="monumentsheader">Poză</th>
-		{foreach $monuments as $monument}
-		<tr>
-			<td>{$monument.cod}</td>
-			<td>{$monument.denumire}</td>
-			<td>{if $monument.arhitect}{$monument.arhitect}{else}N/A{/if}</td>
-			<td style="text-align: center;">{if $monument.imagine}<img src="{$monument.thumburl}" width="{if ($monument.thumbh < $monument.thumbw)}60px{else}40px{/if}" height="{if ($monument.thumbh > $monument.thumbw)}60px{else}40px{/if}"/>{/if}</td>
-		</tr>
-		{/foreach}
-		</table>
+        <div class="maintitle">Monumente<a href="#top" class="toplink small">[sus]</a></div>
+        <p>Mai jos aveți 10 monumente aleatorii din {$shortname}. Imaginile monumentelor provin de la concursul foto <a href="http://wikilovesmonuments.ro">WikiLovesMonuments România</a></p>
+        <p><em>Lista completă a monumentelor istorice din {$shortname} este 
+        <a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din județul {$county}" title="Lista monumentelor istorice din județul {$county}">disponibilă la Wikipedia.</a></em></p>
+        <table class="monumentstable">
+        <tr><th class="monumentsheader">Cod</th><th class="monumentsheader">Denumire</th><th class="monumentsheader">Arhitect</th><th class="monumentsheader">Poză</th>
+        {foreach $monuments as $monument}
+        <tr>
+            <td>{$monument.cod}</td>
+            <td>{$monument.denumire}</td>
+            <td>{if $monument.arhitect}{$monument.arhitect}{else}N/A{/if}</td>
+            <td style="text-align: center;">{if $monument.imagine}<img src="{$monument.thumburl}" width="{if ($monument.thumbh < $monument.thumbw)}60px{else}40px{/if}" height="{if ($monument.thumbh > $monument.thumbw)}60px{else}40px{/if}"/>{/if}</td>
+        </tr>
+        {/foreach}
+        </table>
     </div>
     <div class="mainsection">
         <a name="pic" />

@@ -9,7 +9,13 @@
 			{/foreach}
 		</div>
 	</li>
-	<li><a href="data.php?id={$siruta}&f=csv">Date brute</a></li>
+	<li><a href="data.php" rel="hiddendata">Date brute ▼</a>
+		<div id="hiddendata" class="hiddentoc">
+			<a href="data.php?f=csv&type=all&county={$index}&commune=none" style="width:100px">CSV</a>
+			<div  style="clear:both;"></div>
+			<a href="data.php?f=json&type=all&county={$index}&commune=none" style="width:100px">JSON</a>
+		</div>
+	</li>
 	<li><a href="despre.php">Despre</a></li>
 	<li><a href="cauta.php">Căutare</a></li>
 </ul>

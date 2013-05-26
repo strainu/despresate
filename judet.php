@@ -123,6 +123,7 @@ for($i = 0; $i < $MyObject->getNrLines(); $i++)
 $county_str = capitalize_counties($county_data['denloc']);
 
 $smarty->assign('name', $county_str);
+$smarty->assign('index', $index);
 $smarty->assign('region', $region);
 $smarty->assign('hist_region', $hist_region);
 $smarty->assign('abbr', $county_data['prescurtare']);
