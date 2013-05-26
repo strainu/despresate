@@ -122,53 +122,84 @@ for($i = 0; $i < $MyObject->getNrLines(); $i++)
 
 $county_str = capitalize_counties($county_data['denloc']);
 
-$smarty->assign('name', $county_str);
-$smarty->assign('index', $index);
-$smarty->assign('region', $region);
-$smarty->assign('hist_region', $hist_region);
-$smarty->assign('abbr', $county_data['prescurtare']);
-$county_str = str_ireplace("Județul ", "", $county_str);
-$smarty->assign('shortname', $county_str);
-$smarty->assign('siruta', $county_data['siruta']);
-$smarty->assign('uat', $uat_data);
-$smarty->assign('population', $pop[0]['populatie']);
-$smarty->assign('census', $pop[0]['an']);
-$smarty->assign('demography', array_reverse($pop));
-$smarty->assign('surface', $county_data['suprafata']);
+
 if($county_data['suprafata'])
-	$smarty->assign('density', $pop[0]['populatie'] / $county_data['suprafata']);
+    $density = $pop[0]['populatie'] / $county_data['suprafata'];
 else
-	$smarty->assign('density', '');
+    $density = '';
+$short_name = str_ireplace("Județul ", "", $county_str);
 
-$smarty->assign('cjpres', $cjpres);
-$smarty->assign('cjpresparty', $cjpresparty);
-$smarty->assign('cjpresyear', $cjpresyear);
-$smarty->assign('cjpresid', $cjpresid);
-if (count($cjvice) > 0)
-    $smarty->assign('cjvice', $cjvice);
-$smarty->assign('cjcouncil', $cjmembers);
-$smarty->assign('cjaddr', $county_data['adrcj']);
-$smarty->assign('cjsite', $county_data['sitecj']);
-$smarty->assign('cjemail', $county_data['emailcj']);
-$smarty->assign('cjtel', $county_data['telefoncj']);
-$smarty->assign('cjfax', $county_data['faxcj']);
 
-$smarty->assign('prpres', $prpres);
-$smarty->assign('prpresid', $prpresid);
-$smarty->assign('pryear', $prpresyear);
-$smarty->assign('prvice', $prvice);
-$smarty->assign('prviceid', $prviceid);
-$smarty->assign('prviceyear', $prviceyear);
-$smarty->assign('praddr', $county_data['adrpr']);
-$smarty->assign('prsite', $county_data['sitepr']);
-$smarty->assign('premail', $county_data['emailpr']);
-$smarty->assign('prtel', $county_data['telefonpr']);
-$smarty->assign('prfax', $county_data['faxpr']);
+$type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
+$format = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);
 
-$smarty->assign('images', $images);
-$smarty->assign('monuments', $monuments);
+switch($format)
+{
+    case 'csv':
+        switch($type)
+        {
+            case 'stats':
+            case 'leaders':
+            case 'all':
+            default:
+            header('Content-type: text/csv');
+            header('Content-disposition: attachment;filename='.$short_name.'.csv');
+            echo "siruta,prescurtare,suprafata,populatie,populatie_an,densitate,regiune_adm,regiune_ist,wikipedia\n";
+            echo $county_data['siruta'].','.$county_data['prescurtare'].',"'.$county_data['suprafata'].'",';
+            echo $pop[0]['populatie'].','.$pop[0]['an'].',"'.$density.'",';
+            echo $region.','.$hist_region.',"ro:'.$county_str."\"\n";
+            break;
+        };
+    break;
+    case 'json':
+    break;
+    case 'html':
+    default:
+        $smarty->assign('name', $county_str);
+        $smarty->assign('index', $index);
+        $smarty->assign('region', $region);
+        $smarty->assign('hist_region', $hist_region);
+        $smarty->assign('abbr', $county_data['prescurtare']);
+        $smarty->assign('shortname', $short_name);
+        $smarty->assign('siruta', $county_data['siruta']);
+        $smarty->assign('uat', $uat_data);
+        $smarty->assign('population', $pop[0]['populatie']);
+        $smarty->assign('census', $pop[0]['an']);
+        $smarty->assign('demography', array_reverse($pop));
+        $smarty->assign('surface', $county_data['suprafata']);
+        $smarty->assign('density', $density);
 
-$smarty->assign('county_list', $county_list);
+        $smarty->assign('cjpres', $cjpres);
+        $smarty->assign('cjpresparty', $cjpresparty);
+        $smarty->assign('cjpresyear', $cjpresyear);
+        $smarty->assign('cjpresid', $cjpresid);
+        if (count($cjvice) > 0)
+            $smarty->assign('cjvice', $cjvice);
+        $smarty->assign('cjcouncil', $cjmembers);
+        $smarty->assign('cjaddr', $county_data['adrcj']);
+        $smarty->assign('cjsite', $county_data['sitecj']);
+        $smarty->assign('cjemail', $county_data['emailcj']);
+        $smarty->assign('cjtel', $county_data['telefoncj']);
+        $smarty->assign('cjfax', $county_data['faxcj']);
 
-$smarty->display('tpl/judet.tpl');
+        $smarty->assign('prpres', $prpres);
+        $smarty->assign('prpresid', $prpresid);
+        $smarty->assign('pryear', $prpresyear);
+        $smarty->assign('prvice', $prvice);
+        $smarty->assign('prviceid', $prviceid);
+        $smarty->assign('prviceyear', $prviceyear);
+        $smarty->assign('praddr', $county_data['adrpr']);
+        $smarty->assign('prsite', $county_data['sitepr']);
+        $smarty->assign('premail', $county_data['emailpr']);
+        $smarty->assign('prtel', $county_data['telefonpr']);
+        $smarty->assign('prfax', $county_data['faxpr']);
+
+        $smarty->assign('images', $images);
+        $smarty->assign('monuments', $monuments);
+
+        $smarty->assign('county_list', $county_list);
+
+        $smarty->display('tpl/judet.tpl');
+    break;
+}
 ?>
