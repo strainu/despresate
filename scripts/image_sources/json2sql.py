@@ -127,7 +127,7 @@ class MonumentThread ( threading.Thread ):
 		filename = filename.replace(u"Fișier", u"File").strip().replace(u" ", u"_")
 		if filename == u"":
 			return u"NULL"
-		sql = "INSERT INTO `imagini`(`index`, `siruta`, `county`, `imgurl`, `thumburl`, `thumbw`, `thumbh`, `descurl`) VALUES("
+		sql = "INSERT INTO `imagini`(`index`, `siruta`, `county`, `imgurl`, `thumburl`, `thumbw`, `thumbh`, `descurl`, `attribution`) VALUES("
 		print u"***" + filename + u"***"
 		newurl = u"http://commons.wikimedia.org/w/api.php?format=json&action=query&titles=" + urllib.quote_plus(filename.encode('utf8')) + "&prop=imageinfo&iiprop=url&iiurlwidth=250px&redirects"
 		#print newurl
@@ -158,7 +158,7 @@ class MonumentThread ( threading.Thread ):
 				sql += str(_csv.get_county(siruta))
 			else:
 				sql += u"NULL" 
-			sql += u", '" + imgurl + separator + thumb +  u"', " + str(tw) + u", " + str(th) + u", '" + descurl + u"');\n"
+			sql += u", '" + imgurl + separator + thumb +  u"', " + str(tw) + u", " + str(th) + u", '" + descurl + u"', 'Wikimedia Commons');\n"
 			self._file_lock.acquire()
 			self._file.write(sql.encode("utf8"))
 			self._file_lock.release()
