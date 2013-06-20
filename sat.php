@@ -101,7 +101,8 @@ if ($monuments == -1) {
 $smarty->assign('name', mb_convert_case($village_data['denloc'], MB_CASE_TITLE));
 $smarty->assign('county', $county);
 $smarty->assign('countyid', $countyid);
-$smarty->assign('shortname', mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("ORAȘ ", "", $village_data['denloc'])), MB_CASE_TITLE));
+$shortname = mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("ORAȘ ", "", $village_data['denloc'])), MB_CASE_TITLE);
+$smarty->assign('shortname', $shortname);
 $smarty->assign('siruta', $siruta);
 $smarty->assign('surface', $village_data['suprafata']);
 
@@ -134,6 +135,12 @@ $smarty->assign('commune_list', $commune_list);
 
 $smarty->assign('images', $images);
 $smarty->assign('monuments', $monuments);
+
+if ($village_data['rang'] == "IV")
+	$wikipedia = "Comuna ".$shortname.", ".$county;
+else
+	$wikipedia = $shortname;
+$smarty->assign('wikipedia', $wikipedia);
 
 $smarty->display('tpl/sat.tpl');
 ?>

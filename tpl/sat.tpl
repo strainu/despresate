@@ -55,7 +55,7 @@
         </table>
        <div class="leftbartitle">Alte informații</div>
          <ul id="otherlinks">
-           <li><a href="https://ro.wikipedia.org/wiki/{$shortname}" title="Articolul Wikipedia despre {$shortname}">Articol Wikipedia</a></li>
+           <li><a href="https://ro.wikipedia.org/wiki/{$wikipedia}" title="Articolul Wikipedia despre {$shortname}">Articol Wikipedia</a></li>
            <li><a href="https://www.google.ro/search?hl=ro&q={$name}&meta=lr%3Dlang_ro" title="Căutare google după {$name}">Caută pe Google</a></li>
            <li><a href="http://www.facebook.com/share.php?u={$name}+http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" title="Distribuie pe Facebook">Distribuie pe Facebook</a></li>
            <li><a href="http://twitter.com/home?status={$name}+http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" title="Tweet">Distribuie pe Tweeter</a></li>
