@@ -39,7 +39,7 @@
       {/literal}</script>
       <div class="leftbartitle">Date statistice</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
-         <tr><th>Județ</th><td>{$county}</td></tr>
+         <tr><th>Județ</th><td><a href="judet.php?id={$countyid}" >{$county}</a></td></tr>
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
          <tr><th>Populație ({$census})</th><td>{$population|commify:0:',':'.'} locuitori</td></tr>
          <tr><th>Suprafață</th><td>{$surface|commify:2:',':'.'} km<sup>2</sup></td></tr>
