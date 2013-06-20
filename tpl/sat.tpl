@@ -30,7 +30,10 @@
             var siruta = {/literal}{$siruta}{literal};
             var url = 'maps/uat-comune/' + siruta + '.geojson';
             $.getJSON(url, function(data) {
-              load_leaflet_map($('.map')[0], data);
+				var url_points = 'sat_puncte.php?siruta=' + siruta;
+				$.getJSON(url_points, function(data2) {
+					load_leaflet_map($('.map')[0], data, data2);
+				});
             });
         });
       {/literal}</script>
