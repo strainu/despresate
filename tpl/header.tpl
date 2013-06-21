@@ -38,7 +38,7 @@
       </form>
 <!--gcse:searchbox-only></gcse:searchbox-only-->
       <div class="small gray">
-        ex: "județul Prahova", "Vadu Lat", "Bucsani, Dâmbovița", etc.
+        ex: "județul Prahova", "Comuna Bucșani, Dâmbovița", etc.
       </div>
     </td>
 
