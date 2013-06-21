@@ -16,7 +16,7 @@ else
 $MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0, 0 );
 
 // Sate X si Y
-$MyObject->Query("select siruta.denloc as denloc,sat.X as x, sat.Y as y,sat.siruta as siruta from siruta,sat where siruta.sirsup='".$siruta."' and siruta._siruta=sat.siruta;");
+$MyObject->Query("select siruta.denloc as denloc, sat.X as x, sat.Y as y, sat.siruta as siruta from siruta, sat where siruta.sirsup='".$siruta."' and siruta._siruta=sat.siruta;");
 $lista = $MyObject->getTable();
 
 // GeoJSON
@@ -38,5 +38,6 @@ foreach ($lista as $key=>$value)
 	);
 }
 
+header('Cache-Control: max-age=604800');
 echo json_encode($lista);
 ?>
