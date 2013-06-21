@@ -53,6 +53,7 @@
 			<li> <a href="data/pcj.csv">Președinții consiliilor județene (2008-2012)</a> (CSV)</li>
 			<li> <a href="data/primari.csv">Primari (1996-2012)</a> (CSV)</li>
 			<li> <a href="data/commune_historic_population.csv">Populația județelor și comunelor (1930-1992)</a> (CSV)</li>
+			<li> <a href="data/pop2002.csv">Populația județelor și comunelor (2002)</a> (CSV)</li>
 			<li> <a href="data/demografie.csv">Populația județelor și comunelor (2011)</a> (CSV)</li>
 		</ul>
 	</p>
