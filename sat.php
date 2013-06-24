@@ -158,6 +158,76 @@ function village_monuments($siruta)
     return $monuments;
 }
 
+function village_type($village_data)
+{
+    /*static $type_name = Array(
+            1 => Array("article" => "un", "term" => "municipiu reședință de județ"),
+            2 => Array("article" => "un", "term" => "oraș ce aparține de județ"),
+            3 => Array("article" => "o", "term" => "comună"),
+            4 => Array("article" => "un", "term" => "municipiu, altul decât reședința de județ"),
+            5 => Array("article" => "un", "term" => "oraș reședință de județ"),
+            6 => Array("article" => "un", "term" => "sector al municipiului București"),
+            9 => Array("article" => "o", "term" => "localitate componentă, reședință de municipiu"),
+            10 => Array("article" => "o", "term" => "localitate componentă a unui municipiu alta decât reședință de municipiu"),
+            11 => Array("article" => "un", "term" => "sat ce aparține de municipiu"),
+            17 => Array("article" => "o", "term" => "localitate componentă, reședință a orașului"),
+            18 => Array("article" => "o", "term" => "localitate componentă a unui oraș, alta decât reședință de oraș"),
+            19 => Array("article" => "un", "term" => "sat care aparține unui oraș"),
+            22 => Array("article" => "un", "term" => "sat reședință de comună"),
+            23 => Array("article" => "un", "term" => "sat ce aparține de comună, altul decât reședință de comună "),
+            40 => Array("article" => "un", "term" => "județ")
+        );*/
+    static $type_name = Array(
+            1 => Array("article" => "un", 
+                        "term" => "municipiu", 
+                        "articulated" =>"municipiul"),
+            2 => Array("article" => "un", 
+                        "term" => "oraș", 
+                        "articulated" =>"orașul"),
+            3 => Array("article" => "o", 
+                        "term" => "comună", 
+                        "articulated" =>"comuna"),
+            4 => Array("article" => "un", 
+                        "term" => "municipiu", 
+                        "articulated" =>"municipiul"),
+            5 => Array("article" => "un", 
+                        "term" => "oraș", 
+                        "articulated" =>"orașul"),
+            6 => Array("article" => "un", 
+                        "term" => "sector al municipiului București", 
+                        "articulated" =>"sectorul"),
+            9 => Array("article" => "o", 
+                        "term" => "localitate componentă", 
+                        "articulated" =>"localitatea componentă"),
+            10 => Array("article" => "o", 
+                        "term" => "localitate componentă", 
+                        "articulated" =>"localitatea componentă"),
+            11 => Array("article" => "un", 
+                        "term" => "sat", 
+                        "articulated" =>"satul"),
+            17 => Array("article" => "o", 
+                        "term" => "localitate componentă", 
+                        "articulated" =>"localitatea componentă"),
+            18 => Array("article" => "o", 
+                        "term" => "localitate componentă", 
+                        "articulated" =>"localitatea componentă"),
+            19 => Array("article" => "un", 
+                        "term" => "sat", 
+                        "articulated" =>"satul"),
+            22 => Array("article" => "un", 
+                        "term" => "sat", 
+                        "articulated" =>"satul"),
+            23 => Array("article" => "un", 
+                        "term" => "sat", 
+                        "articulated" =>"satul"),
+            40 => Array("article" => "un", 
+                        "term" => "județ", 
+                        "articulated" =>"județul")
+        );
+        
+    return $type_name[$village_data['tip']];
+}
+
 
 $village_data = village_data($siruta);
 village_county_data($village_data, $county, $countyid);
@@ -167,12 +237,14 @@ $images = village_images($siruta);
 $pop = village_population($siruta);
 $leaders = village_leaders($siruta);
 $monuments = village_monuments($siruta);
+$village_type = village_type($village_data);
 
 parse_village_leaders($leaders, 
                     $mayor, $mayorparty, $mayoryear, $mayorid,
                     $vice, $viceyear, $viceid);
 
 $smarty->assign('name', mb_convert_case($village_data['denloc'], MB_CASE_TITLE));
+$smarty->assign('type', $village_type);
 $smarty->assign('county', $county);
 $smarty->assign('countyid', $countyid);
 $shortname = mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("ORAȘ ", "", $village_data['denloc'])), MB_CASE_TITLE);

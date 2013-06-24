@@ -66,7 +66,7 @@
     <div class="mainsection">
         <a name="info" />
         <div class="maintitle">Informații generale<a href="#top" class="toplink small">[sus]</a></div>
-        <p>{$shortname} este o localitate din România aflată în județul {$county}.</p>
+        <p>{$shortname} este {$type.article} {$type.term} din România aflat{if $type.article == "o"}ă{/if} în județul {$county}.</p>
     </div>
     <div class="mainsection">
         <a name="adm" />
@@ -86,7 +86,7 @@
     <div class="mainsection">
         <a name="uat" />
         <div class="maintitle">Localități<a href="#top" class="toplink small">[sus]</a></div>
-        <p>Satele ce intră în componența localității {$shortname} sunt:</p>
+        <p>{$type.articulated|capitalize} {$shortname} are în componență următoarele localități:</p>
         <ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
         {foreach $uat as $village}
                 <li><b>{$village.denloc|lower|capitalize}</b> {if $village.codp}(cod poștal {$village.codp}){/if}</li>
