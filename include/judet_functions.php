@@ -1,5 +1,7 @@
 <?php
+include_once("common.php");
 
+//database-related functions
 function county_data($index) {
     global $MyObject;
 
@@ -173,5 +175,51 @@ function process_county_leaders($leaders,
             break;
         }
     }
+}
+
+//csv-related functions
+
+
+function county_generate_stats_csv_header()
+{
+    return "nume,prescurtare,suprafata,populatie,populatie_an,densitate,regiune_adm,regiune_ist,wikipedia";
+}
+
+function county_generate_stats_csv($county_data, $pop, $region, $hist_region)
+{
+    $county_str = capitalize_counties($county_data['denloc']);
+    $density = calculate_density($county_data, $pop);
+    $data = $county_str.','.$county_data['prescurtare'].',"';
+    $data .= $county_data['suprafata'].'",';
+    $data .= $pop[0]['populatie'].','.$pop[0]['an'].',"'.$density.'",';
+    $data .= $region.','.$hist_region.',"ro:'.$county_str."\"";
+
+    return $data;
+}
+
+function county_generate_leaders_csv_header()
+{
+    return "poziție,nume,an";
+}
+
+function county_generate_leaders_csv($county_data, $leaders, $separator)
+{
+    process_county_leaders($leaders, 
+                            &$cjpres, &$cjpresyear, &$cjpresid, &$cjpresparty,
+                            &$cjvice, &$cjviceyear, &$cjmembers, &$cjmyear, 
+                            &$prpres, &$prpresyear, &$prpresid, 
+                            &$prvice, &$prviceyear, &$prviceid);
+
+    $data = 'președinte consiliu județean,'.$cjpres.','.$cjpresyear.$separator;
+    foreach ($cjvice as $leader) {
+        $data .= 'vicepreședinte consiliu județean,'.$leader['name'].','.$cjviceyear.$separator;
+    }
+    foreach ($cjmembers as $leader) {
+        $data .= 'membru consiliu județean,'.$leader['name'].','.$cjmyear.$separator;
+    }
+    $data .= 'prefect,'.$prpres.','.$prpresyear.$separator;
+    $data .= 'subprefect,'.$prvice.','.$prviceyear;
+    
+    return $data;
 }
 ?>

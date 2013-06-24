@@ -1,4 +1,6 @@
 <?php
+include_once("common.php");
+
 function village_county_data($village_data, &$county, &$countyid)
 {
     global $MyObject;

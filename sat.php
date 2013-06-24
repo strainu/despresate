@@ -2,7 +2,6 @@
 setlocale(LC_ALL, 'ro_RO');
 require('./include/class.SimpleSQL.php');
 require('./include/config.php');
-require('./include/common.php');
 require('./include/sat_functions.php');
 require('smarty/libs/Smarty.class.php');
 

@@ -2,8 +2,8 @@
 setlocale(LC_ALL, 'ro_RO');
 require('./include/class.SimpleSQL.php');
 require('./include/config.php');
-require('./include/common.php');
 require('./include/judet_functions.php');
+require('./include/sat_functions.php');
 require('smarty/libs/Smarty.class.php');
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0 || $_GET['id'] > 52)
@@ -14,7 +14,6 @@ else
 $smarty = new Smarty();
 
 $MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0, 0 );
-
 
 //call the function that retrieve data from the database
 $county_data = county_data($index);
@@ -33,47 +32,6 @@ $density = calculate_density($county_data, $pop);
 $type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
 $format = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);
 
-function county_generate_stats_csv_header()
-{
-    return "nume,prescurtare,suprafata,populatie,populatie_an,densitate,regiune_adm,regiune_ist,wikipedia\n";
-}
-
-function county_generate_stats_csv($county_data, $pop, $region, $hist_region)
-{
-    $county_str = capitalize_counties($county_data['denloc']);
-    $density = county_density($county_data, $pop);
-    $data = $county_str.','.$county_data['prescurtare'].',"';
-    $data += $county_data['suprafata'].'",';
-    $data += $pop[0]['populatie'].','.$pop[0]['an'].',"'.$density.'",';
-    $data += $region.','.$hist_region.',"ro:'.$county_str."\"\n";
-    
-    return $data;
-}
-
-function county_generate_leaders_csv_header()
-{
-    return "poziție,nume,an\n";
-}
-
-function county_generate_leaders_csv($county_data, $leaders)
-{
-    process_county_leaders($leaders, 
-                            &$cjpres, &$cjpresyear, &$cjpresid, &$cjpresparty,
-                            &$cjvice, &$cjviceyear, &$cjmembers, &$cjmyear, 
-                            &$prpres, &$prpresyear, &$prpresid, 
-                            &$prvice, &$prviceyear, &$prviceid);
-
-    echo $county_data['siruta'].',prefect,'.$prpres.','.$prpresyear."\n";
-    echo $county_data['siruta'].',subprefect,'.$prvice.','.$prviceyear."\n";
-    echo $county_data['siruta'].',președinte consiliu județean,'.$cjpres.','.$cjpresyear."\n";
-    foreach ($cjvice as $leader) {
-        echo $county_data['siruta'].',vicepreședinte consiliu județean,'.$leader['name'].','.$cjviceyear."\n";
-    }
-    foreach ($cjmembers as $leader) {
-        echo $county_data['siruta'].',membru consiliu județean,'.$leader['name'].','.$cjmyear."\n";
-    }
-}
-
 switch($format)
 {
     case 'csv':
@@ -82,19 +40,26 @@ switch($format)
         switch($type)
         {
             case 'stats':
-                echo "siruta,".county_generate_stats_csv_header();
-                echo $county_data['siruta'].",".county_generate_stats_csv($county_data, $pop, $region, $hist_region);
+                echo "siruta,".county_generate_stats_csv_header()."\n";
+                echo $county_data['siruta'].",".county_generate_stats_csv($county_data, $pop, $region, $hist_region)."\n";
             break;
             case 'leaders':
-                echo "siruta,".county_generate_leaders_csv_header();
-                echo $county_data['siruta'].",".county_generate_leaders_csv($county_data, $leaders);
+                echo "siruta,".county_generate_leaders_csv_header()."\n";
+                echo $county_data['siruta'].",".county_generate_leaders_csv($county_data, $leaders,"\n")."\n";
             break;
             case 'all':
             default:
-                echo "siruta,".county_generate_stats_csv_header().",".county_generate_leaders_csv_header();
-                echo $county_data['siruta'].",".
-                        county_generate_stats_csv($county_data, $pop, $region, $hist_region).",".
-                        county_generate_leaders_csv($county_data, $leaders);
+                $sep = ",";
+                $stats = county_generate_stats_csv($county_data, $pop, $region, $hist_region);
+                $stats_header = county_generate_stats_csv_header();
+                $ldrs = county_generate_leaders_csv($county_data, $leaders, $sep);
+                $ldrs_header = county_generate_leaders_csv_header();
+                $ldrs_size = count(explode($sep, $ldrs)) / count(explode($sep, $ldrs_header));
+                echo "siruta,".$stats_header.",";
+                for ($i = 0; $i < $ldrs_size; $i++)
+                    echo $ldrs_header.$sep;
+                echo "\n";
+                echo $county_data['siruta'].",".$stats.",".$ldrs."\n";
             break;
         };
     break;
