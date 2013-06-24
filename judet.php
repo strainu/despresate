@@ -136,22 +136,41 @@ $format = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);
 switch($format)
 {
     case 'csv':
+        header('Content-type: text/csv');
+        header('Content-disposition: attachment;filename='.$short_name.'-'.$type.'.csv');
         switch($type)
         {
             case 'stats':
+                echo "siruta,nume,prescurtare,suprafata,populatie,populatie_an,densitate,regiune_adm,regiune_ist,wikipedia\n";
+                echo $county_data['siruta'].','.$county_str.','.$county_data['prescurtare'].',"';
+                echo $county_data['suprafata'].'",';
+                echo $pop[0]['populatie'].','.$pop[0]['an'].',"'.$density.'",';
+                echo $region.','.$hist_region.',"ro:'.$county_str."\"\n";
+            break;
             case 'leaders':
+                echo "siruta,poziție,nume,an\n";
+                echo $county_data['siruta'].',prefect,'.$prpres.','.$prpresyear."\n";
+                echo $county_data['siruta'].',subprefect,'.$prvice.','.$prviceyear."\n";
+                echo $county_data['siruta'].',președinte consiliu județean,'.$cjpres.','.$cjpresyear."\n";
+                foreach ($cjvice as $leader) {
+                    echo $county_data['siruta'].',vicepreședinte consiliu județean,'.$leader['name'].','.$cjviceyear."\n";
+                }
+                foreach ($cjmembers as $leader) {
+                    echo $county_data['siruta'].',membru consiliu județean,'.$leader['name'].','.$cjmyear."\n";
+                }
+            break;
             case 'all':
             default:
-            header('Content-type: text/csv');
-            header('Content-disposition: attachment;filename='.$short_name.'.csv');
-            echo "siruta,prescurtare,suprafata,populatie,populatie_an,densitate,regiune_adm,regiune_ist,wikipedia\n";
-            echo $county_data['siruta'].','.$county_data['prescurtare'].',"'.$county_data['suprafata'].'",';
-            echo $pop[0]['populatie'].','.$pop[0]['an'].',"'.$density.'",';
-            echo $region.','.$hist_region.',"ro:'.$county_str."\"\n";
+                echo "siruta,prescurtare,suprafata,populatie,populatie_an,densitate,regiune_adm,regiune_ist,wikipedia\n";
+                echo $county_data['siruta'].','.$county_data['prescurtare'].',"'.$county_data['suprafata'].'",';
+                echo $pop[0]['populatie'].','.$pop[0]['an'].',"'.$density.'",';
+                echo $region.','.$hist_region.',"ro:'.$county_str."\"\n";
             break;
         };
     break;
     case 'json':
+        header('Content-type: application/json');
+        header('Content-disposition: attachment;filename='.$short_name.'-'.$type.'.json');
     break;
     case 'html':
     default:
