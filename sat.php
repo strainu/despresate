@@ -238,6 +238,7 @@ $pop = village_population($siruta);
 $leaders = village_leaders($siruta);
 $monuments = village_monuments($siruta);
 $village_type = village_type($village_data);
+$density = calculate_density($village_data, $pop);
 
 parse_village_leaders($leaders, 
                     $mayor, $mayorparty, $mayoryear, $mayorid,
@@ -271,10 +272,7 @@ $smarty->assign('chtel', $village_data['telefon']);
 $smarty->assign('population', $pop[0]['populatie']);
 $smarty->assign('census', $pop[0]['an']);
 $smarty->assign('demography', array_reverse($pop));
-if($village_data['suprafata'])
-    $smarty->assign('density', $pop[0]['populatie'] / $village_data['suprafata']);
-else
-    $smarty->assign('density', '');
+$smarty->assign('density', $density);
 
 $smarty->assign('uat', $uat_data);
 $smarty->assign('commune_list', $commune_list);

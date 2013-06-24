@@ -190,16 +190,6 @@ function county_list()
     return $county_list;
 }
 
-function county_density($county_data, $pop)
-{
-    if($county_data['suprafata'])
-        $density = $pop[0]['populatie'] / $county_data['suprafata'];
-    else
-        $density = '';
-        
-    return $density;
-}
-
 //call the function that retrieve data from the database
 $county_data = county_data($index);
 $uat_data = county_uat_data($county_data);
@@ -212,7 +202,7 @@ $monuments = county_monuments($county_data);
 
 $county_str = capitalize_counties($county_data['denloc']);
 $short_name = str_ireplace("Județul ", "", $county_str);
-$density = county_density($county_data, $pop);
+$density = calculate_density($county_data, $pop);
 
 $type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
 $format = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);

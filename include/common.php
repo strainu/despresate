@@ -5,4 +5,15 @@ function capitalize_counties($county_str) {
 	$county_str = str_replace("- ", "-", $county_str);
 	return $county_str;
 }
+
+function calculate_density($data, $pop)
+{
+    if($data['suprafata'])
+        $density = $pop[0]['populatie'] / $data['suprafata'];
+    else
+        $density = '';
+        
+    return $density;
+}
+
 ?>
