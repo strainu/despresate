@@ -22,8 +22,9 @@
 <hr />
 <table cellpadding="0" cellspacing="0">
   <td valign="top" style="min-width:100px">
-    <div class="leftbar">
-      {if $mappage}<div class="leftbarmap"><a href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
+    <div class="leftbar" itemscope itemtype="http://schema.org/AdministrativeArea">
+      {if $mappage}<div class="leftbarmap"><a itemprop="map" href="{$mappage}" class="image" title="{$name} - harta"><img alt="{$name} - harta" src="{$mapthumb}" ></a></div>{/if}
+      <meta itemprop="geo" content="http://despresate.strainu.ro/maps/uat-judete/{$siruta}.geojson" />
       <div class="leftbarelem map"></div>
       <script>{literal}
         $(document).ready(function() {
@@ -36,32 +37,37 @@
       {/literal}</script>
       <div class="leftbartitle">Date statistice</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
+         <tr><th>Nume</th><td itemprop="name">{$name}</td></tr>
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
-         <tr><th>Regiune administrativă</th><td>{$region}</td></tr>
+         <tr itemprop="containedIn"><th>Regiune administrativă </th><td>{$region}</td></tr>
          <tr><th>Prescurtare</th><td>{$abbr}</td></tr>
          <tr><th>Regiune istorică</th><td>{$hist_region}</td></tr>
          <tr><th>Populație ({$census})</th><td>{$population|commify:0:',':'.'} locuitori</td></tr>
          <tr><th>Suprafață</th><td>{$surface|commify:2:',':'.'} km<sup>2</sup></td></tr>
          <tr><th>Densitate</th><td>{$density|commify:2:',':'.'} loc/km<sup>2</sup></td></tr>
         </table>
-      <div class="leftbartitle">Consiliul județean</div>
+      <span  itemscope itemtype="http://schema.org/GovernmentOrganization">
+      <div class="leftbartitle" itemprop="name">Consiliul județean</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="cj" class="leftbarelem">
-         <tr><th>Președinte</th><td>{if $cjpresid}<a href="http://agenda.grep.ro/person/{$cjpresid}" title="Date de contact pentru {$cjpres}">{$cjpres}</a>{else}{$cjpres}{/if}</td></tr>
-         <tr><th>Adresă</th><td>{$cjaddr}</td></tr>
-         <tr><th>Site</th><td><a href="http://{$cjsite}" title="Site-ul Consiliului Județean {$name}">{$cjsite}</a></td></tr>
-         <tr><th>Email</th><td><a href="mailto:{$cjemail}" title="Emailul-ul Consiliului Județean {$name}">{$cjemail}</a></td></tr>
-         <tr><th>Telefon</th><td>(0040) {$cjtel}</td></tr>
-         <tr><th>Fax</th><td>(0040) {$cjfax}</td></tr>
+         <tr><th>Președinte</th><td itemprop="employee">{if $cjpresid}<a href="http://agenda.grep.ro/person/{$cjpresid}" title="Date de contact pentru {$cjpres}">{$cjpres}</a>{else}{$cjpres}{/if}</td></tr>
+         <tr><th>Adresă</th><td itemprop="address">{$cjaddr}</td></tr>
+         <tr><th>Site</th><td><a itemprop="url" href="http://{$cjsite}" title="Site-ul Consiliului Județean {$name}">{$cjsite}</a></td></tr>
+         <tr><th>Email</th><td itemprop="email"><a href="mailto:{$cjemail}" title="Emailul-ul Consiliului Județean {$name}">{$cjemail}</a></td></tr>
+         <tr><th>Telefon</th><td itemprop="telephone">(0040) {$cjtel}</td></tr>
+         <tr><th>Fax</th><td itemprop="faxNumber">(0040) {$cjfax}</td></tr>
         </table>
-       <div class="leftbartitle">Prefectura</div>
+       </span>
+      <span  itemscope itemtype="http://schema.org/GovernmentOrganization">
+       <div class="leftbartitle" itemprop="name">Prefectura</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="prefect" class="leftbarelem">
-         <tr><th>Prefect</th><td>{if $prpresid}<a href="http://agenda.grep.ro/person/{$prpresid}" title="Date de contact pentru {$prpres}">{$prpres}</a>{else}{$prpres}{/if}</td></tr>
-         <tr><th>Adresă</th><td>{$praddr}</td></tr>
-         <tr><th>Site</th><td><a href="http://{$prsite}" title="Site-ul Consiliului Județean {$name}">{$prsite}</a></td></tr>
-         <tr><th>Email</th><td><a href="mailto:{$premail}" title="Emailul-ul Consiliului Județean {$name}">{$premail}</a></td></tr>
-         <tr><th>Telefon</th><td>(0040) {$prtel}</td></tr>
-         <tr><th>Fax</th><td>(0040) {$prfax}</td></tr>
+         <tr><th>Prefect</th><td itemprop="employee">{if $prpresid}<a href="http://agenda.grep.ro/person/{$prpresid}" title="Date de contact pentru {$prpres}">{$prpres}</a>{else}{$prpres}{/if}</td></tr>
+         <tr><th>Adresă</th><td itemprop="address">{$praddr}</td></tr>
+         <tr><th>Site</th><td><a itemprop="url" href="http://{$prsite}" title="Site-ul Consiliului Județean {$name}">{$prsite}</a></td></tr>
+         <tr><th>Email</th><td itemprop="email"><a href="mailto:{$premail}" title="Emailul-ul Consiliului Județean {$name}">{$premail}</a></td></tr>
+         <tr><th>Telefon</th><td itemprop="telephone">(0040) {$prtel}</td></tr>
+         <tr><th>Fax</th><td itemprop="faxNumber">(0040) {$prfax}</td></tr>
         </table>
+       </span>
        <div class="leftbartitle">Alte informații</div>
          <ul id="otherlinks">
            <li><a href="https://ro.wikipedia.org/wiki/{$name}" title="Articolul Wikipedia despre {$name}" target="_blank">Articol Wikipedia</a></li>
