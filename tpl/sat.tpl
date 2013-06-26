@@ -97,7 +97,7 @@
     </div>
     <div class="mainsection">
         <a name="eco" />
-        <div class="maintitle">Economie<a href="#top" class="toplink small">[sus]</a></div>
+        <div class="maintitle">Economie și buget<a href="#top" class="toplink small">[sus]</a></div>
         <p>Nu avem încă informații legate de economia acestei localități.</p>
     </div>
     <div class="mainsection">
