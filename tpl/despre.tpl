@@ -47,7 +47,7 @@
 
 	<a name="multumiri" />
 	<div class="maintitle">Mulțumiri<a href="#top" class="toplink small">[sus]</a></div>
-	<p>Mulțumim tuturor oamenilor care ne-au ajutat cu diverse părți ale proiectului: lui Nicu Buculei pentru siglă, lui Alex Morega pentru hărți și integrarea cu <a href="http://agenda.grep.ro/">agenda</a>, echipei Political Colours pentru datele prețioase și pentru proiectul foarte util, lui Bogdan Manolea pentru diversele sfaturi legislative și nu numai, participanților la hackathonul <a href="http://wiki.osgeo.org/wiki/FOSS4G_CEE_2013_Open_GeoData_Hackathon">FOSS4G-CEE 2013</a> pentru programare și datele oferite.</p>
+	<p>Mulțumim tuturor oamenilor care ne-au ajutat cu diverse părți ale proiectului: lui <a href="http://nicubunu.ro/">Nicu Buculei</a> pentru siglă, lui <a href="http://grep.ro">Alex Morega</a> pentru hărți și integrarea cu <a href="http://agenda.grep.ro/">agenda</a>, echipei Political Colours pentru datele prețioase și pentru proiectul foarte util, lui Bogdan Manolea pentru diversele sfaturi legislative și nu numai, participanților la hackathonul <a href="http://wiki.osgeo.org/wiki/FOSS4G_CEE_2013_Open_GeoData_Hackathon">FOSS4G-CEE 2013</a> pentru programare și datele oferite.</p>
 
 </div>
 

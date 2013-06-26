@@ -11,6 +11,13 @@ if (!isset($_GET['siruta']) || !is_numeric($_GET['siruta']) || $_GET['siruta'] <
     $siruta = 40;
 else
     $siruta = $_GET['siruta'];
+    
+// Bucharest is special, it needs special treatment
+// 40 is the county code for Bucharest
+if ($siruta == 179132)
+{
+    Header('Location:judet.php?id=40');//redirect to the county page
+}
 
 $MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0, 0 );
 

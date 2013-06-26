@@ -18,7 +18,6 @@ $MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0, 0 );
 //call the function that retrieve data from the database
 $county_data = county_data($index);
 $uat_data = county_uat_data($county_data);
-$pop = county_population($county_data);
 county_region($county_data, $region, $hist_region);
 $images = county_images($county_data);
 $leaders = county_leaders($county_data);
@@ -26,7 +25,23 @@ $county_list = county_list();
 $monuments = county_monuments($county_data);
 
 $county_str = capitalize_counties($county_data['denloc']);
-$short_name = str_ireplace("Județul ", "", $county_str);
+// Bucharest is special, it needs special treatment
+// 403 is the SIRUTA code for Bucharest as a county
+// 179132 is the SIRUTA code for Bucharest as a city
+if ($index == 40) 
+{
+    //uat_data now contains the "other Bucharest" (i.e. the entry for Bucharest as a city)
+    $siruta = $uat_data[0]['_siruta'];
+    $village_data = village_data($siruta);
+    $uat_data = village_uat_data($siruta);
+    $pop = village_population($siruta);
+    $short_name = str_ireplace("Municipiul ", "", $county_str);
+}
+else
+{
+    $pop = county_population($county_data);
+    $short_name = str_ireplace("Județul ", "", $county_str);
+}
 $density = calculate_density($county_data, $pop);
 
 $type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
@@ -118,8 +133,14 @@ switch($format)
         $smarty->assign('monuments', $monuments);
 
         $smarty->assign('county_list', $county_list);
-
-        $smarty->display('tpl/judet.tpl');
+        if ($index == 40) 
+        {
+            $smarty->display('tpl/bucuresti.tpl');
+        }
+        else
+        {
+            $smarty->display('tpl/judet.tpl');
+        }
     break;
 }
 ?>
