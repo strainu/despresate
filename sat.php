@@ -23,7 +23,7 @@ $MyObject = new SimpleSQL( $dbs, $dbu, $dbp, $db, 0, 0 );
 
 
 $village_data = village_data($siruta);
-village_county_data($village_data, $county, $countyid);
+village_county_data($village_data, $county, $shortcounty, $countyid);
 $uat_data = village_uat_data($siruta);
 $commune_list = village_other_villages($village_data);
 $images = village_images($siruta);
@@ -40,8 +40,9 @@ parse_village_leaders($leaders,
 $smarty->assign('name', mb_convert_case($village_data['denloc'], MB_CASE_TITLE));
 $smarty->assign('type', $village_type);
 $smarty->assign('county', $county);
+$smarty->assign('shortcounty', $shortcounty);
 $smarty->assign('countyid', $countyid);
-$shortname = mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("ORAȘ ", "", $village_data['denloc'])), MB_CASE_TITLE);
+$shortname = mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("BUCUREȘTI ", "", str_replace("ORAȘ ", "", $village_data['denloc']))), MB_CASE_TITLE);
 $smarty->assign('shortname', $shortname);
 $smarty->assign('siruta', $siruta);
 $smarty->assign('surface', $village_data['suprafata']);
@@ -74,7 +75,7 @@ $smarty->assign('images', $images);
 $smarty->assign('monuments', $monuments);
 
 if ($village_data['rang'] == "IV")
-    $wikipedia = "Comuna ".$shortname.", ".$county;
+    $wikipedia = "Comuna ".$shortname.", ".$shortcounty;
 else
     $wikipedia = $shortname;
 $smarty->assign('wikipedia', $wikipedia);

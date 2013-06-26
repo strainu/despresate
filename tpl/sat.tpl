@@ -41,7 +41,7 @@
       <div class="leftbartitle">Date statistice</div>
         <table cellspacing="0" cellpadding="0" width="100%" id="stats" class="leftbarelem">
          <tr><th>Nume</th><td itemprop="name">{$name}</td></tr>
-         <tr itemprop="containedIn"><th>Județ </th><td><a href="judet.php?id={$countyid}" >{$county}</a></td></tr>
+         <tr itemprop="containedIn"><th>Județ </th><td><a href="judet.php?id={$countyid}" >{$shortcounty}</a></td></tr>
          <tr><th>Cod SIRUTA</th><td>{$siruta}</td></tr>
          <tr><th>Populație ({$census})</th><td>{$population|commify:0:',':'.'} locuitori</td></tr>
          <tr><th>Suprafață</th><td>{$surface|commify:2:',':'.'} km<sup>2</sup></td></tr>
@@ -68,7 +68,7 @@
     <div class="mainsection">
         <a name="info" />
         <div class="maintitle">Informații generale<a href="#top" class="toplink small">[sus]</a></div>
-        <p>{$shortname} este {$type.article} {$type.term} din România aflat{if $type.article == "o"}ă{/if} în județul {$county}.</p>
+        <p>{$shortname} este {$type.article} {$type.term} aflat{if $type.article == "o"}ă{/if} în {$county}, România.</p>
     </div>
     <div class="mainsection">
         <a name="adm" />
@@ -88,12 +88,16 @@
     <div class="mainsection">
         <a name="uat" />
         <div class="maintitle">Localități<a href="#top" class="toplink small">[sus]</a></div>
-        <p>{$type.articulated|capitalize} {$shortname} are în componență următoarele localități:</p>
-        <ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
-        {foreach $uat as $village}
+        {if count($uat) }
+            <p>{$type.articulated|capitalize} {$shortname} are în componență următoarele {$uat|@count} localități:</p>
+            <ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
+            {foreach $uat as $village}
                 <li><b>{$village.denloc|lower|capitalize}</b> {if $village.codp}(cod poștal {$village.codp}){/if}</li>
-        {/foreach}
-        </ul>
+            {/foreach}
+            </ul>
+        {else}
+            <p>{$shortname} nu are în componență nicio localitate.</p>
+        {/if}
     </div>
     <div class="mainsection">
         <a name="eco" />
@@ -133,7 +137,7 @@
         {if count($monuments) }
             <p>Mai jos aveți {$monuments|@count} monumente aleatorii din {$shortname}. Imaginile monumentelor provin de la concursul foto <a href="http://wikilovesmonuments.ro">WikiLovesMonuments România</a></p>
             <p><em>Lista completă a monumentelor istorice din {$shortname} este 
-            <a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din județul {$county}" title="Lista monumentelor istorice din județul {$county}">disponibilă la Wikipedia.</a></em></p>
+            <a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din {$county}" title="Lista monumentelor istorice din {$county}">disponibilă la Wikipedia.</a></em></p>
             <table class="monumentstable">
             <tr><th class="monumentsheader">Cod</th><th class="monumentsheader">Denumire</th><th class="monumentsheader">Arhitect</th><th class="monumentsheader">Poză</th>
             {foreach $monuments as $monument}
@@ -146,7 +150,7 @@
             {/foreach}
             </table>
         {else}
-            <p>Nu există niciun monument istoric în {$shortname}. Puteți vedea alte monumente istorice din județul {$county} <a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din județul {$county}" title="Lista monumentelor istorice din județul {$county}">pe Wikipedia.</a></p>
+            <p>Nu există niciun monument istoric în {$shortname}. Puteți vedea alte monumente istorice din {$county} <a href="https://ro.wikipedia.org/wiki/Lista monumentelor istorice din {$county}" title="Lista monumentelor istorice din {$county}">pe Wikipedia.</a></p>
         {/if}
     </div>
     <div class="mainsection">

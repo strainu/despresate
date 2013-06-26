@@ -1,19 +1,19 @@
 <?php
 include_once("common.php");
 
-function village_county_data($village_data, &$county, &$countyid)
+function village_county_data($village_data, &$county, &$shortcounty, &$countyid)
 {
     global $MyObject;
     
     $MyObject->Query("SELECT `denloc`,`jud` FROM `siruta` WHERE `siruta`.`_siruta`=".$village_data["sirsup"]." LIMIT 1");
     $county = $MyObject->getElement(0, 'denloc');
     $countyid = $MyObject->getElement(0, 'jud');
-    $county = capitalize_counties($county);
-    $county = str_ireplace("Județul ", "", $county);
-    if ($county == -1) {
+    if ($county == -1 || $countyid == -1) {
         echo "Problem fetching county";
         exit(1);
     }
+    $county = capitalize_counties($county);
+    $shortcounty = str_ireplace("Județul ", "", $county);
 }
 
 function village_data($siruta)
