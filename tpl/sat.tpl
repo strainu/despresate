@@ -48,10 +48,10 @@
          <tr><th>Densitate</th><td>{$density|commify:2:',':'.'} loc/km<sup>2</sup></td></tr>
         </table>
        <div class="leftbartitle">Primăria</div>
-        <table cellspacing="0" cellpadding="0" width="100%" id="prefect" class="leftbarelem">
+        <table cellspacing="0" cellpadding="0" width="100%" id="prefect" class="leftbarelem" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
          <tr><th>Primar</th><td>{if $mayorid}<a href="http://agenda.grep.ro/person/{$mayorid}" title="Date de contact pentru {$mayor}">{$mayor}</a>{else}{$mayor}{/if}</td></tr>
-         <tr><th>Adresă</th><td itemprop="address">{$chaddr}</td></tr>
-         <tr><th>Site</th><td><a itemprop="url" href="http://{$chsite}" title="Site-ul primăriei {$shortname}">{$chsite}</a></td></tr>
+         <tr><th>Adresă</th><td itemprop="streetAddress">{$chaddr}</td></tr>
+         <tr><th>Site</th><td itemprop="url"><a href="http://{$chsite}" title="Site-ul primăriei {$shortname}">{$chsite}</a></td></tr>
          <tr><th>Email</th><td itemprop="email"><a href="mailto:{$chemail}" title="Emailul-ul primăriei {$shortname}">{$chemail}</a></td></tr>
          <tr><th>Telefon</th><td itemprop="telephone">(0040) {$chtel}</td></tr>
         </table>
