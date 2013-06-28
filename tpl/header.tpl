@@ -1,12 +1,14 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@despresate">
   <meta property="og:title" content="{$name}" />
   <meta property="og:type" content="place" />
   <meta property="og:image" content="http://despresate.strainu.ro/images/logo_120.png" />
   <meta property="og:locale" content="ro_RO" />
   <meta property="og:site_name" content="Despre sate" />
-  <meta property="og:description" content="Despre Sate are date statistice și informații politice și economice despre {$name}" />
+  <meta property="og:description" content="Despre Sate oferă informații politice și economice despre {$name}" />
   <title>{$name} - Despre sate</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css">
