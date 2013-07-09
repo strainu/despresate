@@ -3,4 +3,5 @@ scripts/elections/*.csv
 scripts/agenda/*.csv
 data/*.sql
 data/sitemap*
+robots.txt
 *~
