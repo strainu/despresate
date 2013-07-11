@@ -46,6 +46,7 @@ $density = calculate_density($county_data, $pop);
 
 $type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
 $format = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);
+$commune = filter_input(INPUT_GET, 'commune', FILTER_SANITIZE_STRING);
 
 switch($format)
 {
@@ -57,6 +58,8 @@ switch($format)
             case 'stats':
                 echo "siruta,".county_generate_stats_csv_header()."\n";
                 echo $county_data['siruta'].",".county_generate_stats_csv($county_data, $pop, $region, $hist_region)."\n";
+		if ($commune == all)
+			echo village_generate_all_stats_csv($county_data['siruta']);
             break;
             case 'leaders':
                 echo "siruta,".county_generate_leaders_csv_header()."\n";

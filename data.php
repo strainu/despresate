@@ -32,13 +32,13 @@ switch ($format)
 	break;
 	case 'csv':
 	case 'json':
-		if($county == "all" || $commune == "all")
+		if($county == "all")
 		{
 			//TODO
 		}
 		else
-			if ($commune == "none")
-				Header('Location: judet.php?id='.$county.'&f='.$format.'&t='.$type);
+			if ($commune == "none" || $commune == "all")
+				Header('Location: judet.php?id='.$county.'&f='.$format.'&t='.$type.'&commune='.$commune);
 			else
 				Header('Location: sat.php?siruta='.$commune.'&f='.$format.'&t='.$type);
 	break;

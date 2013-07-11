@@ -13,7 +13,7 @@ function calculate_density($data, $pop)
     else
         $density = '';
         
-    return $density;
+    return number_format($density, 2, '.', '');
 }
 
 ?>

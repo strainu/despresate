@@ -30,6 +30,34 @@ function village_data($siruta)
     return $village_data;
 }
 
+function village_generate_all_stats_csv($county_siruta)
+{
+	global $MyObject;
+	$query = "SELECT * FROM `siruta` LEFT JOIN `localitate` ON `localitate`.`siruta` = `_siruta` ".
+				"LEFT JOIN `demografie` ON `demografie`.`siruta` = `_siruta` AND ".
+				"`demografie`.`an` = (SELECT max(`an`) FROM `demografie` WHERE `siruta` = `siruta`.`_siruta`) ".
+				"WHERE `sirsup` =".$county_siruta." ORDER BY `_siruta`";
+
+	//echo $query;
+	$MyObject->Query($query);
+	$data = $MyObject->getTable();
+	//print_r($data);
+	$ret = "";
+	foreach($data as $village)
+	{
+		$ret .= $village['_siruta'].",".
+			$village['denloc'].",,"/*the shortname is missing here*/.
+			"\"".$village['suprafata']."\",".
+			$village['populatie'].",".
+			$village['an'].",".
+			"\"".number_format($village['populatie'] / $village['suprafata'], 2, '.', '')."\",".
+			",,"./*the regions and wikipedia are missing here*/
+			"\n";
+	}
+
+	return $ret;
+}
+
 function village_images($siruta)
 {
     global $MyObject;
