@@ -16,4 +16,9 @@ function calculate_density($data, $pop)
     return number_format($density, 2, '.', '');
 }
 
+function common_generate_leaders_csv_header()
+{
+    return "poziție,nume,an";
+}
+
 ?>

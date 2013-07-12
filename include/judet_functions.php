@@ -197,11 +197,6 @@ function county_generate_stats_csv($county_data, $pop, $region, $hist_region)
     return $data;
 }
 
-function county_generate_leaders_csv_header()
-{
-    return "poziție,nume,an";
-}
-
 function county_generate_leaders_csv($county_data, $leaders, $separator)
 {
     process_county_leaders($leaders, 
@@ -210,15 +205,18 @@ function county_generate_leaders_csv($county_data, $leaders, $separator)
                             &$prpres, &$prpresyear, &$prpresid, 
                             &$prvice, &$prviceyear, &$prviceid);
 
-    $data = 'președinte consiliu județean,'.$cjpres.','.$cjpresyear.$separator;
+    $data = Array();
+    array_push($data, 'președinte consiliu județean,'.$cjpres.','.$cjpresyear.$separator);
     foreach ($cjvice as $leader) {
-        $data .= 'vicepreședinte consiliu județean,'.$leader['name'].','.$cjviceyear.$separator;
+        array_push($data, 'vicepreședinte consiliu județean,'.$leader['name'].','.$cjviceyear.$separator);
     }
     foreach ($cjmembers as $leader) {
-        $data .= 'membru consiliu județean,'.$leader['name'].','.$cjmyear.$separator;
+        array_push($data, 'membru consiliu județean,'.$leader['name'].','.$cjmyear.$separator);
     }
-    $data .= 'prefect,'.$prpres.','.$prpresyear.$separator;
-    $data .= 'subprefect,'.$prvice.','.$prviceyear;
+    if ($prpres)
+        array_push($data, 'prefect,'.$prpres.','.$prpresyear.$separator);
+    if ($prvice)
+        array_push($data, 'subprefect,'.$prvice.','.$prviceyear.$separator);
     
     return $data;
 }

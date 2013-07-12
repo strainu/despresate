@@ -74,10 +74,7 @@ $smarty->assign('commune_list', $commune_list);
 $smarty->assign('images', $images);
 $smarty->assign('monuments', $monuments);
 
-if ($village_data['rang'] == "IV")
-    $wikipedia = "Comuna ".$shortname.", ".$shortcounty;
-else
-    $wikipedia = $shortname;
+$wikipedia = village_wikipedia($village_data['rang'], $shortname, $shortcounty);
 $smarty->assign('wikipedia', $wikipedia);
 
 $smarty->display('tpl/sat.tpl');

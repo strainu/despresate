@@ -58,12 +58,16 @@ switch($format)
             case 'stats':
                 echo "siruta,".county_generate_stats_csv_header()."\n";
                 echo $county_data['siruta'].",".county_generate_stats_csv($county_data, $pop, $region, $hist_region)."\n";
-		if ($commune == all)
-			echo village_generate_all_stats_csv($county_data['siruta']);
+                if ($commune == "all")
+                    echo village_generate_all_stats_csv($county_data['siruta']);
             break;
             case 'leaders':
-                echo "siruta,".county_generate_leaders_csv_header()."\n";
-                echo $county_data['siruta'].",".county_generate_leaders_csv($county_data, $leaders,"\n")."\n";
+                echo "siruta,".common_generate_leaders_csv_header()."\n";
+                $leaders = county_generate_leaders_csv($county_data, $leaders,"\n");
+                foreach ($leaders as $leader)
+                    echo $county_data['siruta'].",".$leader;
+                if ($commune == "all")
+                    echo village_generate_all_leaders_csv($county_data['siruta'],"\n");
             break;
             case 'all':
             default:
@@ -71,7 +75,7 @@ switch($format)
                 $stats = county_generate_stats_csv($county_data, $pop, $region, $hist_region);
                 $stats_header = county_generate_stats_csv_header();
                 $ldrs = county_generate_leaders_csv($county_data, $leaders, $sep);
-                $ldrs_header = county_generate_leaders_csv_header();
+                $ldrs_header = common_generate_leaders_csv_header();
                 $ldrs_size = count(explode($sep, $ldrs)) / count(explode($sep, $ldrs_header));
                 echo "siruta,".$stats_header.",";
                 for ($i = 0; $i < $ldrs_size; $i++)
