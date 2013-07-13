@@ -61,7 +61,11 @@ switch($format)
                     echo $county_data['siruta'].",".
                         county_generate_stats_csv($county_data, $pop, $region, $hist_region)."\n";
                 if ($commune == "all" || $commune == "villages")
-                    echo village_generate_all_stats_csv($county_data['siruta']);
+                {
+                    $stats = village_generate_all_stats_csv($county_data['siruta'], "\n");
+                    foreach ($stats as $village)
+                        echo $village;
+                }
             break;
             case 'leaders':
                 echo "siruta,".common_generate_leaders_csv_header()."\n";
@@ -72,21 +76,55 @@ switch($format)
                         echo $county_data['siruta'].",".$leader;
                 }
                 if ($commune == "all" || $commune == "villages")
-                    echo village_generate_all_leaders_csv($county_data['siruta'],"\n");
+                {
+                    $leaders = village_generate_all_leaders_csv($county_data['siruta'],"\n");
+                    foreach ($leaders as $siruta => $leader)
+                        echo $siruta.",".$leader;
+                }
             break;
             case 'all':
             default:
                 $sep = ",";
-                $stats = county_generate_stats_csv($county_data, $pop, $region, $hist_region);
                 $stats_header = county_generate_stats_csv_header();
-                $ldrs = county_generate_leaders_csv($county_data, $leaders, $sep);
                 $ldrs_header = common_generate_leaders_csv_header();
-                $ldrs_size = count(explode($sep, $ldrs)) / count(explode($sep, $ldrs_header));
-                echo "siruta,".$stats_header.",";
+                $county_str = "";
+                $village_str = "";
+                $ldrs_size = 0;
+                if ($commune == "none" || $commune == "all")
+                {
+                    $stats = county_generate_stats_csv($county_data, $pop, $region, $hist_region);
+                    $ldrs = county_generate_leaders_csv($county_data, $leaders, "");
+                    $ldrs_size = count($ldrs);
+                    $county_str = $county_data['siruta'].$sep.$stats.$sep;
+                    foreach ($ldrs as $leader)
+                        $county_str .= $leader;
+                    $county_str .= "\n";
+                }
+                if ($commune == "all" || $commune == "villages")
+                {
+                    $stats = village_generate_all_stats_csv($county_data['siruta'], $sep);
+                    $leaders = village_generate_all_leaders_csv($county_data['siruta'], "");
+                    for ($i = 0; $i < count($stats); $i++)
+                    {
+                        $siruta = substr($stats[$i],0,strpos($stats[$i], $sep));
+                        $village_str .= $stats[$i];
+                        $village_str .= $leaders[$siruta];
+                        rtrim($village_str, $sep);
+                        $village_str .= "\n";
+                        $ldrs_no = count(explode($sep, $leaders[$siruta])) / count(explode($sep, $ldrs_header));
+                        if ($ldrs_no > $ldrs_size)
+                            $ldrs_size = floor($ldrs_no);
+                    }
+                }
+                /*print header*/
+                echo "siruta,".$stats_header.$sep;
                 for ($i = 0; $i < $ldrs_size; $i++)
                     echo $ldrs_header.$sep;
                 echo "\n";
-                echo $county_data['siruta'].",".$stats.",".$ldrs."\n";
+                /*print 1 line for county*/
+                echo $county_str;
+                /*print several lines for villages*/
+                echo $village_str;
             break;
         };
     break;

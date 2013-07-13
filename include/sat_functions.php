@@ -30,80 +30,6 @@ function village_data($siruta)
     return $village_data;
 }
 
-function village_generate_all_stats_data($county_siruta)
-{
-	global $MyObject;
-	$query = "SELECT * FROM `siruta` LEFT JOIN `localitate` ON `localitate`.`siruta` = `_siruta` ".
-				"LEFT JOIN `demografie` ON `demografie`.`siruta` = `_siruta` AND ".
-				"`demografie`.`an` = (SELECT max(`an`) FROM `demografie` WHERE `siruta` = `siruta`.`_siruta`) ".
-				"WHERE `sirsup` =".$county_siruta." ORDER BY `_siruta`";
-
-	//echo $query;
-	$MyObject->Query($query);
-	return $MyObject->getTable();
-}
-
-function village_generate_all_stats_csv($county_siruta)
-{
-    $data = village_generate_all_data($county_siruta);
-	//print_r($data);
-	$ret = "";
-	foreach($data as $village)
-	{
-        $shortname = village_shortname($village['denloc']);
-        $county_data = county_data($village['jud']);
-        $shortcounty = str_ireplace("Județul ", "", capitalize_counties($county_data['denloc']));
-		$ret .= $village['_siruta'].",".
-			$village['denloc'].",".
-			$shortname.",".
-			"\"".$village['suprafata']."\",".
-			$village['populatie'].",".
-			$village['an'].",".
-			"\"".number_format($village['populatie'] / $village['suprafata'], 2, '.', '')."\",".
-			",,"./*the regions are missing here*/
-			"\"".village_wikipedia($village['rang'], $shortname, $shortcounty)."\"".
-			"\n";
-	}
-
-	return $ret;
-}
-
-function village_generate_all_leaders_data($county_siruta)
-{
-	global $MyObject;
-	$query = "SELECT * FROM `oameni` AS `o` INNER JOIN (SELECT `siruta`, MAX(`an`) AS MaxAn FROM `oameni` GROUP BY `siruta`) s on o.siruta=s.siruta AND o.an=s.MaxAn WHERE `o`.`siruta` IN (SELECT `_siruta` FROM `siruta` WHERE `sirsup`=".$county_siruta.") ORDER BY `o`.`siruta`";
-
-	//echo $query;
-	$MyObject->Query($query);
-	return $MyObject->getTable();
-}
-
-function village_generate_all_leaders_csv($county_siruta, $separator)
-{
-    $all_leaders = village_generate_all_leaders_data($county_siruta);
-
-    $data = "";
-    foreach ($all_leaders as $leader)
-    {
-        $data .= $leader['siruta'];
-        switch($leader['functie'])
-        {
-            case 1:
-                $data .= ",primar,";
-            break;
-            case 2:
-                $data .= ",viceprimar,".$leader['nume'].','.$leader['an'].$separator;
-            break;
-            case 3:
-                $data .= ",consilier local,";
-            break;
-        }
-        $data .= $leader['nume'].','.$leader['an'].$separator;
-    }
-    
-    return $data;
-}
-
 function village_images($siruta)
 {
     global $MyObject;
@@ -309,5 +235,79 @@ function parse_village_leaders($leaders,
         }
     }
     //TODO: local council
+}
+
+function village_generate_all_stats_data($county_siruta)
+{
+	global $MyObject;
+	$query = "SELECT * FROM `siruta` LEFT JOIN `localitate` ON `localitate`.`siruta` = `_siruta` ".
+				"LEFT JOIN `demografie` ON `demografie`.`siruta` = `_siruta` AND ".
+				"`demografie`.`an` = (SELECT max(`an`) FROM `demografie` WHERE `siruta` = `siruta`.`_siruta`) ".
+				"WHERE `sirsup` =".$county_siruta." ORDER BY `_siruta`";
+
+	//echo $query;
+	$MyObject->Query($query);
+	return $MyObject->getTable();
+}
+
+function village_generate_all_stats_csv($county_siruta, $separator)
+{
+    $data = village_generate_all_stats_data($county_siruta);
+	//print_r($data);
+	$ret = Array();
+	foreach($data as $village)
+	{
+        $shortname = village_shortname($village['denloc']);
+        $county_data = county_data($village['jud']);
+        $shortcounty = str_ireplace("Județul ", "", capitalize_counties($county_data['denloc']));
+		array_push($ret, $village['_siruta'].",".
+			$village['denloc'].",".
+			$shortname.",".
+			"\"".$village['suprafata']."\",".
+			$village['populatie'].",".
+			$village['an'].",".
+			"\"".number_format($village['populatie'] / $village['suprafata'], 2, '.', '')."\",".
+			",,"./*the regions are missing here*/
+			"\"".village_wikipedia($village['rang'], $shortname, $shortcounty)."\"".
+			$separator);
+	}
+
+	return $ret;
+}
+
+function village_generate_all_leaders_data($county_siruta)
+{
+	global $MyObject;
+	$query = "SELECT * FROM `oameni` AS `o` INNER JOIN (SELECT `siruta`, MAX(`an`) AS MaxAn FROM `oameni` GROUP BY `siruta`) s on o.siruta=s.siruta AND o.an=s.MaxAn WHERE `o`.`siruta` IN (SELECT `_siruta` FROM `siruta` WHERE `sirsup`=".$county_siruta.") ORDER BY `o`.`siruta`";
+
+	//echo $query;
+	$MyObject->Query($query);
+	return $MyObject->getTable();
+}
+
+function village_generate_all_leaders_csv($county_siruta, $separator)
+{
+    $all_leaders = village_generate_all_leaders_data($county_siruta);
+
+    $datas = Array();
+    foreach ($all_leaders as $leader)
+    {
+        $data = "";
+        switch($leader['functie'])
+        {
+            case 1:
+                $data .= "primar,";
+            break;
+            case 2:
+                $data .= "viceprimar,";
+            break;
+            case 3://TODO: implement this
+                $data .= "consilier local,";
+            break;
+        }
+        $data .= $leader['nume'].','.$leader['an'].$separator;
+        $datas[$leader['siruta']] = $data;
+    }
+    return $datas;
 }
 ?>
