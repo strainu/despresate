@@ -57,16 +57,21 @@ switch($format)
         {
             case 'stats':
                 echo "siruta,".county_generate_stats_csv_header()."\n";
-                echo $county_data['siruta'].",".county_generate_stats_csv($county_data, $pop, $region, $hist_region)."\n";
-                if ($commune == "all")
+                if ($commune == "none" || $commune == "all")
+                    echo $county_data['siruta'].",".
+                        county_generate_stats_csv($county_data, $pop, $region, $hist_region)."\n";
+                if ($commune == "all" || $commune == "villages")
                     echo village_generate_all_stats_csv($county_data['siruta']);
             break;
             case 'leaders':
                 echo "siruta,".common_generate_leaders_csv_header()."\n";
-                $leaders = county_generate_leaders_csv($county_data, $leaders,"\n");
-                foreach ($leaders as $leader)
-                    echo $county_data['siruta'].",".$leader;
-                if ($commune == "all")
+                if ($commune == "none" || $commune == "all")
+                {
+                    $leaders = county_generate_leaders_csv($county_data, $leaders,"\n");
+                    foreach ($leaders as $leader)
+                        echo $county_data['siruta'].",".$leader;
+                }
+                if ($commune == "all" || $commune == "villages")
                     echo village_generate_all_leaders_csv($county_data['siruta'],"\n");
             break;
             case 'all':

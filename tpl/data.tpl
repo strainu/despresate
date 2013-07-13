@@ -34,12 +34,14 @@
 			</select>, UATul
 			<select name="commune">
 				<option value="none" selected>niciunul (date județ)</option>
-				<option value="all">toate</option>
+				<option value="all">toate (inclusiv județ)</option>
+				<option value="villages">toate (fără județ)</option>
 			</select> în format 
 			<select name="f">
 				<option value="csv" selected>CSV</option>
 				<option value="html">HTML</option>
 				<option value="json">JSON</option>
+				<option value="xml">XML</option>
 			</select>
 			<input type="submit" value="Obține datele!" />
 		</p>

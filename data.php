@@ -25,7 +25,7 @@ switch ($format)
 	case 'html':
 		if ($county == "all")
 			Header('Location: /');
-		if ($commune == "none" || $commune == "all")
+		if ($commune == "none" || $commune == "all" || $commune == "villages")
 			Header('Location: judet.php?id='.$county);
 		else
 			Header('Location: sat.php?siruta='.$commune);
@@ -37,7 +37,7 @@ switch ($format)
 			//TODO
 		}
 		else
-			if ($commune == "none" || $commune == "all")
+			if ($commune == "none" || $commune == "all" || $commune == "villages")
 				Header('Location: judet.php?id='.$county.'&f='.$format.'&t='.$type.'&commune='.$commune);
 			else
 				Header('Location: sat.php?siruta='.$commune.'&f='.$format.'&t='.$type);
