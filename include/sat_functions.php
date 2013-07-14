@@ -275,13 +275,17 @@ function village_generate_all_stats_csv($county_siruta, $separator)
 	return $ret;
 }
 
-function village_generate_all_stats_json($county_siruta)
+function village_generate_all_stats_array($county_siruta, $diacritics = true)
 {
+    $SURFACE = $diacritics ? 'suprafața' : 'suprafata';
+    $POP = $diacritics ? 'populație' : 'populatie';
+    $POP_YEAR = $POP."_an";
+    
     $data = village_generate_all_stats_data($county_siruta);
-	//print_r($data);
-	$ret = Array();
-	foreach($data as $village)
-	{
+    //print_r($data);
+    $ret = Array();
+    foreach($data as $village)
+    {
         $shortname = village_shortname($village['denloc']);
         $county_data = county_data($village['jud']);
         $shortcounty = str_ireplace("Județul ", "", capitalize_counties($county_data['denloc']));
@@ -289,9 +293,9 @@ function village_generate_all_stats_json($county_siruta)
                         'siruta'        => $village['_siruta'],
                         'nume'          => $village['denloc'],
                         'prescurtare'   => $shortname,
-                        'suprafața'     => $village['suprafata'],
-                        'populație'     => $village['populatie'],
-                        'populație_an'  => $village['an'],
+                        $SURFACE        => $village['suprafata'],
+                        $POP            => $village['populatie'],
+                        $POP_YEAR       => $village['an'],
                         'densitate'     => number_format($village['populatie'] / $village['suprafata'], 2, '.', ''),
                         'wikipedia'     => village_wikipedia($village['rang'], $shortname, $shortcounty)
                         );
@@ -335,7 +339,7 @@ function village_generate_all_leaders_csv($county_siruta, $separator)
     return $datas;
 }
 
-function village_generate_all_leaders_json($county_siruta)
+function village_generate_all_leaders_array($county_siruta, $diacritics = true)
 {
     $all_leaders = village_generate_all_leaders_data($county_siruta);
 

@@ -59,10 +59,10 @@ function array_to_xml_recursive($array, $xml)
     foreach ($array as $key => $val)
     {
         if (is_numeric($key))
-            if ($xml->getName() == "localități")
+            if ($xml->getName() == "localitati")
                 $key = "localitate";
             else
-                $key = "persoană";
+                $key = "persoana";
         //get rid of whitespace in tag names
         $key = preg_replace('/\s+/', '_', $key);
         //echo $key." ".$val."\n";

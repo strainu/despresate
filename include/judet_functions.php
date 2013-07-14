@@ -222,16 +222,19 @@ function county_generate_leaders_csv($county_data, $leaders, $separator)
 }
 
 //json-related functions
-function county_generate_stats_json($county_data, $pop, $region, $hist_region)
+function county_generate_stats_array($county_data, $pop, $region, $hist_region, $diacritics = true)
 {
+    $SURFACE = $diacritics ? 'suprafața' : 'suprafata';
+    $POP = $diacritics ? 'populație' : 'populatie';
+    $POP_YEAR = $POP."_an";
     $county_str = capitalize_counties($county_data['denloc']);
     return array(
                         'siruta'        => $county_data['siruta'],
                         'nume'          => $county_str,
                         'prescurtare'   => $county_data['prescurtare'],
-                        'suprafața'     => $county_data['suprafata'],
-                        'populație'     => $pop[0]['populatie'],
-                        'populație_an'  => $pop[0]['an'],
+                        $SURFACE        => $county_data['suprafata'],
+                        $POP            => $pop[0]['populatie'],
+                        $POP_YEAR       => $pop[0]['an'],
                         'densitate'     => calculate_density($county_data, $pop),
                         'regiune_adm'   => $region, 
                         'regiune_ist'   => $hist_region,
@@ -239,7 +242,7 @@ function county_generate_stats_json($county_data, $pop, $region, $hist_region)
                         );
 }
 
-function county_generate_leaders_json($county_data, $leaders)
+function county_generate_leaders_array($county_data, $leaders, $diacritics = true)
 {
     process_county_leaders($leaders, 
                             &$cjpres, &$cjpresyear, &$cjpresid, &$cjpresparty,
@@ -247,26 +250,31 @@ function county_generate_leaders_json($county_data, $leaders)
                             &$prpres, &$prpresyear, &$prpresid, 
                             &$prvice, &$prviceyear, &$prviceid);
                             
+    //this is a hack meant to avoid diacritics in XML tag names
+    $PRCJ = $diacritics ? 'președinte consiliu județean' : 'presedinte consiliu judetean';
+    $VICECJ = $diacritics ? 'vicepreședinte consiliu județean' : 'vicepresedinte consiliu judetean';
+    $MCJ = $diacritics ? 'consilier județean' : 'consilier judetean';
+                            
     $data = array();
-    $data['președinte consiliu județean'] = array(
-                                             'nume'  => $cjpres,
-                                             'an'    => $cjpresyear
-                                            );
+    $data[$PRCJ] = array(
+                         'nume'  => $cjpres,
+                         'an'    => $cjpresyear
+                        );
     if (count($cjvice))
-        $data['vicepreședinte consiliu județean'] = array();
+        $data[$VICECJ] = array();
     foreach ($cjvice as $leader) {
-        array_push($data['vicepreședinte consiliu județean'], array(
-                                                                'nume'  => $leader['name'],
-                                                                'an'    => $cjviceyear
-                                                               ));
+        array_push($data[$VICECJ], array(
+                                        'nume'  => $leader['name'],
+                                        'an'    => $cjviceyear
+                                       ));
     }
     if (count($cjmembers))
-        $data['membru consiliu județean'] = array();
+        $data[$MCJ] = array();
     foreach ($cjmembers as $leader) {
-        array_push($data['membru consiliu județean'], array(
-                                                        'nume'  => $leader['name'],
-                                                        'an'    => $cjmyear
-                                                        ));
+        array_push($data[$MCJ], array(
+                                    'nume'  => $leader['name'],
+                                    'an'    => $cjmyear
+                                    ));
     }
     if ($prpres)
         $data['prefect'] = array(
