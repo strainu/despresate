@@ -97,7 +97,8 @@ switch($format)
                     $ldrs_size = count($ldrs);
                     $county_str = $county_data['siruta'].$sep.$stats.$sep;
                     foreach ($ldrs as $leader)
-                        $county_str .= $leader;
+                        $county_str .= $leader.$sep;
+                    $county_str = rtrim($county_str, $sep);//remove the last separator
                     $county_str .= "\n";
                 }
                 if ($commune == "all" || $commune == "villages")
@@ -109,7 +110,7 @@ switch($format)
                         $siruta = substr($stats[$i],0,strpos($stats[$i], $sep));
                         $village_str .= $stats[$i];
                         $village_str .= $leaders[$siruta];
-                        rtrim($village_str, $sep);
+                        $village_str = rtrim($village_str, $sep);
                         $village_str .= "\n";
                         $ldrs_no = count(explode($sep, $leaders[$siruta])) / count(explode($sep, $ldrs_header));
                         if ($ldrs_no > $ldrs_size)
