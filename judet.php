@@ -51,7 +51,7 @@ $commune = filter_input(INPUT_GET, 'commune', FILTER_SANITIZE_STRING);
 switch($format)
 {
     case 'csv':
-        header('Content-type: text/csv');
+        header('Content-type: text/csv; charset=utf-8');
         header('Content-disposition: attachment;filename='.$short_name.'-'.$type.'.csv');
         switch($type)
         {
@@ -129,7 +129,7 @@ switch($format)
         };
     break;
     case 'json':
-        header('Content-type: application/json');
+        header('Content-type: application/json; charset=utf-8');
         header('Content-disposition: attachment;filename='.$short_name.'-'.$type.'.json');
         
         $output = array();
@@ -174,6 +174,55 @@ switch($format)
             break;
         };
         echo json_encode($output);
+    break;
+    case 'xml':
+        header('Content-type: application/xml; charset=utf-8');
+        header('Content-disposition: attachment;filename='.$short_name.'-'.$type.'.xml');
+        
+        $output = array();
+        switch($type)
+        {
+            case 'stats':
+                if ($commune == "none" || $commune == "all")
+                {
+                    $output['județ'] = county_generate_stats_json($county_data, $pop, $region, $hist_region);
+                }
+                if ($commune == "all" || $commune == "villages")
+                {
+                    $output['localități'] = village_generate_all_stats_json($county_data['siruta']);
+                }
+            break;
+            case 'leaders':
+                if ($commune == "none" || $commune == "all")
+                {
+                    $output['județ'] = county_generate_leaders_json($county_data, $leaders);
+                }
+                if ($commune == "all" || $commune == "villages")
+                {
+                    $output['localități'] = village_generate_all_leaders_json($county_data['siruta']);
+                }
+            break;
+            case 'all':
+                if ($commune == "none" || $commune == "all")
+                {
+                    $output['județ'] = array_merge_recursive_numeric(
+                                        county_generate_stats_json($county_data, $pop, $region, $hist_region),
+                                        county_generate_leaders_json($county_data, $leaders)
+                                        );
+                }
+                if ($commune == "all" || $commune == "villages")
+                {
+                    $output['localități'] = array_merge_recursive_numeric(
+                                            village_generate_all_stats_json($county_data['siruta']),
+                                            village_generate_all_leaders_json($county_data['siruta'])
+                                            );
+                }
+            default:
+            break;
+        };
+        $xml = new SimpleXMLElement('<?xml version="1.1" encoding="UTF-8"?><județ/>');
+        array_to_xml_recursive($output, $xml);
+        echo $xml->asXML();
     break;
     case 'html':
     default:

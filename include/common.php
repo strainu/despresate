@@ -30,7 +30,7 @@ function array_merge_recursive_numeric(array $array1, $array2 = null)
         {
             //print_r($array1[$key]);
             //print_r($array2[$key]);
-            if ($merged[$key] == null)
+            if (!array_key_exists($key, $merged))
             {
                 $merged[$key] = $array2[$key];
                 continue;
@@ -52,6 +52,28 @@ function array_merge_recursive_numeric(array $array1, $array2 = null)
             //print_r($merged[$key]);
        }
     return $merged;
+}
+
+function array_to_xml_recursive($array, $xml)
+{
+    foreach ($array as $key => $val)
+    {
+        if (is_numeric($key))
+            if ($xml->getName() == "localități")
+                $key = "localitate";
+            else
+                $key = "persoană";
+        //get rid of whitespace in tag names
+        $key = preg_replace('/\s+/', '_', $key);
+        //echo $key." ".$val."\n";
+        if (is_array($val))
+        {
+            $xml2 = $xml->addChild($key);
+            array_to_xml_recursive($val, $xml2);
+        }
+        else
+            $xml->addChild($key, $val);
+    }
 }
 
 ?>

@@ -32,6 +32,7 @@ switch ($format)
 	break;
 	case 'csv':
 	case 'json':
+	case 'xml':
 		if($county == "all")
 		{
 			//TODO
