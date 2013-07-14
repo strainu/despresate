@@ -131,6 +131,49 @@ switch($format)
     case 'json':
         header('Content-type: application/json');
         header('Content-disposition: attachment;filename='.$short_name.'-'.$type.'.json');
+        
+        $output = array();
+        switch($type)
+        {
+            case 'stats':
+                if ($commune == "none" || $commune == "all")
+                {
+                    $output['județ'] = county_generate_stats_json($county_data, $pop, $region, $hist_region);
+                }
+                if ($commune == "all" || $commune == "villages")
+                {
+                    $output['localități'] = village_generate_all_stats_json($county_data['siruta']);
+                }
+            break;
+            case 'leaders':
+                if ($commune == "none" || $commune == "all")
+                {
+                    $output['județ'] = county_generate_leaders_json($county_data, $leaders);
+                }
+                if ($commune == "all" || $commune == "villages")
+                {
+                    $output['localități'] = village_generate_all_leaders_json($county_data['siruta']);
+                }
+            break;
+            case 'all':
+                if ($commune == "none" || $commune == "all")
+                {
+                    $output['județ'] = array_merge_recursive_numeric(
+                                        county_generate_stats_json($county_data, $pop, $region, $hist_region),
+                                        county_generate_leaders_json($county_data, $leaders)
+                                        );
+                }
+                if ($commune == "all" || $commune == "villages")
+                {
+                    $output['localități'] = array_merge_recursive_numeric(
+                                            village_generate_all_stats_json($county_data['siruta']),
+                                            village_generate_all_leaders_json($county_data['siruta'])
+                                            );
+                }
+            default:
+            break;
+        };
+        echo json_encode($output);
     break;
     case 'html':
     default:

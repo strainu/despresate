@@ -25,7 +25,7 @@
 				<option value="stats">datele statistice</option>
 				<option value="leaders">conducătorii</option>
 				<option value="all" selected>toate datele</option>
-			</select> despre
+			</select> din
 			<select name="county">
 				<option value="all" selected>toate județele</option>
 			{foreach $county_list as $othercounty name=othercounties}

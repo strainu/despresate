@@ -220,4 +220,65 @@ function county_generate_leaders_csv($county_data, $leaders, $separator)
     
     return $data;
 }
+
+//json-related functions
+function county_generate_stats_json($county_data, $pop, $region, $hist_region)
+{
+    $county_str = capitalize_counties($county_data['denloc']);
+    return array(
+                        'siruta'        => $county_data['siruta'],
+                        'nume'          => $county_str,
+                        'prescurtare'   => $county_data['prescurtare'],
+                        'suprafața'     => $county_data['suprafata'],
+                        'populație'     => $pop[0]['populatie'],
+                        'populație_an'  => $pop[0]['an'],
+                        'densitate'     => calculate_density($county_data, $pop),
+                        'regiune_adm'   => $region, 
+                        'regiune_ist'   => $hist_region,
+                        'wikipedia'     => "ro:".$county_str
+                        );
+}
+
+function county_generate_leaders_json($county_data, $leaders)
+{
+    process_county_leaders($leaders, 
+                            &$cjpres, &$cjpresyear, &$cjpresid, &$cjpresparty,
+                            &$cjvice, &$cjviceyear, &$cjmembers, &$cjmyear, 
+                            &$prpres, &$prpresyear, &$prpresid, 
+                            &$prvice, &$prviceyear, &$prviceid);
+                            
+    $data = array();
+    $data['președinte consiliu județean'] = array(
+                                             'nume'  => $cjpres,
+                                             'an'    => $cjpresyear
+                                            );
+    if (count($cjvice))
+        $data['vicepreședinte consiliu județean'] = array();
+    foreach ($cjvice as $leader) {
+        array_push($data['vicepreședinte consiliu județean'], array(
+                                                                'nume'  => $leader['name'],
+                                                                'an'    => $cjviceyear
+                                                               ));
+    }
+    if (count($cjmembers))
+        $data['membru consiliu județean'] = array();
+    foreach ($cjmembers as $leader) {
+        array_push($data['membru consiliu județean'], array(
+                                                        'nume'  => $leader['name'],
+                                                        'an'    => $cjmyear
+                                                        ));
+    }
+    if ($prpres)
+        $data['prefect'] = array(
+                            'nume'  => $prpres,
+                            'an'    => $prpresyear
+                            );
+    if ($prvice)
+        $data['subprefect'] = array(
+                                'nume'  => $prvice,
+                                'an'    => $prviceyear
+                                );
+    
+    return $data;
+}
 ?>

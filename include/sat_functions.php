@@ -275,6 +275,30 @@ function village_generate_all_stats_csv($county_siruta, $separator)
 	return $ret;
 }
 
+function village_generate_all_stats_json($county_siruta)
+{
+    $data = village_generate_all_stats_data($county_siruta);
+	//print_r($data);
+	$ret = Array();
+	foreach($data as $village)
+	{
+        $shortname = village_shortname($village['denloc']);
+        $county_data = county_data($village['jud']);
+        $shortcounty = str_ireplace("Județul ", "", capitalize_counties($county_data['denloc']));
+        $ret[$village['_siruta']] = array(
+                        'siruta'        => $village['_siruta'],
+                        'nume'          => $village['denloc'],
+                        'prescurtare'   => $shortname,
+                        'suprafața'     => $village['suprafata'],
+                        'populație'     => $village['populatie'],
+                        'populație_an'  => $village['an'],
+                        'densitate'     => number_format($village['populatie'] / $village['suprafata'], 2, '.', ''),
+                        'wikipedia'     => village_wikipedia($village['rang'], $shortname, $shortcounty)
+                        );
+    }
+    return $ret;
+}
+
 function village_generate_all_leaders_data($county_siruta)
 {
 	global $MyObject;
@@ -307,6 +331,36 @@ function village_generate_all_leaders_csv($county_siruta, $separator)
         }
         $data .= $leader['nume'].','.$leader['an'].$separator;
         $datas[$leader['siruta']] = $data;
+    }
+    return $datas;
+}
+
+function village_generate_all_leaders_json($county_siruta)
+{
+    $all_leaders = village_generate_all_leaders_data($county_siruta);
+
+    $datas = Array();
+    foreach ($all_leaders as $leader)
+    {
+        $data = array(
+                    'nume'  => $leader['nume'],
+                    'an'    => $leader['an']
+                );
+        $siruta = $leader['siruta'];
+        settype($siruta, "string");
+        switch($leader['functie'])
+        {
+            case 1:
+                $datas[$siruta]["primar"] = $data;
+            break;
+            case 2:
+                $datas[$siruta]["viceprimar"] = $data;
+            break;
+            case 3://TODO: implement this
+                $datas[$siruta]["consilier local"] = $data;
+            break;
+        }
+        
     }
     return $datas;
 }
