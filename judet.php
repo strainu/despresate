@@ -47,6 +47,10 @@ $density = calculate_density($county_data, $pop);
 $type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
 $format = filter_input(INPUT_GET, 'f', FILTER_SANITIZE_STRING);
 $commune = filter_input(INPUT_GET, 'commune', FILTER_SANITIZE_STRING);
+        
+$diacritics = true;//this should eventually be an option or something.
+$COUNTY = $diacritics ? 'județ' : 'judet';
+$CITIES = $diacritics ? 'localități' : 'localitati';
 
 switch($format)
 {
@@ -186,42 +190,42 @@ switch($format)
             case 'stats':
                 if ($commune == "none" || $commune == "all")
                 {
-                    $output['judet'] = county_generate_stats_array($county_data, $pop, $region, $hist_region, false);
+                    $output[$COUNTY] = county_generate_stats_array($county_data, $pop, $region, $hist_region, $diacritics);
                 }
                 if ($commune == "all" || $commune == "villages")
                 {
-                    $output['localitati'] = village_generate_all_stats_array($county_data['siruta'], false);
+                    $output[$CITIES] = village_generate_all_stats_array($county_data['siruta'], $diacritics);
                 }
             break;
             case 'leaders':
                 if ($commune == "none" || $commune == "all")
                 {
-                    $output['judet'] = county_generate_leaders_array($county_data, $leaders, false);
+                    $output[$COUNTY] = county_generate_leaders_array($county_data, $leaders, $diacritics);
                 }
                 if ($commune == "all" || $commune == "villages")
                 {
-                    $output['localitati'] = village_generate_all_leaders_array($county_data['siruta'], false);
+                    $output[$CITIES] = village_generate_all_leaders_array($county_data['siruta'], $diacritics);
                 }
             break;
             case 'all':
                 if ($commune == "none" || $commune == "all")
                 {
-                    $output['judet'] = array_merge_recursive_numeric(
-                                        county_generate_stats_array($county_data, $pop, $region, $hist_region, false),
-                                        county_generate_leaders_array($county_data, $leaders, false)
+                    $output[$COUNTY] = array_merge_recursive_numeric(
+                                        county_generate_stats_array($county_data, $pop, $region, $hist_region, $diacritics),
+                                        county_generate_leaders_array($county_data, $leaders, $diacritics)
                                         );
                 }
                 if ($commune == "all" || $commune == "villages")
                 {
-                    $output['localitati'] = array_merge_recursive_numeric(
-                                            village_generate_all_stats_array($county_data['siruta'], false),
-                                            village_generate_all_leaders_array($county_data['siruta'], false)
-                                            );
+                    $output[$CITIES] = array_merge_recursive_numeric(
+                                        village_generate_all_stats_array($county_data['siruta'], $diacritics),
+                                        village_generate_all_leaders_array($county_data['siruta'], $diacritics)
+                                        );
                 }
             default:
             break;
         };
-        $xml = new SimpleXMLElement('<?xml version="1.1" encoding="UTF-8"?><judet/>');
+        $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><județ/>');
         array_to_xml_recursive($output, $xml);
         echo $xml->asXML();
     break;
