@@ -68,7 +68,7 @@
     <div class="mainsection">
         <a name="info" />
         <div class="maintitle">Informații generale<a href="#top" class="toplink small">[sus]</a></div>
-        <p>{$shortname} este {$type.article} {$type.term} aflat{if $type.article == "o"}ă{/if} în {$county}, România.</p>
+        <p>{$shortname} este {$type.article} {$type.term} aflat{if $type.article == "o"}ă{/if} în <a href="judet.php?id={$countyid}" >{$county}</a>, România.</p>
     </div>
     <div class="mainsection">
         <a name="adm" />
