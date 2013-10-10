@@ -89,7 +89,7 @@
         <a name="uat" />
         <div class="maintitle">Localități<a href="#top" class="toplink small">[sus]</a></div>
         {if count($uat) }
-            <p>{$type.articulated|capitalize} {$shortname} are în componență următoarele {$uat|@count} localități:</p>
+            <p>{$type.articulated|capitalize} {$shortname} are în componență {if count($uat) > 1}următoarele {$uat|@count} localități{else}localitatea{/if}:</p>
             <ul style="-webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; column-count: 3;">
             {foreach $uat as $village}
                 <li><b>{$village.denloc|lower|capitalize}</b> {if $village.codp}(cod poștal {$village.codp}){/if}</li>
