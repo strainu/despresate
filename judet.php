@@ -23,6 +23,9 @@ $images = county_images($county_data);
 $leaders = county_leaders($county_data);
 $county_list = county_list();
 $monuments = county_monuments($county_data);
+$siruta = $county_data['siruta'];
+$nationalities = siruta_nationality($siruta);
+$religions = siruta_religion($siruta);
 
 $county_str = capitalize_counties($county_data['denloc']);
 // Bucharest is special, it needs special treatment
@@ -39,12 +42,9 @@ if ($index == 40)
 }
 else
 {
-    $siruta = $county_data['siruta'];
     $pop = county_population($county_data);
     $short_name = str_ireplace("Județul ", "", $county_str);
 }
-$nationalities = siruta_nationality($siruta);
-$religions = siruta_religion($siruta);
 $density = calculate_density($county_data, $pop);
 
 $type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
