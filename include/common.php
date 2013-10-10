@@ -76,4 +76,32 @@ function array_to_xml_recursive($array, $xml)
     }
 }
 
+function siruta_nationality($siruta)
+{
+    global $MyObject;
+
+    $MyObject->Query("SELECT `name`,`populatie` FROM `demografie_nationalitate` LEFT JOIN `nationalitati` ON `demografie_nationalitate`.`nationalitate`=`nationalitati`.`id` WHERE `demografie_nationalitate`.`uta` = ".$siruta." ORDER BY `populatie` DESC");
+    $pop = $MyObject->getTable();
+    if ($pop == -1) {
+        echo "Problem fetching nationalities data";
+        exit(1);
+    }
+    
+    return $pop;
+}
+
+function siruta_religion($siruta)
+{
+    global $MyObject;
+
+    $MyObject->Query("SELECT `name`,`populatie` FROM `demografie_religie` LEFT JOIN `religii` ON `demografie_religie`.`religie`=`religii`.`id` WHERE `demografie_religie`.`uta` = ".$siruta." ORDER BY `populatie` DESC");
+    $pop = $MyObject->getTable();
+    if ($pop == -1) {
+        echo "Problem fetching nationalities data";
+        exit(1);
+    }
+    
+    return $pop;
+}
+
 ?>

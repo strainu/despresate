@@ -157,3 +157,13 @@ ul.hiddentoc li {
 .monumentsheader{
   background: none repeat scroll 0% 0% rgb(204, 204, 204);
 }
+.graph{
+  display: block;
+  float:left;
+}
+.full{
+  width: 100%;
+}
+.half{
+  width: 50%;
+}

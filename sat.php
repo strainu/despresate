@@ -28,6 +28,8 @@ $uat_data = village_uat_data($siruta);
 $commune_list = village_other_villages($village_data);
 $images = village_images($siruta);
 $pop = village_population($siruta);
+$nationalities = siruta_nationality($siruta);
+$religions = siruta_religion($siruta);
 $leaders = village_leaders($siruta);
 $monuments = village_monuments($siruta);
 $village_type = village_type($village_data);
@@ -64,6 +66,8 @@ $smarty->assign('chemail', $village_data['email']);
 $smarty->assign('chtel', $village_data['telefon']);
 
 $smarty->assign('population', $pop[0]['populatie']);
+$smarty->assign('nationalities', $nationalities);
+$smarty->assign('religions', $religions);
 $smarty->assign('census', $pop[0]['an']);
 $smarty->assign('demography', array_reverse($pop));
 $smarty->assign('density', $density);

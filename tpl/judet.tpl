@@ -145,29 +145,63 @@
     <div class="mainsection">
 		<a name="dem" />
 		<div class="maintitle">Demografie<a href="#top" class="toplink small">[sus]</a></div>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script type="text/javascript">
-		  {literal}google.load("visualization", "1", {packages:["corechart"]});
-		  google.setOnLoadCallback(drawChart);
-		  function drawChart() {
-			var data = google.visualization.arrayToDataTable([
-			  ['An', 'Locuitori'],{/literal}
-			{foreach $demography as $oldcensus}
-				['{$oldcensus.an}', {$oldcensus.populatie}],
-			{/foreach}
-		{literal}]);
+		În graficul de pe prima linie este prezentată evoluția demografică a județului de-a lungul istoriei, iar graficele de sub el prezintă distribuția populației după naționalitate și religie la recensământul din anul {$demography[sizeof($demography) - 1].an}.
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+          {literal}google.load("visualization", "1", {packages:["corechart"]});
+          google.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var hist_data = google.visualization.arrayToDataTable([
+              ['An', 'Locuitori'],{/literal}
+            {foreach $demography as $oldcensus}
+                ['{$oldcensus.an}', {$oldcensus.populatie}],
+            {/foreach}
+        {literal}]);
+        
+            var nat_data = google.visualization.arrayToDataTable([
+              ['Naționalitate', 'Locuitori'],{/literal}
+            {foreach $nationalities as $nationality}
+                ['{$nationality.name}', {$nationality.populatie}],
+            {/foreach}
+        {literal}]);
+        
+            var rel_data = google.visualization.arrayToDataTable([
+              ['Religie', 'Locuitori'],{/literal}
+            {foreach $religions as $religion}
+                ['{$religion.name}', {$religion.populatie}],
+            {/foreach}
+        {literal}]);
 
-			var options = {
-			  title: 'Evoluție demografică',
-			  hAxis: {title: 'An'},
-			  vAxis: {baseline: 0}
-			};
+            var hist_options = {
+              title: 'Evoluție demografică',
+              hAxis: {title: 'An'},
+              vAxis: {baseline: 0},
+              legend: {position: 'right'},
+            };
 
-			var chart = new google.visualization.ColumnChart(document.getElementById('demografie'));
-			chart.draw(data, options);
-		  }{/literal}
-		</script>
-		<div id="demografie" style="width: 50%; height: 300px"></div>
+            var nat_options = {
+              title: 'Componența etnică',
+              legend: {position: 'right', alignment: 'center'},
+            };
+
+            var rel_options = {
+              title: 'Componența confesională',
+              legend: {position: 'right', alignment: 'center'},
+            };
+
+            var hist_chart = new google.visualization.ColumnChart(document.getElementById('demografie'));
+            hist_chart.draw(hist_data, hist_options);
+            var nat_chart = new google.visualization.PieChart(document.getElementById('nationalitate'));
+            nat_chart.draw(nat_data, nat_options);
+            var rel_chart = new google.visualization.PieChart(document.getElementById('religie'));
+            rel_chart.draw(rel_data, rel_options);
+          }{/literal}
+        </script>
+        <div id="graphs">
+            <div id="demografie" class="graph full"></div>
+            <div id="nationalitate" class="graph half"></div>
+            <div id="religie" class="graph half"></div>
+        </div>
     </div>
     <div class="mainsection">
 		<a name="mon" />

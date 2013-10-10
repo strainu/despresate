@@ -39,9 +39,12 @@ if ($index == 40)
 }
 else
 {
+    $siruta = $county_data['siruta'];
     $pop = county_population($county_data);
     $short_name = str_ireplace("Județul ", "", $county_str);
 }
+$nationalities = siruta_nationality($siruta);
+$religions = siruta_religion($siruta);
 $density = calculate_density($county_data, $pop);
 
 $type = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
@@ -246,6 +249,8 @@ switch($format)
         $smarty->assign('siruta', $county_data['siruta']);
         $smarty->assign('uat', $uat_data);
         $smarty->assign('population', $pop[0]['populatie']);
+        $smarty->assign('nationalities', $nationalities);
+        $smarty->assign('religions', $religions);
         $smarty->assign('census', $pop[0]['an']);
         $smarty->assign('demography', array_reverse($pop));
         $smarty->assign('surface', $county_data['suprafata']);
