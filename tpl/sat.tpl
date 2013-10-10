@@ -105,6 +105,11 @@
         <p>Nu avem încă informații legate de economia acestei localități.</p>
     </div>
     <div class="mainsection">
+	<a name="edu" />
+        <div class="maintitle">Educație<a href="#top" class="toplink small">[sus]</a></div>
+        <p>Nu avem încă informații legate de școlile din această localitate.</p>
+    </div>
+    <div class="mainsection">
         <a name="dem" />
         <div class="maintitle">Demografie<a href="#top" class="toplink small">[sus]</a></div>
 	<p>În graficul de pe prima linie este prezentată evoluția demografică a localității de-a lungul istoriei, iar graficele de sub el prezintă distribuția populației după naționalitate și religie la recensământul din anul {$demography[sizeof($demography) - 1].an}.</p>
@@ -167,7 +172,7 @@
     </div>
     <div class="mainsection">
         <a name="mon" />
-        <div class="maintitle">Monumente<a href="#top" class="toplink small">[sus]</a></div>
+        <div class="maintitle">Cultură și monumente<a href="#top" class="toplink small">[sus]</a></div>
         {if count($monuments) }
             <p>Mai jos aveți {$monuments|@count} monumente aleatorii din {$shortname}. Imaginile monumentelor provin de la concursul foto <a href="http://wikilovesmonuments.ro">WikiLovesMonuments România</a></p>
             <p><em>Lista completă a monumentelor istorice din {$shortname} este 
