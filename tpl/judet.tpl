@@ -145,7 +145,7 @@
     <div class="mainsection">
 		<a name="dem" />
 		<div class="maintitle">Demografie<a href="#top" class="toplink small">[sus]</a></div>
-		În graficul de pe prima linie este prezentată evoluția demografică a județului de-a lungul istoriei, iar graficele de sub el prezintă distribuția populației după naționalitate și religie la recensământul din anul {$demography[sizeof($demography) - 1].an}.
+		<p>În graficul de pe prima linie este prezentată evoluția demografică a județului de-a lungul istoriei, iar graficele de sub el prezintă distribuția populației după naționalitate și religie la recensământul din anul {$demography[sizeof($demography) - 1].an}.</p>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
           {literal}google.load("visualization", "1", {packages:["corechart"]});
