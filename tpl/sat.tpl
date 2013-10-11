@@ -68,6 +68,25 @@
     <div class="mainsection">
         <a name="info" />
         <div class="maintitle">Informații generale<a href="#top" class="toplink small">[sus]</a></div>
+                <table class="pagetoc">
+                    <tbody>
+                        <tr><td>
+                            <div class="pagetoctitle"><b>Cuprins</b></div>
+                        </td></tr>
+                        <tr><td>
+                            <ul>
+                                <li class="toclevel-1"><a href="#info">Informații generale</a></li>
+                                <li class="toclevel-1"><a href="#adm">Administrație locală</a></li>
+                                <li class="toclevel-1"><a href="#uat">Localități</a></li>
+                                <li class="toclevel-1"><a href="#eco">Economie</a></li>
+                                <li class="toclevel-1"><a href="#edu">Educație</a></li>
+                                <li class="toclevel-1"><a href="#dem">Demografie</a></li>
+                                <li class="toclevel-1"><a href="#mon">Monumente</a></li>
+                                <li class="toclevel-1"><a href="#pic">Galerie</a></li>
+                            </ul>
+                        </td></tr>
+                    </tbody>
+                </table>
         <p>{$shortname} este {$type.article} {$type.term} aflat{if $type.article == "o"}ă{/if} în <a href="judet.php?id={$countyid}" >{$county}</a>, România.</p>
     </div>
     <div class="mainsection">

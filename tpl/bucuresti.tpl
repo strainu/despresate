@@ -92,6 +92,7 @@
                                 <li class="toclevel-1"><a href="#adm">Administrație locală</a></li>
                                 <li class="toclevel-1"><a href="#uat">Localități</a></li>
                                 <li class="toclevel-1"><a href="#eco">Economie</a></li>
+                                <li class="toclevel-1"><a href="#edu">Educație</a></li>
                                 <li class="toclevel-1"><a href="#dem">Demografie</a></li>
                                 <li class="toclevel-1"><a href="#mon">Monumente</a></li>
                                 <li class="toclevel-1"><a href="#pic">Galerie</a></li>
