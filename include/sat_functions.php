@@ -44,6 +44,26 @@ function village_images($siruta)
     return $images;
 }
 
+function village_schools($siruta)
+{
+    global $MyObject;
+
+    $MyObject->Query("SELECT `_siruta` FROM `siruta` WHERE `sirsup`=".$siruta);
+    $list = $MyObject->getColumn('_siruta');
+    $enum = "(";
+    foreach ($list as $village)
+        $enum .= $village . ",";
+    $enum .= $siruta . ")";
+    $MyObject->Query("SELECT nume,limba,web FROM `scoli` WHERE `siruta` IN ".$enum." ORDER BY `nume` ASC");
+    $schools = $MyObject->getTable();
+    if ($schools == -1) {
+        echo "Problem fetching population data";
+        exit(1);
+    }
+    
+    return $schools;
+}
+
 function village_leaders($siruta)
 {
     global $MyObject;

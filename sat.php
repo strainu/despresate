@@ -30,6 +30,7 @@ $images = village_images($siruta);
 $pop = village_population($siruta);
 $nationalities = siruta_nationality($siruta);
 $religions = siruta_religion($siruta);
+$schools = village_schools($siruta);
 $leaders = village_leaders($siruta);
 $monuments = village_monuments($siruta);
 $village_type = village_type($village_data);
@@ -48,6 +49,7 @@ $shortname = mb_convert_case(str_replace("MUNICIPIUL ", "", str_replace("BUCUREÈ
 $smarty->assign('shortname', $shortname);
 $smarty->assign('siruta', $siruta);
 $smarty->assign('surface', $village_data['suprafata']);
+$smarty->assign('schools', $schools);
 
 $smarty->assign('mayor', $mayor);
 $smarty->assign('mayorparty', $mayorparty);

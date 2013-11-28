@@ -126,7 +126,7 @@
     <div class="mainsection">
 	<a name="edu" />
         <div class="maintitle">Educație<a href="#top" class="toplink small">[sus]</a></div>
-        <p>Nu avem încă informații legate de școlile din această localitate.</p>
+        <p>Există {sizeof($schools)} instituții de învățământ (școli, case ale elevilor etc.) în {$shortname}.</p><ul>{foreach $schools as $school}<li>{if $school.web}<a href="http:/	/{$school.web}" title="Site-ul {$school.nume}">{$school.nume}</a>{else}{$school.nume}{/if} {if $school.limba}({$school.limba}){/if}</li>{/foreach}</ul>
     </div>
     <div class="mainsection">
         <a name="dem" />
